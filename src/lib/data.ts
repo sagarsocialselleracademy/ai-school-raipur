@@ -187,10 +187,10 @@ export const DEFAULTS = {
   FOOTER_DESCRIPTION:
     "India's Most Advance AI & Automation Masterclass — helping professionals and entrepreneurs master AI tools and grow their business.",
   COPYRIGHT: '© 2026 Social Seller Academy. All rights reserved.',
-  ATTRIBUTION_PREFIX: 'AI School Raipur · Powered by ',
-  ATTRIBUTION_LINK_LABEL: 'DeveloperBox AI Factory',
-  ATTRIBUTION_LINK_URL: 'https://developerbox.co.in',
-  LOGIN_POWERED_BY_PREFIX: 'Powered by ',
+  ATTRIBUTION_PREFIX: '',
+  ATTRIBUTION_LINK_LABEL: '',
+  ATTRIBUTION_LINK_URL: '',
+  LOGIN_POWERED_BY_PREFIX: '',
   SPEAKER_LOGOS: {
     'IIM Nagpur': '/speakes-at/iim-nagpur.png',
     'IIT Indore': '/speakes-at/iit-indore.png',

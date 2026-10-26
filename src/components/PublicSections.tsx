@@ -562,12 +562,6 @@ export function PublicFooter({ settings }: { settings: SiteSettings }) {
       </div>
       <div className="footer-bottom container">
         <small>{copyright}</small>
-        <small className="footer-attr">
-          {DEFAULTS.ATTRIBUTION_PREFIX}
-          <a href={DEFAULTS.ATTRIBUTION_LINK_URL} target="_blank" rel="noreferrer">
-            {DEFAULTS.ATTRIBUTION_LINK_LABEL}
-          </a>
-        </small>
       </div>
     </footer>
   );
