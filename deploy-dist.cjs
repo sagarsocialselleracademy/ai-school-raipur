@@ -15,7 +15,7 @@ console.log('2. Publishing dist to hostinger-deploy branch...');
 execSync('git init -b hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git config user.name "Lakshit Sethiya"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git config user.email "support@socialseller.in"', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' });
+try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git commit -m "Deploy built static files for Hostinger/GoDaddy"', { cwd: distDir, env, stdio: 'inherit' });
