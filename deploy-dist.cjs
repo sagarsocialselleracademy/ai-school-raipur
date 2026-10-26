@@ -38,7 +38,7 @@ try {
   execSync('gh api -X POST repos/sagarsocialselleracademy/ai-school-raipur/pages -f "source[branch]=hostinger-deploy" -f "source[path]=/"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {
   try {
-    execSync('gh api -X PUT repos/sagarsocialselleracademy/ai-school-raipur/pages -f "cname=aischoolraipur.in" -f "source[branch]=hostinger-deploy" -f "source[path]=/"', { cwd: projectDir, env, stdio: 'inherit' });
+    execSync('gh api -X PUT repos/sagarsocialselleracademy/ai-school-raipur/pages -f "cname=aischoolraipur.com" -f "source[branch]=hostinger-deploy" -f "source[path]=/"', { cwd: projectDir, env, stdio: 'inherit' });
   } catch (e) {
     console.log('Pages note:', e.message);
   }
