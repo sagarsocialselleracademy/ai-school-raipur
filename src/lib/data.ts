@@ -151,7 +151,7 @@ export interface MediaFile {
 }
 
 export const DEFAULTS = {
-  LOGO_URL: '/logo.png',
+  LOGO_URL: '/logo.png?v=2',
   PORTRAIT: '/lakshit-portrait.jpg',
   HERO_VIDEO: '/media/8036923a12fdf959fea2c6bd37a710b3d69c679b.bin',
   HERO_POSTER: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
@@ -225,8 +225,8 @@ export const DEFAULTS = {
 export const INITIAL_SETTINGS: SiteSettings = {
   id: 'default',
   websiteName: 'AI School Raipur',
-  logoUrl: '',
-  faviconUrl: '/favicon.png',
+  logoUrl: '/logo.png?v=2',
+  faviconUrl: '/favicon.png?v=2',
   contactEmail: 'support@socialseller.in',
   phone: '+91 8816933028, +91 8370044449',
   address:
@@ -243,13 +243,13 @@ export const INITIAL_SETTINGS: SiteSettings = {
     secondary: '#0a0706',
     accent: '#ff3d1a',
   },
-  seoTitle: "Raipur's Learn to Build AI Agent Team in 3 Hours",
+  seoTitle: "Raipur's Most Advance Ai & Automation Masterclass",
   seoDescription:
-    'A 3-hour live workshop by Lakshit Sethiya, where you’ll discover how to build AI agents team to automate your complete business tasks.',
+    'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
   ogImage: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
   homePageSlug: 'home-copy',
   seatsRemaining: 23,
-  eventStartsAt: '2026-11-15T10:30:00+05:30',
+  eventStartsAt: '2026-11-29T10:30:00+05:30',
   registerUrl: 'https://rzp.io/rzp/hEo9sFF5',
   registerLabel: 'Register Now',
   facebookPixelId: '762245465547904',
@@ -370,30 +370,44 @@ export const INITIAL_COURSES: CourseItem[] = [
 export const INITIAL_PAGES: LandingPage[] = [
   {
     id: 'cmtjtmwbs0000b5xs4vvu1rtu',
-    name: "Raipur's Most Advance AI Agents Masterclass",
-    title: "Raipur's Learn to Build AI Agent Team in 3 Hours",
+    name: "Raipur's Most Advance Ai & Automation Masterclass",
+    title: "Raipur's Most Advance Ai & Automation Masterclass",
     slug: 'home-copy',
     description: 'Live workshop by Lakshit Sethiya in Raipur.',
     status: 'PUBLISHED',
-    seoTitle: "Raipur's Learn to Build AI Agent Team in 3 Hours",
+    seoTitle: "Raipur's Most Advance Ai & Automation Masterclass",
     seoDescription:
-      'A 3-hour live workshop by Lakshit Sethiya, where you’ll discover how to build AI agents team to automate your complete business tasks.',
+      'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
     seoKeywords: 'AI workshop, automation, Raipur, Lakshit Sethiya',
-    ogTitle: "India's Most Advance AI & Automation Masterclass",
-    ogDescription: 'Master 30+ AI tools in a 3-hour live workshop.',
+    ogTitle: "Raipur's Most Advance Ai & Automation Masterclass",
+    ogDescription: 'Master 30+ Ai Tools in a Full Day live Physical workshop.',
     ogImage: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
     facebookPixelId: '762245465547904',
     theme: 'classic',
     registerUrl: 'https://rzp.io/rzp/hEo9sFF5',
     registerLabel: 'Register Now',
-    eventStartsAt: '2026-11-15T10:30:00+05:30',
-    updatedAt: '2026-10-20T06:42:52.710Z',
+    eventStartsAt: '2026-11-29T10:30:00+05:30',
+    updatedAt: '2026-10-26T08:30:00.000Z',
     domains: [
       {
         id: 'cmtjy8nif0014b5xsr8nelah3',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        hostname: 'aischoolraipur.com',
+        hostname: 'aischoolraipur.in',
         isPrimary: true,
+        enabled: true,
+      },
+      {
+        id: 'cmtjy8nif0014b5xsr8nelah4',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        hostname: 'www.aischoolraipur.in',
+        isPrimary: false,
+        enabled: true,
+      },
+      {
+        id: 'cmtjy8nif0014b5xsr8nelah5',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        hostname: 'aischoolraipur.com',
+        isPrimary: false,
         enabled: true,
       },
     ],
@@ -405,12 +419,12 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 0,
         data: {
-          eyebrow: '1000+ people attended in Raipur',
-          heading: 'Advance Ai Agent ',
-          highlight: 'Masterclass',
-          headingEnd: 'in Raipur ',
+          eyebrow: '2000+ people attended in Raipur',
+          heading: "Raipur's Most Advance ",
+          highlight: 'Ai & Automation',
+          headingEnd: 'Masterclass ',
           description:
-            'A 3-hour live workshop by Lakshit Sethiya, where you’ll discover how to build AI agents team to automate your complete business tasks.',
+            'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
           video: {
             source: 'file',
             url: '/media/8036923a12fdf959fea2c6bd37a710b3d69c679b.bin',
@@ -418,10 +432,10 @@ export const INITIAL_PAGES: LandingPage[] = [
           },
           alignment: 'center',
           pills: [
-            { icon: 'calendar', label: '25th October' },
-            { icon: 'clock', label: '10:30 AM - 2:00 PM' },
-            { icon: 'pin', label: 'Aarambh incubation, Raipur' },
-            { icon: 'users', label: 'Limited Seats' },
+            { icon: 'calendar', label: '29th November' },
+            { icon: 'clock', label: '10:30AM - 4:00 PM' },
+            { icon: 'pin', label: 'Vimtara Hall, Raipur' },
+            { icon: 'users', label: 'Lunch Included' },
           ],
           originalPrice: '₹2499',
           price: '₹1999 only',
@@ -441,10 +455,10 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 1,
         data: {
           items: [
-            { icon: 'spark', label: 'Master 20+ Ai Tools' },
+            { icon: 'spark', label: 'Master 30+ Ai Tools' },
             { icon: 'play', label: 'Live practical demo' },
             { icon: 'chat', label: 'Q&A Session' },
-            { icon: 'fork', label: 'Snacks included' },
+            { icon: 'fork', label: 'Lunch included' },
           ],
         },
       },
@@ -536,7 +550,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           heading: 'See you',
           highlight: '',
-          headingEnd: 'on 25th October',
+          headingEnd: 'on 29th November',
           description: 'Reserve your seat for the Live session. Limited seats — register today.',
           seatsText: '23 seats remaining. Register now!',
           button: {
@@ -559,11 +573,11 @@ export const INITIAL_PAGES: LandingPage[] = [
           description: 'Attendees who applied what they learned — these are their actual results.',
           images: [
             {
-              url: '/media/proof-1.webp',
+              url: 'https://res.cloudinary.com/dldynfkhm/image/upload/v1788517675/aischoolraipur/images/b9eed1f4ef4f707ddadf99a01f943a4d_veys7s.webp',
               alt: 'Analytics dashboard showing gross sales',
             },
             {
-              url: '/media/proof-2.webp',
+              url: '/media/proof-youtube.png',
               alt: 'Earnings dashboard',
             },
           ],
@@ -605,10 +619,13 @@ export const INITIAL_PAGES: LandingPage[] = [
               title: 'WORKSHOP PLACE',
               layout: 'landscape',
               images: [
-                { url: '/moments-with-lakshit/workshop-place/img1.png', alt: 'Workshop on stage' },
                 {
-                  url: '/moments-with-lakshit/workshop-place/img2.png',
-                  alt: 'Speaking with microphone',
+                  url: '/moments-with-lakshit/sharing-stage/img3.png',
+                  alt: 'Speaking on stage at AI workshop',
+                },
+                {
+                  url: '/moments-with-lakshit/sharing-stage/img2.png',
+                  alt: 'Seated with workshop attendees',
                 },
                 {
                   url: '/moments-with-lakshit/workshop-place/img3.png',
@@ -624,14 +641,21 @@ export const INITIAL_PAGES: LandingPage[] = [
               title: 'SHARING STAGE',
               layout: 'portrait',
               images: [
-                { url: '/moments-with-lakshit/sharing-stage/img1.png', alt: 'Award moment' },
-                { url: '/moments-with-lakshit/sharing-stage/img2.png', alt: 'Team huddle' },
-                { url: '/moments-with-lakshit/sharing-stage/img3.png', alt: 'Collaboration' },
-                { url: '/moments-with-lakshit/sharing-stage/img4.png', alt: 'Networking' },
-                { url: '/moments-with-lakshit/sharing-stage/img5.png', alt: 'Founders meetup' },
+                {
+                  url: '/moments-with-lakshit/workshop-place/img2.png',
+                  alt: 'Speaking with microphone at podium',
+                },
+                {
+                  url: '/moments-with-lakshit/sharing-stage/img5.png',
+                  alt: 'Live panel session on stage',
+                },
                 {
                   url: '/moments-with-lakshit/sharing-stage/img6.png',
-                  alt: 'Workshop discussion',
+                  alt: 'BBM 2025 stage moment',
+                },
+                {
+                  url: '/moments-with-lakshit/achievements-and-awards/img5.png',
+                  alt: 'Creator Commune stage meetup',
                 },
               ],
             },
@@ -699,31 +723,23 @@ export const INITIAL_PAGES: LandingPage[] = [
                 },
                 {
                   url: '/moments-with-lakshit/achievements-and-awards/img2.png',
-                  alt: 'University event',
-                },
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img3.png',
-                  alt: 'Award night',
+                  alt: 'YouTube Creator Award',
                 },
                 {
                   url: '/moments-with-lakshit/achievements-and-awards/img4.png',
-                  alt: 'Tech conference',
+                  alt: 'YA Startup Award 2023',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img5.png',
-                  alt: 'Group recognition',
+                  url: '/moments-with-lakshit/achievements-and-awards/img3.png',
+                  alt: 'Central India Connect Marketplace Award',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img6.png',
-                  alt: 'Stage honor',
+                  url: '/moments-with-lakshit/sharing-stage/img1.png',
+                  alt: 'Grand Felicitation on stage',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img7.png',
-                  alt: 'Session consultation',
-                },
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img8.png',
-                  alt: 'Stage recognition',
+                  url: '/moments-with-lakshit/sharing-stage/img4.png',
+                  alt: 'Stage recognition with attendees',
                 },
               ],
             },
@@ -753,7 +769,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           heading: '',
           highlight: '',
-          headingEnd: 'on 25th October',
+          headingEnd: 'on 29th November',
           description: 'Reserve your seat for the Live session. Limited seats — register today.',
           seatsText: '23 seats remaining. Register now!',
           button: {
@@ -777,15 +793,11 @@ export const INITIAL_PAGES: LandingPage[] = [
           clippings: [
             {
               url: '/media-coverage/img1.png',
-              alt: 'Newspaper coverage of Lakshit Sethiya AI workshop - feature 1',
+              alt: 'Hari Bhoomi newspaper coverage of Lakshit Sethiya AI workshop',
             },
             {
               url: '/media-coverage/img2.png',
-              alt: 'Newspaper coverage of Lakshit Sethiya AI workshop - feature 2',
-            },
-            {
-              url: '/media-coverage/img3.png',
-              alt: 'Newspaper coverage of Lakshit Sethiya AI workshop - feature 3',
+              alt: 'Dainik Bhaskar newspaper coverage of Lakshit Sethiya AI workshop',
             },
           ],
         },
@@ -861,7 +873,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           heading: 'See you',
           highlight: '',
-          headingEnd: 'on 25th October',
+          headingEnd: 'on 29th November',
           description: 'Reserve your seat. Limited seats — register today.',
           seatsText: '23 seats remaining. Register now!',
           button: {

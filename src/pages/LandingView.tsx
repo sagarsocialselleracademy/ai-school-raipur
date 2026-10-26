@@ -118,7 +118,13 @@ export function LandingView({ slug }: { slug?: string }) {
   const theme = payload.theme || page.theme || 'classic';
 
   return (
-    <PublicShell settings={settings} navigation={navigation}>
+    <PublicShell
+      settings={{
+        ...settings,
+        eventStartsAt: page.eventStartsAt || settings.eventStartsAt,
+      }}
+      navigation={navigation}
+    >
       <div className={`landing-theme theme-${theme}`}>
         {filterVisibleSections(page.sections || []).map((section) => (
           <SectionRenderer

@@ -1051,10 +1051,21 @@ function ProofImpactBlock({ data }: { data: Record<string, any> }) {
       <p className="lede">{asStr(data.description)}</p>
       <div className="proof-grid">
         {asArr(data.images).map((img, i) => {
-          const url = fallbackIfDead(img.url, `/media/proof-${(i % 2) + 1}.webp`);
+          const rawUrl = asStr(img.url);
+          const fallbackUrl = '/media/proof-youtube.png';
+          const srcUrl = rawUrl ? resolveAssetUrl(rawUrl) : fallbackUrl;
           return (
-            <div key={`${url}-${i}`} className="proof-frame">
-              <img src={resolveAssetUrl(url)} alt={img.alt || 'Proof of impact'} />
+            <div key={`${srcUrl}-${i}`} className="proof-frame">
+              <img
+                src={srcUrl}
+                alt={img.alt || 'Proof of impact'}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.endsWith(fallbackUrl)) {
+                    target.src = fallbackUrl;
+                  }
+                }}
+              />
             </div>
           );
         })}
@@ -1173,8 +1184,6 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
   const clippings = asArr(data.clippings);
   if (!clippings.length) return null;
   const limited = clippings.slice(0, DEFAULTS.MEDIA_CLIP_COUNT);
-  const first = limited[0];
-  const rest = limited.slice(1);
 
   return (
     <section className="section container center">
@@ -1184,26 +1193,14 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
       </h2>
       <p className="lede">{asStr(data.description)}</p>
       <div className="clip-mosaic">
-        {first ? (
-          <div className="clip-mosaic__feature">
-            <div className="clip-card">
-              <img
-                src={resolveAssetUrl(resolveMediaClipping(0, first.url))}
-                alt={first.alt || 'Newspaper coverage'}
-              />
-            </div>
+        {limited.map((clip, idx) => (
+          <div key={`${clip.url}-${idx}`} className="clip-card">
+            <img
+              src={resolveAssetUrl(resolveMediaClipping(idx, clip.url))}
+              alt={clip.alt || `Newspaper coverage ${idx + 1}`}
+            />
           </div>
-        ) : null}
-        <div className="clip-mosaic__stack">
-          {rest.map((clip, idx) => (
-            <div key={`${clip.url}-${idx}`} className="clip-card">
-              <img
-                src={resolveAssetUrl(resolveMediaClipping(idx + 1, clip.url))}
-                alt={clip.alt || `Newspaper coverage ${idx + 2}`}
-              />
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </section>
   );

@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v1',
-  PAGES: 'aischool_pages_v1',
-  NAV: 'aischool_nav_v1',
-  COURSES: 'aischool_courses_v1',
-  TESTIMONIALS: 'aischool_testimonials_v1',
-  FAQS: 'aischool_faqs_v1',
-  LEADS: 'aischool_leads_v1',
-  MEDIA: 'aischool_media_v1',
+  SETTINGS: 'aischool_settings_v7',
+  PAGES: 'aischool_pages_v7',
+  NAV: 'aischool_nav_v7',
+  COURSES: 'aischool_courses_v7',
+  TESTIMONIALS: 'aischool_testimonials_v7',
+  FAQS: 'aischool_faqs_v7',
+  LEADS: 'aischool_leads_v7',
+  MEDIA: 'aischool_media_v7',
 };
 
 function readStore<T>(key: string, fallback: T): T {
@@ -127,7 +127,7 @@ export function fallbackIfDead(url: string | undefined, fallback: string): strin
 
 export function resolveLogoUrl(url?: string): string {
   const trimmed = (url || '').trim();
-  if (!trimmed || isInvalidOrDeadMedia(trimmed) || trimmed === DEFAULTS.LOGO_URL) return '';
+  if (!trimmed || isInvalidOrDeadMedia(trimmed)) return DEFAULTS.LOGO_URL;
   return trimmed;
 }
 
