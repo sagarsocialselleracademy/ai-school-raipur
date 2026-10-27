@@ -250,7 +250,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   homePageSlug: 'home-copy',
   seatsRemaining: 23,
   eventStartsAt: '2026-11-29T10:30:00+05:30',
-  registerUrl: 'https://rzp.io/rzp/hEo9sFF5',
+  registerUrl: 'https://rzp.io/rzp/3nLQzNx',
   registerLabel: 'Register Now',
   facebookPixelId: '762245465547904',
   footerJson: {
@@ -362,7 +362,7 @@ export const INITIAL_COURSES: CourseItem[] = [
     price: 2499,
     discountPrice: 1999,
     ctaLabel: 'Register Now',
-    ctaUrl: 'https://rzp.io/rzp/hEo9sFF5',
+    ctaUrl: 'https://rzp.io/rzp/3nLQzNx',
     status: 'PUBLISHED',
   },
 ];
@@ -384,7 +384,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     ogImage: '/media/hero-poster.webp',
     facebookPixelId: '762245465547904',
     theme: 'classic',
-    registerUrl: 'https://rzp.io/rzp/hEo9sFF5',
+    registerUrl: 'https://rzp.io/rzp/3nLQzNx',
     registerLabel: 'Register Now',
     eventStartsAt: '2026-11-29T10:30:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
@@ -442,7 +442,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '23 seats remaining. Register now!',
           primaryButton: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/hEo9sFF5',
+            url: 'https://rzp.io/rzp/3nLQzNx',
           },
           secondaryButton: { label: '', url: '' },
         },
@@ -555,7 +555,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '23 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/hEo9sFF5',
+            url: 'https://rzp.io/rzp/3nLQzNx',
           },
           note: '',
         },
@@ -774,7 +774,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '23 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/hEo9sFF5',
+            url: 'https://rzp.io/rzp/3nLQzNx',
           },
           note: '',
         },
@@ -878,7 +878,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '23 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/hEo9sFF5',
+            url: 'https://rzp.io/rzp/3nLQzNx',
           },
           note: '',
         },

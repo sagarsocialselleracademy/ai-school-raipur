@@ -74,7 +74,7 @@ export const PixelTracker = {
       currency: 'INR',
       num_items: 1,
       button_clicked: buttonLabel || 'Register Now',
-      target_url: targetUrl || 'https://rzp.io/rzp/hEo9sFF5',
+      target_url: targetUrl || 'https://rzp.io/rzp/3nLQzNx',
     });
   },
 
