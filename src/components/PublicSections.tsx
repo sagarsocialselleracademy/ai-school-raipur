@@ -8,6 +8,7 @@ import {
   SiteSettings,
   TestimonialItem,
 } from '@/lib/data';
+import { PixelTracker } from '@/lib/pixel';
 import {
   fallbackIfDead,
   resolveAssetUrl,
@@ -418,6 +419,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
         <a
           className="topbar__cta"
           href={href}
+          onClick={() => PixelTracker.initiateCheckout(settings.registerLabel, href)}
           {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
           {settings.registerLabel} <ArrowRightIcon />
@@ -615,12 +617,14 @@ export function VideoPlayer({
   autoPlay = false,
   muted,
   controls,
+  preload,
 }: {
   video?: { url?: string; poster?: string; source?: string } | null;
   title: string;
   autoPlay?: boolean;
   muted?: boolean;
   controls?: boolean;
+  preload?: 'none' | 'metadata' | 'auto';
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -628,6 +632,7 @@ export function VideoPlayer({
   const poster = video?.poster ? resolveAssetUrl(video.poster) : '';
   const isMuted = muted ?? false;
   const hasControls = controls ?? true;
+  const preloadMode = preload ?? (autoPlay ? 'auto' : 'metadata');
   const ytId = extractYoutubeId(url);
   const vimeoId = extractVimeoId(url);
 
@@ -636,13 +641,19 @@ export function VideoPlayer({
     if (!el || !autoPlay) return;
     el.muted = isMuted;
     const p = el.play();
-    if (p) p.catch(() => {});
+    if (p) {
+      p.catch(() => {
+        // If autoplay with sound was blocked by browser policy, fallback to muted autoplay
+        el.muted = true;
+        el.play().catch(() => {});
+      });
+    }
   }, [autoPlay, isMuted, url]);
 
   const handlePlayClick = () => {
     const el = videoRef.current;
     if (!el) return;
-    el.muted = isMuted;
+    el.muted = false;
     const p = el.play();
     if (p) p.catch(() => {});
   };
@@ -689,7 +700,7 @@ export function VideoPlayer({
           loop={autoPlay && isMuted}
           playsInline
           controls={hasControls}
-          preload="metadata"
+          preload={preloadMode}
           poster={poster}
           src={resolveAssetUrl(url)}
           onPlay={() => setPlaying(true)}
@@ -743,6 +754,7 @@ export function CtaButton({ href, label }: { href: string; label: string }) {
     <a
       className="cta-btn"
       href={resolved}
+      onClick={() => PixelTracker.initiateCheckout(label, resolved)}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
       {label.replace(/\s*→\s*$/, '')}
@@ -809,8 +821,9 @@ function HeroSectionBlock({
               video={videoObj}
               title="Workshop preview"
               autoPlay
-              muted={false}
+              muted={true}
               controls
+              preload="auto"
             />
           ) : null}
         </div>
@@ -858,6 +871,8 @@ function InstructorBlock({ data }: { data: Record<string, any> }) {
         <img
           src={resolveAssetUrl(fallbackIfDead(asStr(data.photo), DEFAULTS.PORTRAIT))}
           alt={asStr(data.name)}
+          loading="lazy"
+          decoding="async"
         />
         <div className="instructor-meta">
           <p className="eyebrow">{asStr(data.eyebrow)}</p>
@@ -872,7 +887,7 @@ function InstructorBlock({ data }: { data: Record<string, any> }) {
           return (
             <div key={logo.label} className="logo-badge">
               {imgSrc ? (
-                <img src={resolveAssetUrl(imgSrc)} alt={logo.label} />
+                <img src={resolveAssetUrl(imgSrc)} alt={logo.label} loading="lazy" decoding="async" />
               ) : (
                 <span>{String(logo.label || '').slice(0, 1)}</span>
               )}
@@ -933,7 +948,7 @@ function VideoGalleryBlock({
             onClick={() => setActiveClip(clipKey)}
             aria-label={`Play ${name}`}
           >
-            {thumb ? <img src={resolveAssetUrl(thumb)} alt={name} /> : null}
+            {thumb ? <img src={resolveAssetUrl(thumb)} alt={name} loading="lazy" decoding="async" /> : null}
             <span className="play-badge">▶</span>
           </button>
         )}
@@ -962,7 +977,7 @@ function VideoGalleryBlock({
           />
         ) : (
           <>
-            <img src={resolveAssetUrl(featuredVideo.poster)} alt="Featured testimonial" />
+            <img src={resolveAssetUrl(featuredVideo.poster)} alt="Featured testimonial" loading="lazy" decoding="async" />
             <button
               className="video-play-hit"
               type="button"
@@ -1053,6 +1068,8 @@ function ProofImpactBlock({ data }: { data: Record<string, any> }) {
               <img
                 src={srcUrl}
                 alt={img.alt || 'Proof of impact'}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   const target = e.currentTarget;
                   if (!target.src.endsWith(fallbackUrl)) {
@@ -1083,7 +1100,7 @@ function WorkshopTracksBlock({ data }: { data: Record<string, any> }) {
           return (
             <article key={tr.title} className="track-card">
               <div className="track-visual">
-                {img ? <img src={resolveAssetUrl(img)} alt={tr.title} /> : null}
+                {img ? <img src={resolveAssetUrl(img)} alt={tr.title} loading="lazy" decoding="async" /> : null}
               </div>
               <div className="icon-dot" aria-hidden>
                 <SectionIcon name={resolveTrackIcon(tr.title, tr.icon)} size={16} />
@@ -1149,6 +1166,8 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                   src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                   alt={img.alt || title}
                   style={{ aspectRatio: ratio }}
+                  loading="lazy"
+                  decoding="async"
                 />
               ))}
             </div>
@@ -1166,7 +1185,12 @@ function TeamBlock({ data }: { data: Record<string, any> }) {
       <div className="grid-2 team-grid">
         {asArr(data.images).map((img, idx) => (
           <div key={`${img.alt}-${idx}`} className="team-frame">
-            <img src={resolveAssetUrl(resolveTeamImage(idx, img.url))} alt={img.alt || 'Team'} />
+            <img
+              src={resolveAssetUrl(resolveTeamImage(idx, img.url))}
+              alt={img.alt || 'Team'}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         ))}
       </div>
@@ -1192,6 +1216,8 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveMediaClipping(idx, clip.url))}
               alt={clip.alt || `Newspaper coverage ${idx + 1}`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}
@@ -1216,6 +1242,8 @@ function WhatsappFeedbackBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveWhatsappScreenshot(idx, msg.screenshot))}
               alt={msg.name || `WhatsApp feedback ${idx + 1}`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}

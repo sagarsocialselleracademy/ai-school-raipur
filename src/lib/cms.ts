@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v7',
-  PAGES: 'aischool_pages_v7',
-  NAV: 'aischool_nav_v7',
-  COURSES: 'aischool_courses_v7',
-  TESTIMONIALS: 'aischool_testimonials_v7',
-  FAQS: 'aischool_faqs_v7',
-  LEADS: 'aischool_leads_v7',
-  MEDIA: 'aischool_media_v7',
+  SETTINGS: 'aischool_settings_v8',
+  PAGES: 'aischool_pages_v8',
+  NAV: 'aischool_nav_v8',
+  COURSES: 'aischool_courses_v8',
+  TESTIMONIALS: 'aischool_testimonials_v8',
+  FAQS: 'aischool_faqs_v8',
+  LEADS: 'aischool_leads_v8',
+  MEDIA: 'aischool_media_v8',
 };
 
 function readStore<T>(key: string, fallback: T): T {

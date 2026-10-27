@@ -10,6 +10,7 @@ import {
   PublicShell,
   SectionRenderer,
 } from '@/components/PublicSections';
+import { PixelTracker } from '@/lib/pixel';
 
 const REVEAL_SELECTORS = [
   '.icon-tile',
@@ -87,6 +88,35 @@ export function LandingView({ slug }: { slug?: string }) {
 
   useScrollReveal(page?.id, version);
 
+  // Meta Pixel Tracking: PageView, ViewContent, and Purchase Detection
+  useEffect(() => {
+    PixelTracker.pageView();
+    PixelTracker.viewContent({
+      name: page?.title || "Raipur's Most Advance Ai & Automation Masterclass",
+      price: 499,
+    });
+
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isPurchase =
+        urlParams.get('payment_status') === 'success' ||
+        urlParams.get('status') === 'success' ||
+        urlParams.get('purchase') === 'true' ||
+        urlParams.has('razorpay_payment_id') ||
+        urlParams.has('payment_id');
+
+      if (isPurchase) {
+        const txnId =
+          urlParams.get('razorpay_payment_id') ||
+          urlParams.get('payment_id') ||
+          `order_${Date.now()}`;
+        PixelTracker.purchase({ transactionId: txnId, amount: 499 });
+      }
+    } catch {
+      // ignore URL parsing errors
+    }
+  }, [page?.id, slug]);
+
   useEffect(() => {
     if (leadStatus !== 'success') return;
     const waUrl = formatWhatsappUrl(
@@ -109,6 +139,7 @@ export function LandingView({ slug }: { slug?: string }) {
     setLeadStatus('saving');
     try {
       cmsApi.createLead(lead);
+      PixelTracker.lead(lead);
       setLeadStatus('success');
     } catch {
       setLeadStatus('error');

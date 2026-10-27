@@ -153,8 +153,8 @@ export interface MediaFile {
 export const DEFAULTS = {
   LOGO_URL: '/logo.png?v=2',
   PORTRAIT: '/lakshit-portrait.jpg',
-  HERO_VIDEO: '/media/8036923a12fdf959fea2c6bd37a710b3d69c679b.bin',
-  HERO_POSTER: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+  HERO_VIDEO: '/media/hero-fast.mp4',
+  HERO_POSTER: '/media/hero-poster.webp',
   FEATURED_POSTER: '/media/cbdc6004a1938decb1073560ba53eca52b8d75db.bin',
   FEATURED_VIDEO: '/media/hero-intro.mp4',
   ATTENDEE_THUMBS: [
@@ -246,7 +246,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   seoTitle: "Raipur's Most Advance Ai & Automation Masterclass",
   seoDescription:
     'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
-  ogImage: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+  ogImage: '/media/hero-poster.webp',
   homePageSlug: 'home-copy',
   seatsRemaining: 23,
   eventStartsAt: '2026-11-29T10:30:00+05:30',
@@ -381,7 +381,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     seoKeywords: 'AI workshop, automation, Raipur, Lakshit Sethiya',
     ogTitle: "Raipur's Most Advance Ai & Automation Masterclass",
     ogDescription: 'Master 30+ Ai Tools in a Full Day live Physical workshop.',
-    ogImage: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+    ogImage: '/media/hero-poster.webp',
     facebookPixelId: '762245465547904',
     theme: 'classic',
     registerUrl: 'https://rzp.io/rzp/hEo9sFF5',
@@ -427,8 +427,8 @@ export const INITIAL_PAGES: LandingPage[] = [
             'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
           video: {
             source: 'file',
-            url: '/media/8036923a12fdf959fea2c6bd37a710b3d69c679b.bin',
-            poster: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+            url: '/media/hero-fast.mp4',
+            poster: '/media/hero-poster.webp',
           },
           alignment: 'center',
           pills: [
@@ -898,7 +898,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     seoKeywords: 'AI workshop, automation, Raipur, Lakshit Sethiya',
     ogTitle: "India's Most Advance AI & Automation Masterclass",
     ogDescription: 'Master 30+ AI tools in a 3-hour live workshop.',
-    ogImage: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+    ogImage: '/media/hero-poster.webp',
     facebookPixelId: '',
     theme: 'classic',
     registerUrl: 'https://rzp.io/rzp/57Mrm3z',
@@ -922,8 +922,8 @@ export const INITIAL_PAGES: LandingPage[] = [
             'A 3-hour Live Workshop by Lakshit Sethiya, Online via Zoom, that can change the way you do business.',
           video: {
             source: 'file',
-            url: '/media/8036923a12fdf959fea2c6bd37a710b3d69c679b.bin',
-            poster: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+            url: '/media/hero-fast.mp4',
+            poster: '/media/hero-poster.webp',
           },
           alignment: 'center',
           pills: [
