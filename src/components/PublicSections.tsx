@@ -763,6 +763,32 @@ export function CtaButton({ href, label }: { href: string; label: string }) {
   );
 }
 
+export function RegisterStats() {
+  return (
+    <div className="hero-stats" aria-label="Lakshit Sethiya Key Statistics">
+      <div className="hero-stat-card">
+        <strong className="hero-stat-num">10,00,000+</strong>
+        <span className="hero-stat-lbl">Followers</span>
+      </div>
+      <div className="hero-stat-sep" aria-hidden="true" />
+      <div className="hero-stat-card">
+        <strong className="hero-stat-num">25,000+</strong>
+        <span className="hero-stat-lbl">Students</span>
+      </div>
+      <div className="hero-stat-sep" aria-hidden="true" />
+      <div className="hero-stat-card">
+        <strong className="hero-stat-num">10+ Years</strong>
+        <span className="hero-stat-lbl">Experience</span>
+      </div>
+      <div className="hero-stat-sep" aria-hidden="true" />
+      <div className="hero-stat-card">
+        <strong className="hero-stat-num">5</strong>
+        <span className="hero-stat-lbl">Programmes</span>
+      </div>
+    </div>
+  );
+}
+
 function HeroSectionBlock({
   data,
   registerUrl,
@@ -845,6 +871,7 @@ function HeroSectionBlock({
             href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
             label={asStr(asObj(data.primaryButton).label)}
           />
+          <RegisterStats />
         </div>
       ) : null}
     </section>
@@ -1040,6 +1067,7 @@ function CtaSectionBlock({
         {asStr(data.description) ? <p className="lede">{asStr(data.description)}</p> : null}
         {asStr(data.seatsText) ? <p className="seats">{asStr(data.seatsText)}</p> : null}
         {label ? <CtaButton href={resolveCtaHref(asStr(btn.url), registerUrl)} label={label} /> : null}
+        <RegisterStats />
         {asStr(data.note) ? (
           <p className="muted" style={{ marginTop: '1rem' }}>
             {asStr(data.note)}
