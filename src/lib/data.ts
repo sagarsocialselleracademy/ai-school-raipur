@@ -455,10 +455,10 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 1,
         data: {
           items: [
-            { icon: 'spark', label: 'Master 30+ Ai Tools' },
-            { icon: 'play', label: 'Live practical demo' },
-            { icon: 'chat', label: 'Q&A Session' },
-            { icon: 'fork', label: 'Lunch included' },
+            { number: 1000000, suffix: '+', label: 'Followers' },
+            { number: 25000, suffix: '+', label: 'Students' },
+            { number: 10, suffix: '+ Years', label: 'Experience' },
+            { number: 5, suffix: '', label: 'Programmes' },
           ],
         },
       },

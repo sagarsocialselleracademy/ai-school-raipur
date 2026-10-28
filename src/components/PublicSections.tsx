@@ -763,32 +763,6 @@ export function CtaButton({ href, label }: { href: string; label: string }) {
   );
 }
 
-export function RegisterStats() {
-  return (
-    <div className="hero-stats" aria-label="Lakshit Sethiya Key Statistics">
-      <div className="hero-stat-card">
-        <strong className="hero-stat-num">10,00,000+</strong>
-        <span className="hero-stat-lbl">Followers</span>
-      </div>
-      <div className="hero-stat-sep" aria-hidden="true" />
-      <div className="hero-stat-card">
-        <strong className="hero-stat-num">25,000+</strong>
-        <span className="hero-stat-lbl">Students</span>
-      </div>
-      <div className="hero-stat-sep" aria-hidden="true" />
-      <div className="hero-stat-card">
-        <strong className="hero-stat-num">10+ Years</strong>
-        <span className="hero-stat-lbl">Experience</span>
-      </div>
-      <div className="hero-stat-sep" aria-hidden="true" />
-      <div className="hero-stat-card">
-        <strong className="hero-stat-num">5</strong>
-        <span className="hero-stat-lbl">Programmes</span>
-      </div>
-    </div>
-  );
-}
-
 function HeroSectionBlock({
   data,
   registerUrl,
@@ -871,21 +845,112 @@ function HeroSectionBlock({
             href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
             label={asStr(asObj(data.primaryButton).label)}
           />
-          <RegisterStats />
         </div>
       ) : null}
     </section>
   );
 }
 
-function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
+function StatCounterCard({
+  target,
+  prefix = '',
+  suffix = '',
+  label,
+  inView,
+}: {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  label: string;
+  inView: boolean;
+}) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!inView) {
+      setDisplayValue(0);
+      return;
+    }
+
+    let startTimestamp: number | null = null;
+    let animId: number;
+    const duration = 1600;
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.floor(ease * target));
+      if (progress < 1) {
+        animId = requestAnimationFrame(step);
+      } else {
+        setDisplayValue(target);
+      }
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [inView, target]);
+
+  const formattedNumber = `${prefix}${displayValue.toLocaleString('en-IN')}${suffix}`;
+
   return (
-    <section className="container icon-row">
-      {asArr(data.items).map((item) => (
-        <div key={item.label} className="icon-tile">
-          <SectionIcon name={item.icon} size={20} />
-          <strong>{item.label}</strong>
-        </div>
+    <div className="icon-tile stat-tile">
+      <div className="stat-tile__number">{formattedNumber}</div>
+      <div className="stat-tile__label">{label}</div>
+    </div>
+  );
+}
+
+const DEFAULT_STATS = [
+  { target: 1000000, suffix: '+', label: 'Followers' },
+  { target: 25000, suffix: '+', label: 'Students' },
+  { target: 10, suffix: '+ Years', label: 'Experience' },
+  { target: 5, suffix: '', label: 'Programmes' },
+];
+
+function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const rawItems = asArr(data.items);
+  const items =
+    rawItems.length === 4 && rawItems.some((it) => it.number || it.target)
+      ? rawItems.map((it) => ({
+          target: Number(it.number ?? it.target ?? 0),
+          prefix: asStr(it.prefix),
+          suffix: asStr(it.suffix, '+'),
+          label: asStr(it.label),
+        }))
+      : DEFAULT_STATS;
+
+  return (
+    <section ref={sectionRef} className="container icon-row stat-row">
+      {items.map((it, idx) => (
+        <StatCounterCard
+          key={`${it.label}-${idx}`}
+          target={it.target}
+          prefix={it.prefix}
+          suffix={it.suffix}
+          label={it.label}
+          inView={inView}
+        />
       ))}
     </section>
   );
@@ -1067,7 +1132,6 @@ function CtaSectionBlock({
         {asStr(data.description) ? <p className="lede">{asStr(data.description)}</p> : null}
         {asStr(data.seatsText) ? <p className="seats">{asStr(data.seatsText)}</p> : null}
         {label ? <CtaButton href={resolveCtaHref(asStr(btn.url), registerUrl)} label={label} /> : null}
-        <RegisterStats />
         {asStr(data.note) ? (
           <p className="muted" style={{ marginTop: '1rem' }}>
             {asStr(data.note)}
