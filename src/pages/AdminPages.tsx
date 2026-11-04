@@ -987,7 +987,7 @@ export function AdminSettingsPage() {
       phone: String(fd.get('phone') || ''),
       address: String(fd.get('address') || ''),
       homePageSlug: String(fd.get('homePageSlug') || ''),
-      seatsRemaining: Number(fd.get('seatsRemaining') || 23),
+      seatsRemaining: Number(fd.get('seatsRemaining') || 60),
       eventStartsAt: String(fd.get('eventStartsAt') || ''),
       registerUrl: String(fd.get('registerUrl') || ''),
       registerLabel: String(fd.get('registerLabel') || ''),

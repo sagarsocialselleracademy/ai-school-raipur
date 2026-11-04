@@ -248,8 +248,8 @@ export const INITIAL_SETTINGS: SiteSettings = {
     'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
   ogImage: '/media/hero-poster.webp',
   homePageSlug: 'home-copy',
-  seatsRemaining: 23,
-  eventStartsAt: '2026-11-29T10:30:00+05:30',
+  seatsRemaining: 60,
+  eventStartsAt: '2026-11-29T10:00:00+05:30',
   registerUrl: 'https://rzp.io/rzp/3nLQzNx',
   registerLabel: 'Register Now',
   facebookPixelId: '762245465547904',
@@ -386,7 +386,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     theme: 'classic',
     registerUrl: 'https://rzp.io/rzp/3nLQzNx',
     registerLabel: 'Register Now',
-    eventStartsAt: '2026-11-29T10:30:00+05:30',
+    eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
     domains: [
       {
@@ -433,13 +433,13 @@ export const INITIAL_PAGES: LandingPage[] = [
           alignment: 'center',
           pills: [
             { icon: 'calendar', label: '29th November' },
-            { icon: 'clock', label: '10:30AM - 4:00 PM' },
+            { icon: 'clock', label: '10:00AM TO 03:00 PM' },
             { icon: 'pin', label: 'Vimtara Hall, Raipur' },
             { icon: 'users', label: 'Lunch Included' },
           ],
           originalPrice: '₹2499',
           price: '₹1999 only',
-          seatsText: '23 seats remaining. Register now!',
+          seatsText: '60 seats remaining. Register now!',
           primaryButton: {
             label: 'Register Now →',
             url: 'https://rzp.io/rzp/3nLQzNx',
@@ -552,7 +552,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: '',
           headingEnd: 'on 29th November',
           description: 'Reserve your seat for the Live session. Limited seats — register today.',
-          seatsText: '23 seats remaining. Register now!',
+          seatsText: '60 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
             url: 'https://rzp.io/rzp/3nLQzNx',
@@ -771,7 +771,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: '',
           headingEnd: 'on 29th November',
           description: 'Reserve your seat for the Live session. Limited seats — register today.',
-          seatsText: '23 seats remaining. Register now!',
+          seatsText: '60 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
             url: 'https://rzp.io/rzp/3nLQzNx',
@@ -875,7 +875,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: '',
           headingEnd: 'on 29th November',
           description: 'Reserve your seat. Limited seats — register today.',
-          seatsText: '23 seats remaining. Register now!',
+          seatsText: '60 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
             url: 'https://rzp.io/rzp/3nLQzNx',

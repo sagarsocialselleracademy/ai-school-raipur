@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v10',
-  PAGES: 'aischool_pages_v10',
-  NAV: 'aischool_nav_v10',
-  COURSES: 'aischool_courses_v10',
-  TESTIMONIALS: 'aischool_testimonials_v10',
-  FAQS: 'aischool_faqs_v10',
-  LEADS: 'aischool_leads_v10',
-  MEDIA: 'aischool_media_v10',
+  SETTINGS: 'aischool_settings_v11',
+  PAGES: 'aischool_pages_v11',
+  NAV: 'aischool_nav_v11',
+  COURSES: 'aischool_courses_v11',
+  TESTIMONIALS: 'aischool_testimonials_v11',
+  FAQS: 'aischool_faqs_v11',
+  LEADS: 'aischool_leads_v11',
+  MEDIA: 'aischool_media_v11',
 };
 
 function readStore<T>(key: string, fallback: T): T {
@@ -336,7 +336,7 @@ export const cmsApi = {
             pills: [{ icon: 'calendar', label: 'Upcoming Sunday' }],
             originalPrice: '₹2499',
             price: '₹1999 only',
-            seatsText: '23 seats remaining!',
+            seatsText: '60 seats remaining!',
             primaryButton: { label: 'Register Now →', url: '#register' },
           }
         : type === 'cta'
@@ -345,7 +345,7 @@ export const cmsApi = {
               highlight: '',
               headingEnd: 'at the workshop',
               description: 'Reserve your seat today.',
-              seatsText: '23 seats remaining. Register now!',
+              seatsText: '60 seats remaining. Register now!',
               button: { label: 'Register Now →', url: '#register' },
             }
           : type === 'text'
