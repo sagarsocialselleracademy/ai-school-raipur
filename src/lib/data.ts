@@ -247,7 +247,7 @@ export const DEFAULTS = {
   ],
   YOUTUBE: 'https://www.youtube.com/@socialselleracademy',
   INSTAGRAM: 'https://www.instagram.com/socialseller_academy',
-  PHONES: ['+91 8816933028', '+91 8370044449'],
+  PHONES: ['+91 8370044449'],
   WHATSAPP_NUMBER: '8370044449',
   ADDRESS:
     'Aarambh - Raipur Startup Incubation & Innovation Centre, 3rd Floor, Multi Level Car Parking, Jaistambh Chowk, Moudhapara, Raipur, Chhattisgarh 492001',
@@ -295,8 +295,8 @@ export const INITIAL_SETTINGS: SiteSettings = {
   websiteName: 'AI School Raipur',
   logoUrl: '/logo.png?v=2',
   faviconUrl: '/favicon.png?v=2',
-  contactEmail: 'support@socialseller.in',
-  phone: '+91 8816933028, +91 8370044449',
+  contactEmail: 'socialselleracademy@gmail.com',
+  phone: '+91 8370044449',
   address:
     'Aarambh - Raipur Startup Incubation & Innovation Centre, 3rd Floor, Multi Level Car Parking, Jaistambh Chowk, Moudhapara, Raipur, Chhattisgarh 492001',
   socialLinks: {
@@ -629,29 +629,6 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
-        id: 'cmtjtmwe0000cb5xsz1ug09od',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'proof_impact',
-        enabled: true,
-        sortOrder: 5,
-        data: {
-          eyebrow: 'PROOF OF IMPACT',
-          heading: 'Real Revenue.',
-          highlight: 'Real Growth.',
-          description: 'Attendees who applied what they learned — these are their actual results.',
-          images: [
-            {
-              url: 'https://res.cloudinary.com/dldynfkhm/image/upload/v1788517675/aischoolraipur/images/b9eed1f4ef4f707ddadf99a01f943a4d_veys7s.webp',
-              alt: 'Analytics dashboard showing gross sales',
-            },
-            {
-              url: '/media/proof-youtube.png',
-              alt: 'Earnings dashboard',
-            },
-          ],
-        },
-      },
-      {
         id: 'cmtjtmwej000gb5xs1133jry9',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'audience',
@@ -914,19 +891,6 @@ export const INITIAL_PAGES: LandingPage[] = [
             'cmthabu1q0006aif743uejt3m',
             'cmthabu1q0007aif7xqlck06n',
           ],
-        },
-      },
-      {
-        id: 'cmtjtmwga000ub5xsceuda0rw',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'contact_form',
-        enabled: true,
-        sortOrder: 14,
-        data: {
-          heading: 'Reserve your seat',
-          description: 'Share your details and we will confirm your workshop seat.',
-          submitLabel: 'Register Now →',
-          successMessage: 'Thanks — we will contact you shortly.',
         },
       },
       {

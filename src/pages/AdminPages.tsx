@@ -283,7 +283,7 @@ export function AdminLoginPage() {
             className="admin-input"
             name="email"
             type="email"
-            defaultValue="support@socialseller.in"
+            defaultValue="socialselleracademy@gmail.com"
             placeholder="Email"
             required
           />

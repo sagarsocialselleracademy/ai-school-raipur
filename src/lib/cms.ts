@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v13',
-  PAGES: 'aischool_pages_v13',
-  NAV: 'aischool_nav_v13',
-  COURSES: 'aischool_courses_v13',
-  TESTIMONIALS: 'aischool_testimonials_v13',
-  FAQS: 'aischool_faqs_v13',
-  LEADS: 'aischool_leads_v13',
-  MEDIA: 'aischool_media_v13',
+  SETTINGS: 'aischool_settings_v14',
+  PAGES: 'aischool_pages_v14',
+  NAV: 'aischool_nav_v14',
+  COURSES: 'aischool_courses_v14',
+  TESTIMONIALS: 'aischool_testimonials_v14',
+  FAQS: 'aischool_faqs_v14',
+  LEADS: 'aischool_leads_v14',
+  MEDIA: 'aischool_media_v14',
 };
 
 function readStore<T>(key: string, fallback: T): T {
@@ -541,7 +541,7 @@ export function useAuth() {
   }, []);
 
   const user = isAuthenticated
-    ? { name: 'Lakshit Sethiya', email: 'support@socialseller.in', role: 'SUPER_ADMIN' }
+    ? { name: 'Lakshit Sethiya', email: 'socialselleracademy@gmail.com', role: 'SUPER_ADMIN' }
     : null;
 
   return { isAuthenticated, isLoading: false, user, login, logout };

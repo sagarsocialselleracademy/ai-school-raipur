@@ -406,26 +406,26 @@ export function SectionIcon({ name, size = 16 }: { name?: string; size?: number 
   }
 }
 
+export function openPassModal() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('open-pass-modal'));
+  }
+}
+
+export function closePassModal() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('close-pass-modal'));
+  }
+}
+
 export function Topbar({ settings }: { settings: SiteSettings }) {
   const { label, compactLabel } = useCountdown(settings.eventStartsAt);
   const href = resolveButtonHref(settings.registerUrl, '#passes');
-  const external = isExternalHref(href);
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     PixelTracker.initiateCheckout(settings.registerLabel, href);
-    if (!external && (href === '#passes' || href === '#tickets' || href === '#register')) {
-      const el =
-        document.getElementById('passes') ||
-        document.getElementById('register') ||
-        document.getElementById('tickets');
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (window.history?.pushState) {
-          window.history.pushState(null, '', '#passes');
-        }
-      }
-    }
+    e.preventDefault();
+    openPassModal();
   };
 
   return (
@@ -439,9 +439,8 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
         <span className="topbar__seats">{settings.seatsRemaining} seats left</span>
         <a
           className="topbar__cta"
-          href={href}
+          href="#passes"
           onClick={handleCtaClick}
-          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
           {settings.registerLabel} <ArrowRightIcon />
         </a>
@@ -614,10 +613,10 @@ export function PublicShell({
   return (
     <div className="public-shell">
       <Topbar settings={settings} />
-      <BrandHeader settings={settings} />
       {children}
       <PublicFooter settings={settings} />
       <ScrollTopButton />
+      <PassModal settings={settings} />
     </div>
   );
 }
@@ -770,36 +769,20 @@ function hasAnyArr(v: any): boolean {
 
 export function CtaButton({ href, label }: { href: string; label: string }) {
   const resolved = resolveButtonHref(href, '#passes');
-  const external = isExternalHref(resolved);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     PixelTracker.initiateCheckout(label, resolved);
-    if (
-      !external &&
-      (resolved === '#passes' || resolved === '#tickets' || resolved === '#register')
-    ) {
-      const el =
-        document.getElementById('passes') ||
-        document.getElementById('register') ||
-        document.getElementById('tickets');
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (window.history?.pushState) {
-          window.history.pushState(null, '', '#passes');
-        }
-      }
-    }
+    e.preventDefault();
+    openPassModal();
   };
 
   return (
     <a
       className="cta-btn"
-      href={resolved}
+      href="#passes"
       onClick={handleClick}
-      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
-      {label.replace(/\s*→\s*$/, '')}
+      <span>{label.replace(/\s*→\s*$/, '')}</span>
       <ArrowRightIcon />
     </a>
   );
@@ -893,17 +876,15 @@ function HeroSectionBlock({
   );
 }
 
-function StatCounterCard({
+function StatCounter({
   target,
   prefix = '',
   suffix = '',
-  label,
   inView,
 }: {
   target: number;
   prefix?: string;
   suffix?: string;
-  label: string;
   inView: boolean;
 }) {
   const [displayValue, setDisplayValue] = useState(0);
@@ -934,14 +915,7 @@ function StatCounterCard({
     return () => cancelAnimationFrame(animId);
   }, [inView, target]);
 
-  const formattedNumber = `${prefix}${displayValue.toLocaleString('en-IN')}${suffix}`;
-
-  return (
-    <div className="icon-tile stat-tile">
-      <div className="stat-tile__number">{formattedNumber}</div>
-      <div className="stat-tile__label">{label}</div>
-    </div>
-  );
+  return <>{`${prefix}${displayValue.toLocaleString('en-IN')}${suffix}`}</>;
 }
 
 const DEFAULT_STATS = [
@@ -983,18 +957,26 @@ function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
       : DEFAULT_STATS;
 
   return (
-    <section ref={sectionRef} className="container icon-row stat-row">
-      {items.map((it, idx) => (
-        <StatCounterCard
-          key={`${it.label}-${idx}`}
-          target={it.target}
-          prefix={it.prefix}
-          suffix={it.suffix}
-          label={it.label}
-          inView={inView}
-        />
-      ))}
-    </section>
+    <div ref={sectionRef} className="container stat-capsule-container">
+      <div className="stat-capsule">
+        {items.map((it, idx) => (
+          <React.Fragment key={`${it.label}-${idx}`}>
+            <div className="stat-capsule__item">
+              <span className="stat-capsule__num">
+                <StatCounter
+                  target={it.target}
+                  prefix={it.prefix}
+                  suffix={it.suffix}
+                  inView={inView}
+                />
+              </span>
+              <span className="stat-capsule__label">{it.label}</span>
+            </div>
+            {idx < items.length - 1 && <span className="stat-capsule__dot">•</span>}
+          </React.Fragment>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -1277,6 +1259,166 @@ export function PassesBlock({
 }
 
 export const TicketsBlock = PassesBlock;
+
+export function PassModal({ settings }: { settings: SiteSettings }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    const handleClose = () => setIsOpen(false);
+    window.addEventListener('open-pass-modal', handleOpen);
+    window.addEventListener('close-pass-modal', handleClose);
+    return () => {
+      window.removeEventListener('open-pass-modal', handleOpen);
+      window.removeEventListener('close-pass-modal', handleClose);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setIsOpen(false);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const handlePassSelect = (pass: WorkshopPass) => {
+    PixelTracker.initiateCheckout(pass.name, pass.url);
+    window.open(pass.url, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <div
+      className="pass-modal-backdrop"
+      onClick={() => setIsOpen(false)}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pass-modal-title"
+    >
+      <div
+        className="pass-modal-container"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          className="pass-modal-close"
+          aria-label="Close modal"
+          onClick={() => setIsOpen(false)}
+        >
+          ✕
+        </button>
+
+        <div className="pass-modal-header">
+          <div className="badge-pill pass-modal-badge">
+            <SectionIcon name="spark" size={14} />
+            <span>Select Your Workshop Pass</span>
+          </div>
+          <h2 id="pass-modal-title" className="pass-modal-title">
+            Choose Your Experience for <em>29th November</em>
+          </h2>
+          <div className="pass-modal-meta">
+            <span>📍 Vimtara Hall, Raipur</span>
+            <span className="pass-modal-sep">•</span>
+            <span>⏰ 10:30 AM – 4:00 PM</span>
+            <span className="pass-modal-sep">•</span>
+            <span className="pass-modal-urgency">⚡ Only {settings.seatsRemaining || '60'} Seats Remaining</span>
+          </div>
+        </div>
+
+        <div className="pass-modal-grid">
+          {WORKSHOP_PASSES.map((pass) => {
+            const isGold = pass.id === 'gold';
+            const isVip = pass.id === 'vip';
+            return (
+              <div
+                key={pass.id}
+                className={`modal-pass-card ${isGold ? 'modal-pass-card--popular' : ''} ${
+                  isVip ? 'modal-pass-card--vip' : ''
+                }`}
+              >
+                {pass.badge ? (
+                  <div
+                    className={`modal-pass-badge ${
+                      isVip ? 'modal-pass-badge--vip' : 'modal-pass-badge--popular'
+                    }`}
+                  >
+                    {pass.badge}
+                  </div>
+                ) : (
+                  <div className="modal-pass-badge-placeholder" />
+                )}
+
+                <div className="modal-pass-head">
+                  <h3 className="modal-pass-name">{pass.name}</h3>
+                  <div className="modal-pass-pricing">
+                    <div className="modal-pass-price-row">
+                      <span className="modal-pass-currency">₹</span>
+                      <span className="modal-pass-price">{pass.price.toLocaleString('en-IN')}</span>
+                      {pass.originalPrice ? (
+                        <s className="modal-pass-original-price">
+                          ₹{pass.originalPrice.toLocaleString('en-IN')}
+                        </s>
+                      ) : null}
+                    </div>
+                    <div className="modal-pass-discount-tag">{pass.discountText}</div>
+                  </div>
+                </div>
+
+                <div className="modal-pass-divider" />
+
+                <ul className="modal-pass-features">
+                  {pass.features.map((feat, i) => (
+                    <li
+                      key={i}
+                      className={`modal-pass-feature ${
+                        feat.highlight ? 'modal-pass-feature--highlight' : ''
+                      }`}
+                    >
+                      <span className="modal-pass-check" aria-hidden>
+                        ✓
+                      </span>
+                      <span>{feat.text}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  type="button"
+                  className={`modal-pass-btn ${
+                    isVip
+                      ? 'modal-pass-btn--vip'
+                      : isGold
+                      ? 'modal-pass-btn--popular'
+                      : 'modal-pass-btn--silver'
+                  }`}
+                  onClick={() => handlePassSelect(pass)}
+                >
+                  <span>{isVip ? 'Get VIP Pass →' : isGold ? 'Get Gold Pass →' : 'Get Silver Pass →'}</span>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="pass-modal-footer">
+          <p>
+            🔒 <strong>100% Secure Payment</strong> powered by Razorpay · UPI, Cards, NetBanking accepted
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function CtaSectionBlock({
   data,

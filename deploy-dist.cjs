@@ -19,18 +19,18 @@ fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Create dedicated Passes section for Silver, Gold, and VIP Passes with direct Razorpay checkout flow"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Apply custom orange gradient, pass selection modal, stats capsule bar, removed hero logo and form sections"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
 console.log('3. Publishing dist to hostinger-deploy branch...');
 execSync('git init -b hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git config user.name "Lakshit Sethiya"', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git config user.email "support@socialseller.in"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git config user.email "socialselleracademy@gmail.com"', { cwd: distDir, env, stdio: 'inherit' });
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy dedicated Passes section for Silver, Gold, and VIP Passes to aischoolraipur.com"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy pass modal, orange gradient, stats pill, and updated sections to aischoolraipur.com"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');
