@@ -6,19 +6,22 @@
 .stat-tile__label{font-size:.88rem;font-weight:600;color:#d6cdc5;letter-spacing:.02em;text-transform:capitalize}
 @media (max-width:768px){.stat-row{grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1.4rem auto 0;max-width:100%}.stat-tile{padding:1.15rem .6rem;border-radius:14px}.stat-tile__number{font-size:1.35rem}.stat-tile__label{font-size:.8rem}}
 
-/* Tickets / Pricing Section */
+/* Passes & Tickets Section */
+.passes-section,
 .tickets-section {
   padding: 4rem 0 3.5rem;
   scroll-margin-top: 80px;
 }
-#tickets, #register {
+#passes, #tickets, #register {
   scroll-margin-top: 80px;
 }
-.lede--tickets {
+.lede--tickets,
+.lede--passes {
   margin-top: 0.75rem;
   font-size: 1.05rem;
   color: #c8beb6;
 }
+.passes-urgency-pill,
 .tickets-urgency-pill {
   display: inline-flex;
   align-items: center;

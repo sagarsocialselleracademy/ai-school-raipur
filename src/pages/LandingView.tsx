@@ -26,6 +26,7 @@ const REVEAL_SELECTORS = [
   '.instructor-card',
   '.audience-card',
   '.ticket-card',
+  '.pass-card',
 ].join(', ');
 
 function useScrollReveal(pageId?: string, version?: number) {

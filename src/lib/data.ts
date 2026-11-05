@@ -150,7 +150,7 @@ export interface MediaFile {
   title?: string;
 }
 
-export interface WorkshopTicket {
+export interface WorkshopPass {
   id: string;
   name: string;
   badge?: string;
@@ -163,34 +163,33 @@ export interface WorkshopTicket {
   features: Array<{ text: string; highlight?: boolean }>;
 }
 
-export const WORKSHOP_TICKETS: WorkshopTicket[] = [
+export const WORKSHOP_PASSES: WorkshopPass[] = [
   {
     id: 'silver',
-    name: 'Silver Ticket',
+    name: 'Silver Pass',
     price: 1999,
     originalPrice: 2999,
-    discountText: 'Early Discounted Seats',
+    discountText: 'Early Discounted Seats - ₹1999',
     url: 'https://rzp.io/rzp/3nLQzNx',
     features: [
       { text: '4 Hour Session' },
-      { text: 'Lunch Included' },
+      { text: 'Networking Lunch Included' },
       { text: 'Prompts & Recording' },
       { text: 'Early Discounted Seats - ₹1999' },
     ],
   },
   {
     id: 'gold',
-    name: 'Gold Ticket',
+    name: 'Gold Pass',
     badge: 'MOST POPULAR',
     popular: true,
     price: 2999,
     originalPrice: 4499,
-    discountText: 'Early Discounted Seats',
+    discountText: 'Early Discounted Seats - ₹2999',
     url: 'https://rzp.io/rzp/b4ddaY2g',
     features: [
       { text: '4 Hour Session' },
-      { text: 'Lunch Included' },
-      { text: 'Tea Included' },
+      { text: 'Networking Lunch Included + Tea' },
       { text: 'Prompts & Recording' },
       { text: '2 hour Doubt Session', highlight: true },
       { text: 'Early Discounted Seats - ₹2999' },
@@ -198,17 +197,16 @@ export const WORKSHOP_TICKETS: WorkshopTicket[] = [
   },
   {
     id: 'vip',
-    name: 'VIP Ticket',
+    name: 'VIP Pass',
     badge: 'FRONT ROW · ONLY 20 SEATS',
     vip: true,
     price: 4999,
     originalPrice: 7999,
-    discountText: 'Early Discounted Seats',
+    discountText: 'Early Discounted Seats - ₹4999',
     url: 'https://rzp.io/rzp/zTWDhdP',
     features: [
       { text: '4 Hour Session' },
-      { text: 'Lunch Included' },
-      { text: 'Includes everything in Gold Ticket' },
+      { text: 'Lunch Included + Tea' },
       { text: 'Prompts & Recording' },
       { text: '2 hour Doubt Session', highlight: true },
       { text: 'Front Row Seats (only 20)', highlight: true },
@@ -216,6 +214,9 @@ export const WORKSHOP_TICKETS: WorkshopTicket[] = [
     ],
   },
 ];
+
+export type WorkshopTicket = WorkshopPass;
+export const WORKSHOP_TICKETS = WORKSHOP_PASSES;
 
 export const DEFAULTS = {
   LOGO_URL: '/logo.png?v=2',
@@ -317,7 +318,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   homePageSlug: 'home-copy',
   seatsRemaining: 60,
   eventStartsAt: '2026-11-29T10:00:00+05:30',
-  registerUrl: '#tickets',
+  registerUrl: '#passes',
   registerLabel: 'Register Now',
   facebookPixelId: '762245465547904',
   footerJson: {
@@ -327,12 +328,12 @@ export const INITIAL_SETTINGS: SiteSettings = {
     attribution: 'AI School Raipur · Powered by Social Seller',
     tagline: 'By Lakshit Sethiya',
     ctaLabel: 'Register Now',
-    ctaUrl: '#register',
+    ctaUrl: '#passes',
     linkGroups: [
       {
         title: 'Quick Links',
         links: [
-          { label: 'Register', url: '#register' },
+          { label: 'Passes', url: '#passes' },
           { label: 'FAQ', url: '#faq' },
           { label: 'Contact', url: '#contact' },
         ],
@@ -451,7 +452,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     ogImage: '/media/hero-poster.webp',
     facebookPixelId: '762245465547904',
     theme: 'classic',
-    registerUrl: '#tickets',
+    registerUrl: '#passes',
     registerLabel: 'Register Now',
     eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
@@ -502,14 +503,14 @@ export const INITIAL_PAGES: LandingPage[] = [
             { icon: 'calendar', label: '29th November' },
             { icon: 'clock', label: '10:00AM TO 03:00 PM' },
             { icon: 'pin', label: 'Vimtara Hall, Raipur' },
-            { icon: 'users', label: 'Lunch Included' },
+            { icon: 'users', label: 'Networking Lunch Included' },
           ],
           originalPrice: '₹2999',
           price: '₹1999 only',
           seatsText: '60 seats remaining. Register now!',
           primaryButton: {
             label: 'Register Now →',
-            url: '#tickets',
+            url: '#passes',
           },
           secondaryButton: { label: '', url: '' },
         },
@@ -622,7 +623,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '60 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
-            url: '#tickets',
+            url: '#passes',
           },
           note: '',
         },
@@ -830,12 +831,12 @@ export const INITIAL_PAGES: LandingPage[] = [
       {
         id: 'cmtjtmwfc000mb5xsgxdv7yto',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'tickets',
+        type: 'passes',
         enabled: true,
         sortOrder: 10,
         data: {
-          eyebrow: 'CHOOSE YOUR TICKET',
-          heading: 'Select Your Pass for',
+          eyebrow: 'CHOOSE YOUR PASS',
+          heading: 'Select Your Workshop Pass for',
           highlight: '29th November',
           headingEnd: '',
           description:
@@ -938,11 +939,11 @@ export const INITIAL_PAGES: LandingPage[] = [
           heading: 'Secure Your Pass',
           highlight: 'Today',
           headingEnd: 'for 29th November',
-          description: 'Limited seats available. Choose your ticket tier and join us live in Raipur.',
+          description: 'Limited seats available. Choose your pass tier and join us live in Raipur.',
           seatsText: '60 seats remaining. Register now!',
           button: {
-            label: 'Choose Your Ticket →',
-            url: '#tickets',
+            label: 'Choose Your Pass →',
+            url: '#passes',
           },
           note: '🔒 100% Secure Checkout via Razorpay · Instant Confirmation on WhatsApp & Email',
         },

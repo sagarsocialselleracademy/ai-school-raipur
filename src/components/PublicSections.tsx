@@ -7,7 +7,9 @@ import {
   PageSection,
   SiteSettings,
   TestimonialItem,
+  WORKSHOP_PASSES,
   WORKSHOP_TICKETS,
+  WorkshopPass,
   WorkshopTicket,
 } from '@/lib/data';
 import { PixelTracker } from '@/lib/pixel';
@@ -27,15 +29,15 @@ import {
   resolveWhatsappScreenshot,
 } from '@/lib/cms';
 
-const HASH_TARGETS = new Set(['', '#', '#register', '#contact', '#cta', '#tickets']);
+const HASH_TARGETS = new Set(['', '#', '#register', '#contact', '#cta', '#tickets', '#passes']);
 
 function isHashPlaceholder(url?: string): boolean {
   return HASH_TARGETS.has((url || '').trim().toLowerCase());
 }
 
-export function resolveButtonHref(url?: string, fallback = '#tickets'): string {
+export function resolveButtonHref(url?: string, fallback = '#passes'): string {
   const trimmed = (url || '').trim();
-  return trimmed || fallback.trim() || '#tickets';
+  return trimmed || fallback.trim() || '#passes';
 }
 
 export function resolveCtaHref(primaryUrl?: string, globalRegisterUrl?: string): string {
@@ -43,7 +45,7 @@ export function resolveCtaHref(primaryUrl?: string, globalRegisterUrl?: string):
   if (globalTrimmed && !isHashPlaceholder(globalTrimmed)) return globalTrimmed;
   const primaryTrimmed = (primaryUrl || '').trim();
   if (primaryTrimmed && !isHashPlaceholder(primaryTrimmed)) return primaryTrimmed;
-  return globalTrimmed || primaryTrimmed || '#tickets';
+  return globalTrimmed || primaryTrimmed || '#passes';
 }
 
 export function isExternalHref(href: string): boolean {
@@ -406,8 +408,25 @@ export function SectionIcon({ name, size = 16 }: { name?: string; size?: number 
 
 export function Topbar({ settings }: { settings: SiteSettings }) {
   const { label, compactLabel } = useCountdown(settings.eventStartsAt);
-  const href = resolveButtonHref(settings.registerUrl);
+  const href = resolveButtonHref(settings.registerUrl, '#passes');
   const external = isExternalHref(href);
+
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    PixelTracker.initiateCheckout(settings.registerLabel, href);
+    if (!external && (href === '#passes' || href === '#tickets' || href === '#register')) {
+      const el =
+        document.getElementById('passes') ||
+        document.getElementById('register') ||
+        document.getElementById('tickets');
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (window.history?.pushState) {
+          window.history.pushState(null, '', '#passes');
+        }
+      }
+    }
+  };
 
   return (
     <div className="topbar">
@@ -421,7 +440,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
         <a
           className="topbar__cta"
           href={href}
-          onClick={() => PixelTracker.initiateCheckout(settings.registerLabel, href)}
+          onClick={handleCtaClick}
           {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
           {settings.registerLabel} <ArrowRightIcon />
@@ -750,13 +769,34 @@ function hasAnyArr(v: any): boolean {
 }
 
 export function CtaButton({ href, label }: { href: string; label: string }) {
-  const resolved = resolveButtonHref(href);
+  const resolved = resolveButtonHref(href, '#passes');
   const external = isExternalHref(resolved);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    PixelTracker.initiateCheckout(label, resolved);
+    if (
+      !external &&
+      (resolved === '#passes' || resolved === '#tickets' || resolved === '#register')
+    ) {
+      const el =
+        document.getElementById('passes') ||
+        document.getElementById('register') ||
+        document.getElementById('tickets');
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (window.history?.pushState) {
+          window.history.pushState(null, '', '#passes');
+        }
+      }
+    }
+  };
+
   return (
     <a
       className="cta-btn"
       href={resolved}
-      onClick={() => PixelTracker.initiateCheckout(label, resolved)}
+      onClick={handleClick}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
       {label.replace(/\s*→\s*$/, '')}
@@ -1098,7 +1138,7 @@ function VideoGalleryBlock({
   );
 }
 
-export function TicketsBlock({
+export function PassesBlock({
   data,
   seatsRemaining = 60,
 }: {
@@ -1106,9 +1146,9 @@ export function TicketsBlock({
   seatsRemaining?: number;
 }) {
   const d = data || {};
-  const eyebrow = asStr(d.eyebrow, 'CHOOSE YOUR TICKET');
-  const heading = asStr(d.heading, 'Book Your Workshop Pass');
-  const highlight = asStr(d.highlight, 'for 29th November');
+  const eyebrow = asStr(d.eyebrow, 'CHOOSE YOUR PASS');
+  const heading = asStr(d.heading, 'Select Your Workshop Pass for');
+  const highlight = asStr(d.highlight, '29th November');
   const headingEnd = asStr(d.headingEnd, '');
   const description =
     asStr(d.description) ||
@@ -1118,115 +1158,125 @@ export function TicketsBlock({
     `${seatsRemaining} seats remaining. Early discounted seats are filling fast!`;
 
   return (
-    <section className="section container tickets-section" id="tickets">
-      <div id="register" style={{ position: 'relative', top: '-90px', visibility: 'hidden' }} />
+    <section className="section container passes-section tickets-section" id="passes">
+      <div id="register" style={{ position: 'relative', top: '-75px', visibility: 'hidden', height: 0, margin: 0, padding: 0 }} />
+      <div id="tickets" style={{ position: 'relative', top: '-75px', visibility: 'hidden', height: 0, margin: 0, padding: 0 }} />
       <div className="center">
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="heading">
           {heading} {highlight ? <em>{highlight}</em> : null} {headingEnd}
         </h2>
-        {description ? <p className="lede lede--tickets">{description}</p> : null}
+        {description ? <p className="lede lede--tickets lede--passes">{description}</p> : null}
         {seatsText ? (
-          <div className="tickets-urgency-pill">
+          <div className="tickets-urgency-pill passes-urgency-pill">
             <span className="tickets-urgency-dot" />
             <span>{seatsText}</span>
           </div>
         ) : null}
       </div>
 
-      <div className="tickets-grid">
-        {WORKSHOP_TICKETS.map((ticket) => {
-          const isGold = ticket.id === 'gold';
-          const isVip = ticket.id === 'vip';
+      <div className="passes-grid tickets-grid">
+        {WORKSHOP_PASSES.map((pass) => {
+          const isGold = pass.id === 'gold';
+          const isVip = pass.id === 'vip';
           const cardClass = [
+            'pass-card',
             'ticket-card',
-            isGold ? 'ticket-card--popular' : '',
-            isVip ? 'ticket-card--vip' : '',
+            isGold ? 'pass-card--popular ticket-card--popular' : '',
+            isVip ? 'pass-card--vip ticket-card--vip' : '',
           ]
             .filter(Boolean)
             .join(' ');
 
           return (
-            <div key={ticket.id} className={cardClass}>
-              {ticket.badge ? (
+            <div key={pass.id} className={cardClass}>
+              {pass.badge ? (
                 <div
-                  className={`ticket-badge ${isVip ? 'ticket-badge--vip' : 'ticket-badge--popular'}`}
+                  className={`pass-badge ticket-badge ${
+                    isVip ? 'pass-badge--vip ticket-badge--vip' : 'pass-badge--popular ticket-badge--popular'
+                  }`}
                 >
-                  {ticket.badge}
+                  {pass.badge}
                 </div>
               ) : (
-                <div className="ticket-badge-placeholder" />
+                <div className="pass-badge-placeholder ticket-badge-placeholder" />
               )}
 
-              <div className="ticket-header">
-                <h3 className="ticket-name">{ticket.name}</h3>
-                <div className="ticket-pricing">
-                  <div className="ticket-price-row">
-                    <span className="ticket-currency">₹</span>
-                    <span className="ticket-price">{ticket.price.toLocaleString('en-IN')}</span>
-                    {ticket.originalPrice ? (
-                      <s className="ticket-original-price">
-                        ₹{ticket.originalPrice.toLocaleString('en-IN')}
+              <div className="pass-header ticket-header">
+                <h3 className="pass-name ticket-name">{pass.name}</h3>
+                <div className="pass-pricing ticket-pricing">
+                  <div className="pass-price-row ticket-price-row">
+                    <span className="pass-currency ticket-currency">₹</span>
+                    <span className="pass-price ticket-price">{pass.price.toLocaleString('en-IN')}</span>
+                    {pass.originalPrice ? (
+                      <s className="pass-original-price ticket-original-price">
+                        ₹{pass.originalPrice.toLocaleString('en-IN')}
                       </s>
                     ) : null}
                   </div>
-                  <div className="ticket-discount-tag">{ticket.discountText}</div>
+                  <div className="pass-discount-tag ticket-discount-tag">{pass.discountText}</div>
                 </div>
               </div>
 
-              <div className="ticket-divider" />
+              <div className="pass-divider ticket-divider" />
 
-              <ul className="ticket-features">
-                {ticket.features.map((feat, i) => (
+              <ul className="pass-features ticket-features">
+                {pass.features.map((feat, i) => (
                   <li
                     key={i}
-                    className={`ticket-feature ${feat.highlight ? 'ticket-feature--highlight' : ''}`}
+                    className={`pass-feature ticket-feature ${
+                      feat.highlight ? 'pass-feature--highlight ticket-feature--highlight' : ''
+                    }`}
                   >
-                    <span className="ticket-feature-icon" aria-hidden>
+                    <span className="pass-feature-icon ticket-feature-icon" aria-hidden>
                       ✓
                     </span>
-                    <span className="ticket-feature-text">{feat.text}</span>
+                    <span className="pass-feature-text ticket-feature-text">{feat.text}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="ticket-action">
+              <div className="pass-action ticket-action">
                 <a
-                  href={ticket.url}
+                  href={pass.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`ticket-btn ${
+                  className={`pass-btn ticket-btn ${
                     isVip
-                      ? 'ticket-btn--vip'
+                      ? 'pass-btn--vip ticket-btn--vip'
                       : isGold
-                      ? 'ticket-btn--popular'
-                      : 'ticket-btn--silver'
+                      ? 'pass-btn--popular ticket-btn--popular'
+                      : 'pass-btn--silver ticket-btn--silver'
                   }`}
                   onClick={() =>
                     PixelTracker.initiateCheckout(
-                      `Book ${ticket.name}`,
-                      ticket.url,
-                      { name: ticket.name, price: ticket.price }
+                      `Get ${pass.name}`,
+                      pass.url,
+                      { name: pass.name, price: pass.price }
                     )
                   }
                 >
-                  Book {ticket.name} →
+                  Get {pass.name} →
                 </a>
-                <span className="ticket-secure-hint">Instant Confirmation via WhatsApp & Email</span>
+                <span className="pass-secure-hint ticket-secure-hint">
+                  Instant Confirmation via WhatsApp & Email
+                </span>
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="tickets-footer-note">
+      <div className="passes-footer-note tickets-footer-note">
         <p className="muted">
-          🔒 <strong>100% Secure Payment</strong> via Razorpay · UPI, Cards, NetBanking accepted
+          🔒 <strong>100% Secure Payment</strong> powered by Razorpay · UPI, Cards, NetBanking accepted
         </p>
       </div>
     </section>
   );
 }
+
+export const TicketsBlock = PassesBlock;
 
 function CtaSectionBlock({
   data,
@@ -1254,7 +1304,7 @@ function CtaSectionBlock({
   }
 
   return (
-    <section className="section container" id="register">
+    <section className="section container cta-section-wrap" id="cta-block">
       <div className="cta-card">
         {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
           <h2 className="heading" style={{ fontSize: '2.4rem' }}>
@@ -1593,6 +1643,7 @@ function isSectionEmpty(
         !trimStr(asObj(d.video).url) &&
         !trimStr(asObj(d.primaryButton).label)
       );
+    case 'passes':
     case 'tickets':
       return false;
     case 'cta':
@@ -1689,12 +1740,17 @@ export function SectionRenderer({
         />
       );
       break;
+    case 'passes':
     case 'tickets':
-      content = <TicketsBlock data={section.data} seatsRemaining={seatsRemaining} />;
+      content = <PassesBlock data={section.data} seatsRemaining={seatsRemaining} />;
       break;
     case 'cta':
-      if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto' || section.data?.showTickets) {
-        content = <TicketsBlock data={section.data} seatsRemaining={seatsRemaining} />;
+      if (
+        section.id === 'cmtjtmwfc000mb5xsgxdv7yto' ||
+        section.data?.showPasses ||
+        section.data?.showTickets
+      ) {
+        content = <PassesBlock data={section.data} seatsRemaining={seatsRemaining} />;
       } else {
         content = (
           <CtaSectionBlock
