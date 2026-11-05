@@ -19,7 +19,7 @@ fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Update texts, logo, proof, gallery alignment, and aischoolraipur.in domain"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Add Silver, Gold, and VIP booking tickets with Razorpay checkout and Meta Pixel tracking"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
@@ -30,7 +30,7 @@ execSync('git config user.email "support@socialseller.in"', { cwd: distDir, env,
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy built static files for aischoolraipur.in"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy Silver, Gold, and VIP booking tickets to aischoolraipur.com"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');

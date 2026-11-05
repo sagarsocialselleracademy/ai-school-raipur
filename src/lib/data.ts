@@ -150,6 +150,73 @@ export interface MediaFile {
   title?: string;
 }
 
+export interface WorkshopTicket {
+  id: string;
+  name: string;
+  badge?: string;
+  price: number;
+  originalPrice?: number;
+  discountText: string;
+  url: string;
+  popular?: boolean;
+  vip?: boolean;
+  features: Array<{ text: string; highlight?: boolean }>;
+}
+
+export const WORKSHOP_TICKETS: WorkshopTicket[] = [
+  {
+    id: 'silver',
+    name: 'Silver Ticket',
+    price: 1999,
+    originalPrice: 2999,
+    discountText: 'Early Discounted Seats',
+    url: 'https://rzp.io/rzp/3nLQzNx',
+    features: [
+      { text: '4 Hour Session' },
+      { text: 'Lunch Included' },
+      { text: 'Prompts & Recording' },
+      { text: 'Early Discounted Seats - ₹1999' },
+    ],
+  },
+  {
+    id: 'gold',
+    name: 'Gold Ticket',
+    badge: 'MOST POPULAR',
+    popular: true,
+    price: 2999,
+    originalPrice: 4499,
+    discountText: 'Early Discounted Seats',
+    url: 'https://rzp.io/rzp/b4ddaY2g',
+    features: [
+      { text: '4 Hour Session' },
+      { text: 'Lunch Included' },
+      { text: 'Tea Included' },
+      { text: 'Prompts & Recording' },
+      { text: '2 hour Doubt Session', highlight: true },
+      { text: 'Early Discounted Seats - ₹2999' },
+    ],
+  },
+  {
+    id: 'vip',
+    name: 'VIP Ticket',
+    badge: 'FRONT ROW · ONLY 20 SEATS',
+    vip: true,
+    price: 4999,
+    originalPrice: 7999,
+    discountText: 'Early Discounted Seats',
+    url: 'https://rzp.io/rzp/zTWDhdP',
+    features: [
+      { text: '4 Hour Session' },
+      { text: 'Lunch Included' },
+      { text: 'Includes everything in Gold Ticket' },
+      { text: 'Prompts & Recording' },
+      { text: '2 hour Doubt Session', highlight: true },
+      { text: 'Front Row Seats (only 20)', highlight: true },
+      { text: 'Early Discounted Seats - ₹4999' },
+    ],
+  },
+];
+
 export const DEFAULTS = {
   LOGO_URL: '/logo.png?v=2',
   PORTRAIT: '/lakshit-portrait.jpg',
@@ -250,7 +317,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   homePageSlug: 'home-copy',
   seatsRemaining: 60,
   eventStartsAt: '2026-11-29T10:00:00+05:30',
-  registerUrl: 'https://rzp.io/rzp/3nLQzNx',
+  registerUrl: '#tickets',
   registerLabel: 'Register Now',
   facebookPixelId: '762245465547904',
   footerJson: {
@@ -384,7 +451,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     ogImage: '/media/hero-poster.webp',
     facebookPixelId: '762245465547904',
     theme: 'classic',
-    registerUrl: 'https://rzp.io/rzp/3nLQzNx',
+    registerUrl: '#tickets',
     registerLabel: 'Register Now',
     eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
@@ -437,12 +504,12 @@ export const INITIAL_PAGES: LandingPage[] = [
             { icon: 'pin', label: 'Vimtara Hall, Raipur' },
             { icon: 'users', label: 'Lunch Included' },
           ],
-          originalPrice: '₹2499',
+          originalPrice: '₹2999',
           price: '₹1999 only',
           seatsText: '60 seats remaining. Register now!',
           primaryButton: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/3nLQzNx',
+            url: '#tickets',
           },
           secondaryButton: { label: '', url: '' },
         },
@@ -555,7 +622,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           seatsText: '60 seats remaining. Register now!',
           button: {
             label: 'Register Now →',
-            url: 'https://rzp.io/rzp/3nLQzNx',
+            url: '#tickets',
           },
           note: '',
         },
@@ -763,20 +830,17 @@ export const INITIAL_PAGES: LandingPage[] = [
       {
         id: 'cmtjtmwfc000mb5xsgxdv7yto',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'cta',
+        type: 'tickets',
         enabled: true,
         sortOrder: 10,
         data: {
-          heading: '',
-          highlight: '',
-          headingEnd: 'on 29th November',
-          description: 'Reserve your seat for the Live session. Limited seats — register today.',
-          seatsText: '60 seats remaining. Register now!',
-          button: {
-            label: 'Register Now →',
-            url: 'https://rzp.io/rzp/3nLQzNx',
-          },
-          note: '',
+          eyebrow: 'CHOOSE YOUR TICKET',
+          heading: 'Select Your Pass for',
+          highlight: '29th November',
+          headingEnd: '',
+          description:
+            "Raipur's Most Advance Ai & Automation Masterclass · Vimtara Hall, Raipur (10:00AM TO 03:00 PM)",
+          seatsText: '60 seats remaining. Early discounted seats are filling fast!',
         },
       },
       {
@@ -871,16 +935,16 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 15,
         data: {
-          heading: 'See you',
-          highlight: '',
-          headingEnd: 'on 29th November',
-          description: 'Reserve your seat. Limited seats — register today.',
+          heading: 'Secure Your Pass',
+          highlight: 'Today',
+          headingEnd: 'for 29th November',
+          description: 'Limited seats available. Choose your ticket tier and join us live in Raipur.',
           seatsText: '60 seats remaining. Register now!',
           button: {
-            label: 'Register Now →',
-            url: 'https://rzp.io/rzp/3nLQzNx',
+            label: 'Choose Your Ticket →',
+            url: '#tickets',
           },
-          note: '',
+          note: '🔒 100% Secure Checkout via Razorpay · Instant Confirmation on WhatsApp & Email',
         },
       },
     ],

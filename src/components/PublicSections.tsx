@@ -7,6 +7,8 @@ import {
   PageSection,
   SiteSettings,
   TestimonialItem,
+  WORKSHOP_TICKETS,
+  WorkshopTicket,
 } from '@/lib/data';
 import { PixelTracker } from '@/lib/pixel';
 import {
@@ -25,15 +27,15 @@ import {
   resolveWhatsappScreenshot,
 } from '@/lib/cms';
 
-const HASH_TARGETS = new Set(['', '#', '#register', '#contact', '#cta']);
+const HASH_TARGETS = new Set(['', '#', '#register', '#contact', '#cta', '#tickets']);
 
 function isHashPlaceholder(url?: string): boolean {
   return HASH_TARGETS.has((url || '').trim().toLowerCase());
 }
 
-export function resolveButtonHref(url?: string, fallback = '#register'): string {
+export function resolveButtonHref(url?: string, fallback = '#tickets'): string {
   const trimmed = (url || '').trim();
-  return trimmed || fallback.trim() || '#register';
+  return trimmed || fallback.trim() || '#tickets';
 }
 
 export function resolveCtaHref(primaryUrl?: string, globalRegisterUrl?: string): string {
@@ -41,7 +43,7 @@ export function resolveCtaHref(primaryUrl?: string, globalRegisterUrl?: string):
   if (globalTrimmed && !isHashPlaceholder(globalTrimmed)) return globalTrimmed;
   const primaryTrimmed = (primaryUrl || '').trim();
   if (primaryTrimmed && !isHashPlaceholder(primaryTrimmed)) return primaryTrimmed;
-  return globalTrimmed || primaryTrimmed || '#register';
+  return globalTrimmed || primaryTrimmed || '#tickets';
 }
 
 export function isExternalHref(href: string): boolean {
@@ -1096,6 +1098,136 @@ function VideoGalleryBlock({
   );
 }
 
+export function TicketsBlock({
+  data,
+  seatsRemaining = 60,
+}: {
+  data?: Record<string, any>;
+  seatsRemaining?: number;
+}) {
+  const d = data || {};
+  const eyebrow = asStr(d.eyebrow, 'CHOOSE YOUR TICKET');
+  const heading = asStr(d.heading, 'Book Your Workshop Pass');
+  const highlight = asStr(d.highlight, 'for 29th November');
+  const headingEnd = asStr(d.headingEnd, '');
+  const description =
+    asStr(d.description) ||
+    "Raipur's Most Advance Ai & Automation Masterclass · Vimtara Hall, Raipur (10:00AM TO 03:00 PM)";
+  const seatsText =
+    asStr(d.seatsText) ||
+    `${seatsRemaining} seats remaining. Early discounted seats are filling fast!`;
+
+  return (
+    <section className="section container tickets-section" id="tickets">
+      <div id="register" style={{ position: 'relative', top: '-90px', visibility: 'hidden' }} />
+      <div className="center">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="heading">
+          {heading} {highlight ? <em>{highlight}</em> : null} {headingEnd}
+        </h2>
+        {description ? <p className="lede lede--tickets">{description}</p> : null}
+        {seatsText ? (
+          <div className="tickets-urgency-pill">
+            <span className="tickets-urgency-dot" />
+            <span>{seatsText}</span>
+          </div>
+        ) : null}
+      </div>
+
+      <div className="tickets-grid">
+        {WORKSHOP_TICKETS.map((ticket) => {
+          const isGold = ticket.id === 'gold';
+          const isVip = ticket.id === 'vip';
+          const cardClass = [
+            'ticket-card',
+            isGold ? 'ticket-card--popular' : '',
+            isVip ? 'ticket-card--vip' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
+
+          return (
+            <div key={ticket.id} className={cardClass}>
+              {ticket.badge ? (
+                <div
+                  className={`ticket-badge ${isVip ? 'ticket-badge--vip' : 'ticket-badge--popular'}`}
+                >
+                  {ticket.badge}
+                </div>
+              ) : (
+                <div className="ticket-badge-placeholder" />
+              )}
+
+              <div className="ticket-header">
+                <h3 className="ticket-name">{ticket.name}</h3>
+                <div className="ticket-pricing">
+                  <div className="ticket-price-row">
+                    <span className="ticket-currency">₹</span>
+                    <span className="ticket-price">{ticket.price.toLocaleString('en-IN')}</span>
+                    {ticket.originalPrice ? (
+                      <s className="ticket-original-price">
+                        ₹{ticket.originalPrice.toLocaleString('en-IN')}
+                      </s>
+                    ) : null}
+                  </div>
+                  <div className="ticket-discount-tag">{ticket.discountText}</div>
+                </div>
+              </div>
+
+              <div className="ticket-divider" />
+
+              <ul className="ticket-features">
+                {ticket.features.map((feat, i) => (
+                  <li
+                    key={i}
+                    className={`ticket-feature ${feat.highlight ? 'ticket-feature--highlight' : ''}`}
+                  >
+                    <span className="ticket-feature-icon" aria-hidden>
+                      ✓
+                    </span>
+                    <span className="ticket-feature-text">{feat.text}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="ticket-action">
+                <a
+                  href={ticket.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`ticket-btn ${
+                    isVip
+                      ? 'ticket-btn--vip'
+                      : isGold
+                      ? 'ticket-btn--popular'
+                      : 'ticket-btn--silver'
+                  }`}
+                  onClick={() =>
+                    PixelTracker.initiateCheckout(
+                      `Book ${ticket.name}`,
+                      ticket.url,
+                      { name: ticket.name, price: ticket.price }
+                    )
+                  }
+                >
+                  Book {ticket.name} →
+                </a>
+                <span className="ticket-secure-hint">Instant Confirmation via WhatsApp & Email</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="tickets-footer-note">
+        <p className="muted">
+          🔒 <strong>100% Secure Payment</strong> via Razorpay · UPI, Cards, NetBanking accepted
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function CtaSectionBlock({
   data,
   registerUrl,
@@ -1461,6 +1593,8 @@ function isSectionEmpty(
         !trimStr(asObj(d.video).url) &&
         !trimStr(asObj(d.primaryButton).label)
       );
+    case 'tickets':
+      return false;
     case 'cta':
       return (
         !hasAnyStr(d.heading, d.highlight, d.headingEnd, d.description, d.seatsText, d.note) &&
@@ -1555,14 +1689,21 @@ export function SectionRenderer({
         />
       );
       break;
+    case 'tickets':
+      content = <TicketsBlock data={section.data} seatsRemaining={seatsRemaining} />;
+      break;
     case 'cta':
-      content = (
-        <CtaSectionBlock
-          data={section.data}
-          registerUrl={registerUrl}
-          registerLabel={registerLabel}
-        />
-      );
+      if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto' || section.data?.showTickets) {
+        content = <TicketsBlock data={section.data} seatsRemaining={seatsRemaining} />;
+      } else {
+        content = (
+          <CtaSectionBlock
+            data={section.data}
+            registerUrl={registerUrl}
+            registerLabel={registerLabel}
+          />
+        );
+      }
       break;
     case 'proof_impact':
       content = <ProofImpactBlock data={section.data} />;

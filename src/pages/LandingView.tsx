@@ -25,6 +25,7 @@ const REVEAL_SELECTORS = [
   '.check-item',
   '.instructor-card',
   '.audience-card',
+  '.ticket-card',
 ].join(', ');
 
 function useScrollReveal(pageId?: string, version?: number) {
@@ -93,7 +94,7 @@ export function LandingView({ slug }: { slug?: string }) {
     PixelTracker.pageView();
     PixelTracker.viewContent({
       name: page?.title || "Raipur's Most Advance Ai & Automation Masterclass",
-      price: 499,
+      price: 1999,
     });
 
     try {
@@ -110,7 +111,7 @@ export function LandingView({ slug }: { slug?: string }) {
           urlParams.get('razorpay_payment_id') ||
           urlParams.get('payment_id') ||
           `order_${Date.now()}`;
-        PixelTracker.purchase({ transactionId: txnId, amount: 499 });
+        PixelTracker.purchase({ transactionId: txnId, amount: 1999 });
       }
     } catch {
       // ignore URL parsing errors
