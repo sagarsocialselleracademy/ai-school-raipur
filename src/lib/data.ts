@@ -532,11 +532,25 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
+        id: 'cmtjtmwd-what-you-learn',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'what_you_learn',
+        enabled: true,
+        sortOrder: 2,
+        data: {
+          eyebrow: 'MASTERCLASS CURRICULUM',
+          heading: '🔥 WHAT WILL YOU',
+          highlight: 'LEARN?',
+          description:
+            'A 100% practical, implementation-first blueprint to build, deploy, and scale 9 Autonomous AI Agent systems for your business.',
+        },
+      },
+      {
         id: 'cmtjtmwd00006b5xsj9e3eta8',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'instructor',
         enabled: true,
-        sortOrder: 2,
+        sortOrder: 3,
         data: {
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
@@ -551,20 +565,6 @@ export const INITIAL_PAGES: LandingPage[] = [
             { label: 'ITM', image: '/speakes-at/itm-university.png' },
             { label: 'Chamber of Commerce', image: '/speakes-at/ccci.png' },
           ],
-        },
-      },
-      {
-        id: 'cmtjtmwd-what-you-learn',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'what_you_learn',
-        enabled: true,
-        sortOrder: 3,
-        data: {
-          eyebrow: 'MASTERCLASS CURRICULUM',
-          heading: '🔥 WHAT WILL YOU',
-          highlight: 'LEARN?',
-          description:
-            'A 100% practical, implementation-first blueprint to build, deploy, and scale 9 Autonomous AI Agent systems for your business.',
         },
       },
       {

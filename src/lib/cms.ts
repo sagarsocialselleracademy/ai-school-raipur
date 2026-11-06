@@ -21,15 +21,31 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v16',
-  PAGES: 'aischool_pages_v16',
-  NAV: 'aischool_nav_v16',
-  COURSES: 'aischool_courses_v16',
-  TESTIMONIALS: 'aischool_testimonials_v16',
-  FAQS: 'aischool_faqs_v16',
-  LEADS: 'aischool_leads_v16',
-  MEDIA: 'aischool_media_v16',
+  SETTINGS: 'aischool_settings_v18',
+  PAGES: 'aischool_pages_v18',
+  NAV: 'aischool_nav_v18',
+  COURSES: 'aischool_courses_v18',
+  TESTIMONIALS: 'aischool_testimonials_v18',
+  FAQS: 'aischool_faqs_v18',
+  LEADS: 'aischool_leads_v18',
+  MEDIA: 'aischool_media_v18',
 };
+
+// Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
+if (typeof window !== 'undefined') {
+  try {
+    const keysToRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v18') && k !== STORAGE_KEYS.AUTH) {
+        keysToRemove.push(k);
+      }
+    }
+    keysToRemove.forEach((k) => localStorage.removeItem(k));
+  } catch {
+    // ignore localStorage access issues in restrictive sandboxes
+  }
+}
 
 function readStore<T>(key: string, fallback: T): T {
   try {

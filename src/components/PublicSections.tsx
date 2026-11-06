@@ -152,12 +152,12 @@ export function PhoneIcon({ className }: { className?: string }) {
   );
 }
 
-export function MapPinIcon({ className }: { className?: string }) {
+export function MapPinIcon({ className, size = 16 }: { className?: string; size?: number }) {
   return (
     <svg
       className={className}
-      width="16"
-      height="16"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -406,6 +406,38 @@ export function SectionIcon({ name, size = 16 }: { name?: string; size?: number 
   }
 }
 
+function CalendarIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+
+
+
+function UtensilsIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M18 2v8h-3a4 4 0 0 1-4-4V2" />
+      <path d="M2 12h12" />
+      <path d="M7 2v20" />
+      <path d="M21 15a4 4 0 0 1-4 4h-2" />
+    </svg>
+  );
+}
+
+function ZapIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+
 export function openPassModal() {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('open-pass-modal'));
@@ -475,16 +507,8 @@ function BrandLogo({
 }
 
 export function BrandHeader({ settings }: { settings: SiteSettings }) {
-  return (
-    <div className="brand">
-      <BrandLogo
-        src={resolveLogoUrl(settings.logoUrl)}
-        alt={settings.websiteName}
-        imageClassName="brand__img"
-        nameClassName="brand__logo"
-      />
-    </div>
-  );
+  // Hero logo removed per user instruction
+  return null;
 }
 
 function parsePhones(raw?: string | string[]): string[] {
@@ -918,14 +942,14 @@ function StatCounter({
   return <>{`${prefix}${displayValue.toLocaleString('en-IN')}${suffix}`}</>;
 }
 
-const DEFAULT_STATS = [
-  { target: 1000000, suffix: '+', label: 'Followers' },
-  { target: 25000, suffix: '+', label: 'Students' },
-  { target: 10, suffix: '+ Years', label: 'Experience' },
-  { target: 45, suffix: '+', label: 'Workshops Taken' },
+const CANONICAL_STATS = [
+  { target: 1000000, prefix: '', suffix: '+', label: 'Followers' },
+  { target: 25000, prefix: '', suffix: '+', label: 'Students' },
+  { target: 10, prefix: '', suffix: '+ Years', label: 'Experience' },
+  { target: 45, prefix: '', suffix: '+', label: 'Workshops Taken' },
 ];
 
-function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
+function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
@@ -945,16 +969,8 @@ function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
     return () => observer.disconnect();
   }, []);
 
-  const rawItems = asArr(data.items);
-  const items =
-    rawItems.length === 4 && rawItems.some((it) => it.number || it.target)
-      ? rawItems.map((it) => ({
-          target: Number(it.number ?? it.target ?? 0),
-          prefix: asStr(it.prefix),
-          suffix: asStr(it.suffix, '+'),
-          label: asStr(it.label),
-        }))
-      : DEFAULT_STATS;
+  // Guarantee user-specified statistics: 10,00,000+ Followers, 25,000+ Students, 10+ Years Experience, 45+ Workshops Taken
+  const items = CANONICAL_STATS;
 
   return (
     <div ref={sectionRef} className="container stat-capsule-container">
@@ -1266,11 +1282,22 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
     const handleClose = () => setIsOpen(false);
+    const checkHash = () => {
+      const hash = (window.location.hash || '').toLowerCase();
+      if (hash === '#passes' || hash === '#tickets' || hash === '#register' || hash === '#cta') {
+        setIsOpen(true);
+      }
+    };
+
     window.addEventListener('open-pass-modal', handleOpen);
     window.addEventListener('close-pass-modal', handleClose);
+    window.addEventListener('hashchange', checkHash);
+    checkHash();
+
     return () => {
       window.removeEventListener('open-pass-modal', handleOpen);
       window.removeEventListener('close-pass-modal', handleClose);
+      window.removeEventListener('hashchange', checkHash);
     };
   }, []);
 
@@ -1327,11 +1354,20 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
             Choose Your Experience for <em>29th November</em>
           </h2>
           <div className="pass-modal-meta">
-            <span>📍 Vimtara Hall, Raipur</span>
+            <span className="pass-modal-meta-item">
+              <MapPinIcon size={14} />
+              <span>Vimtara Hall, Raipur</span>
+            </span>
             <span className="pass-modal-sep">•</span>
-            <span>⏰ 10:00 AM – 3:00 PM</span>
+            <span className="pass-modal-meta-item">
+              <ClockIcon />
+              <span>10:00 AM – 3:00 PM</span>
+            </span>
             <span className="pass-modal-sep">•</span>
-            <span className="pass-modal-urgency">⚡ Only {settings.seatsRemaining || '60'} Seats Remaining</span>
+            <span className="pass-modal-urgency">
+              <ZapIcon size={14} />
+              <span>Only {settings.seatsRemaining || '60'} Seats Remaining</span>
+            </span>
           </div>
         </div>
 
@@ -1666,14 +1702,14 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
         <p className="lede lede--curriculum">{description}</p>
       </div>
 
-      {/* Featured Graphic Card */}
+      {/* Featured Master Graphic Card */}
       <div className="learn-graphics-card">
         <div className="learn-graphics-card__header">
           <div className="learn-graphics-card__tag">
-            <span>⚡ COMPREHENSIVE ROADMAP</span>
+            <span>⚡ OFFICIAL WORKSHOP ROADMAP</span>
           </div>
           <h3 className="learn-graphics-card__title">
-            The 9 Core Autonomous AI Agents Covered in Raipur
+            🔥 WHAT WILL YOU LEARN?
           </h3>
           <p className="learn-graphics-card__sub">
             Practical demonstrations with live prompt templates, no-code workflows & real-world client case studies.
@@ -1687,6 +1723,54 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
               <span className="learn-check-text">{m.title}</span>
             </div>
           ))}
+        </div>
+
+        <div className="learn-graphics-card__footer">
+          <div className="learn-graphics-card__meta">
+            <span className="learn-meta-item">
+              <CalendarIcon size={14} />
+              <span>29th November 2026</span>
+            </span>
+            <span className="learn-meta-sep">•</span>
+            <span className="learn-meta-item">
+              <ClockIcon />
+              <span>10:00 AM – 3:00 PM</span>
+            </span>
+            <span className="learn-meta-sep">•</span>
+            <span className="learn-meta-item">
+              <MapPinIcon size={14} />
+              <span>Vimtara Hall, Raipur</span>
+            </span>
+            <span className="learn-meta-sep">•</span>
+            <span className="learn-meta-item">
+              <UtensilsIcon size={14} />
+              <span>Lunch Included</span>
+            </span>
+          </div>
+          <div className="learn-graphics-card__actions">
+            <button
+              type="button"
+              className="cta-btn cta-btn--card"
+              onClick={() => openPassModal()}
+            >
+              <span>Register Now to Master All 9 Agents</span>
+              <ArrowRightIcon />
+            </button>
+            <a
+              href="/media/what-will-you-learn-card.png"
+              download="What-Will-You-Learn-AI-School-Raipur.png"
+              className="ghost-btn ghost-btn--download"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Download Graphic Card (PNG)</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -1961,7 +2045,6 @@ function isSectionEmpty(
   const d = section.data || {};
   switch (section.type) {
     case 'spacer':
-    case 'contact_form':
       return false;
     case 'hero':
       return (
@@ -1981,6 +2064,8 @@ function isSectionEmpty(
       );
     case 'passes':
     case 'tickets':
+    case 'proof_impact':
+    case 'contact_form':
       return true;
     case 'cta':
       return (
@@ -1993,8 +2078,7 @@ function isSectionEmpty(
       return !hasAnyStr(d.name, d.title, d.eyebrow, d.speakingLabel, d.photo) && !hasAnyArr(d.logos);
     case 'video_gallery':
       return !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) && !hasAnyArr(d.items);
-    case 'proof_impact':
-      return !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) && !hasAnyArr(d.images);
+
     case 'what_you_learn':
       return false;
     case 'workshop_tracks':
@@ -2080,6 +2164,8 @@ export function SectionRenderer({
       break;
     case 'passes':
     case 'tickets':
+    case 'proof_impact':
+    case 'contact_form':
       return null;
     case 'cta':
       if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {
@@ -2093,9 +2179,7 @@ export function SectionRenderer({
         />
       );
       break;
-    case 'proof_impact':
-      content = <ProofImpactBlock data={section.data} />;
-      break;
+
     case 'what_you_learn':
     case 'workshop_tracks':
     case 'features':
@@ -2119,16 +2203,7 @@ export function SectionRenderer({
     case 'faq':
       content = <FaqSectionBlock data={section.data} faqs={related.faqs} />;
       break;
-    case 'contact_form':
-      content = (
-        <ContactFormBlock
-          data={section.data}
-          sourcePage={sourcePage}
-          onSubmit={onLeadSubmit}
-          status={leadStatus}
-        />
-      );
-      break;
+
     case 'spacer':
       content = <div style={{ height: Number(section.data.height || 48) }} />;
       break;
