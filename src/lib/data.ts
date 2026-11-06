@@ -344,7 +344,6 @@ export const INITIAL_SETTINGS: SiteSettings = {
 
 export const INITIAL_NAVIGATION: NavItem[] = [
   { id: 'nav-1', label: 'Workshop', type: 'ANCHOR', url: '#workshop', enabled: true },
-  { id: 'nav-2', label: 'What You Learn', type: 'ANCHOR', url: '#curriculum', enabled: true },
   { id: 'nav-3', label: 'Instructor', type: 'ANCHOR', url: '#instructor', enabled: true },
   { id: 'nav-4', label: 'Proof', type: 'ANCHOR', url: '#proof', enabled: true },
   { id: 'nav-5', label: 'FAQ', type: 'ANCHOR', url: '#faq', enabled: true },
@@ -532,25 +531,11 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
-        id: 'cmtjtmwd-what-you-learn',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'what_you_learn',
-        enabled: true,
-        sortOrder: 2,
-        data: {
-          eyebrow: 'MASTERCLASS CURRICULUM',
-          heading: '🔥 WHAT WILL YOU',
-          highlight: 'LEARN?',
-          description:
-            'A 100% practical, implementation-first blueprint to build, deploy, and scale 9 Autonomous AI Agent systems for your business.',
-        },
-      },
-      {
         id: 'cmtjtmwd00006b5xsj9e3eta8',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'instructor',
         enabled: true,
-        sortOrder: 3,
+        sortOrder: 2,
         data: {
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',

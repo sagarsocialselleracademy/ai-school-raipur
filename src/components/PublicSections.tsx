@@ -2066,6 +2066,9 @@ function isSectionEmpty(
     case 'tickets':
     case 'proof_impact':
     case 'contact_form':
+    case 'what_you_learn':
+    case 'workshop_tracks':
+    case 'features':
       return true;
     case 'cta':
       return (
@@ -2079,14 +2082,7 @@ function isSectionEmpty(
     case 'video_gallery':
       return !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) && !hasAnyArr(d.items);
 
-    case 'what_you_learn':
-      return false;
-    case 'workshop_tracks':
-    case 'features':
-      return (
-        !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) &&
-        !hasAnyArr(d.tracks ?? d.items)
-      );
+
     case 'audience':
       return !hasAnyStr(d.eyebrow, d.heading, d.description) && !hasAnyArr(d.items);
     case 'photo_gallery': {
@@ -2166,6 +2162,9 @@ export function SectionRenderer({
     case 'tickets':
     case 'proof_impact':
     case 'contact_form':
+    case 'what_you_learn':
+    case 'workshop_tracks':
+    case 'features':
       return null;
     case 'cta':
       if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {
@@ -2180,11 +2179,7 @@ export function SectionRenderer({
       );
       break;
 
-    case 'what_you_learn':
-    case 'workshop_tracks':
-    case 'features':
-      content = <WhatYouLearnBlock data={section.data} />;
-      break;
+
     case 'audience':
       content = <AudienceBlock data={section.data} />;
       break;
