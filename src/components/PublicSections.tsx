@@ -922,7 +922,7 @@ const DEFAULT_STATS = [
   { target: 1000000, suffix: '+', label: 'Followers' },
   { target: 25000, suffix: '+', label: 'Students' },
   { target: 10, suffix: '+ Years', label: 'Experience' },
-  { target: 5, suffix: '', label: 'Programmes' },
+  { target: 45, suffix: '+', label: 'Workshops Taken' },
 ];
 
 function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
@@ -972,7 +972,7 @@ function IconFeaturesBlock({ data }: { data: Record<string, any> }) {
               </span>
               <span className="stat-capsule__label">{it.label}</span>
             </div>
-            {idx < items.length - 1 && <span className="stat-capsule__dot">•</span>}
+            {idx < items.length - 1 && <div className="stat-capsule__divider" aria-hidden />}
           </React.Fragment>
         ))}
       </div>
@@ -1329,7 +1329,7 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
           <div className="pass-modal-meta">
             <span>📍 Vimtara Hall, Raipur</span>
             <span className="pass-modal-sep">•</span>
-            <span>⏰ 10:30 AM – 4:00 PM</span>
+            <span>⏰ 10:00 AM – 3:00 PM</span>
             <span className="pass-modal-sep">•</span>
             <span className="pass-modal-urgency">⚡ Only {settings.seatsRemaining || '60'} Seats Remaining</span>
           </div>
@@ -1526,6 +1526,200 @@ function WorkshopTracksBlock({ data }: { data: Record<string, any> }) {
             </article>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+const LEARN_MODULES = [
+  {
+    num: '01',
+    title: 'WhatsApp AI Agents',
+    tag: 'Highest ROI',
+    desc: 'Deploy 24/7 intelligent chatbots that answer customer questions, send catalog details, qualify leads, and close sales automatically.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <path d="M8 10h.01M12 10h.01M16 10h.01" />
+      </svg>
+    ),
+  },
+  {
+    num: '02',
+    title: 'AI Lead Generation Agents',
+    tag: 'Automated Pipeline',
+    desc: 'Scrape, verify, and enrich high-intent customer leads across Google, LinkedIn, and local directories without manual prospecting.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
+  },
+  {
+    num: '03',
+    title: 'AI Voice Calling Agents',
+    tag: 'Human-like Voice',
+    desc: 'Launch autonomous AI callers in Hindi & English that call inbound leads within 30 seconds, handle questions, and book calendar appointments.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        <path d="M14.05 2a9 9 0 0 1 7.95 7.95M14.05 6A5 5 0 0 1 18 9.95" />
+      </svg>
+    ),
+  },
+  {
+    num: '04',
+    title: 'AI Sales & Follow-up Agents',
+    tag: 'Zero Missed Deals',
+    desc: 'Never lose a sale to poor follow-up. Set up multi-touch nurturing that overcomes objections, sends reminders, and shares payment links.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+        <polyline points="16 7 22 7 22 13" />
+      </svg>
+    ),
+  },
+  {
+    num: '05',
+    title: 'AI Business Management Agents',
+    tag: 'Operations Autopilot',
+    desc: 'Automate daily operational workflows, delegate team assignments, verify task completions, and enforce standard operating procedures (SOPs).',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+      </svg>
+    ),
+  },
+  {
+    num: '06',
+    title: 'AI Business Analysis Agents',
+    tag: 'Smart Financials',
+    desc: 'Get live insights on customer acquisition cost, profit margins, sales bottlenecks, and inventory without maintaining complex spreadsheets.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+      </svg>
+    ),
+  },
+  {
+    num: '07',
+    title: 'AI Marketing Agents',
+    tag: 'Viral Reach',
+    desc: 'Generate viral video hooks, high-converting Meta and Google ad copy, email campaigns, and social media carousels in seconds.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+      </svg>
+    ),
+  },
+  {
+    num: '08',
+    title: 'AI Website Agents',
+    tag: '2x Conversions',
+    desc: 'Integrate intelligent web agents that greet visitors in real-time, answer pricing queries, collect phone numbers, and guide them to buy.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+    ),
+  },
+  {
+    num: '09',
+    title: 'AI Agent Costing & Pricing',
+    tag: 'Monetization Blueprint',
+    desc: 'Understand API token costs, hosting economics, and how to price and package AI Agent services to clients for ₹50,000 to ₹2,00,000+ retainers.',
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23" />
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+  },
+];
+
+function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
+  const eyebrow = asStr(data?.eyebrow) || 'MASTERCLASS CURRICULUM';
+  const heading = asStr(data?.heading) || '🔥 WHAT WILL YOU';
+  const highlight = asStr(data?.highlight) || 'LEARN?';
+  const description =
+    asStr(data?.description) ||
+    'A 100% practical, implementation-first blueprint. Discover how to build, deploy, and scale these 9 autonomous AI agent systems for your business.';
+
+  return (
+    <section className="section container what-you-learn-section" id="curriculum">
+      <div className="center">
+        <div className="badge-pill">
+          <span>🔥</span>
+          <span>{eyebrow}</span>
+        </div>
+        <h2 className="heading heading--curriculum">
+          {heading} <em>{highlight}</em>
+        </h2>
+        <p className="lede lede--curriculum">{description}</p>
+      </div>
+
+      {/* Featured Graphic Card */}
+      <div className="learn-graphics-card">
+        <div className="learn-graphics-card__header">
+          <div className="learn-graphics-card__tag">
+            <span>⚡ COMPREHENSIVE ROADMAP</span>
+          </div>
+          <h3 className="learn-graphics-card__title">
+            The 9 Core Autonomous AI Agents Covered in Raipur
+          </h3>
+          <p className="learn-graphics-card__sub">
+            Practical demonstrations with live prompt templates, no-code workflows & real-world client case studies.
+          </p>
+        </div>
+
+        <div className="learn-checklist-grid">
+          {LEARN_MODULES.map((m) => (
+            <div key={m.num} className="learn-check-item">
+              <span className="learn-check-icon" aria-hidden>✅</span>
+              <span className="learn-check-text">{m.title}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 9 Interactive Module Cards */}
+      <div className="learn-cards-grid">
+        {LEARN_MODULES.map((m) => (
+          <article key={m.num} className="learn-module-card">
+            <div className="learn-module-card__top">
+              <span className="learn-module-num">{m.num}</span>
+              <div className="learn-module-icon">{m.icon}</div>
+              <span className="learn-module-tag">{m.tag}</span>
+            </div>
+            <h4 className="learn-module-title">
+              <span className="learn-check-badge" aria-hidden>✅</span>
+              <span>{m.title}</span>
+            </h4>
+            <p className="learn-module-desc">{m.desc}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="center learn-cta-wrap">
+        <button
+          type="button"
+          className="cta-btn"
+          onClick={() => openPassModal()}
+        >
+          <span>Claim Your Pass to Learn All 9 AI Agents</span>
+          <ArrowRightIcon />
+        </button>
+        <p className="learn-cta-hint">
+          ⚡ Only 60 Seats Available • 10:00 AM – 3:00 PM • Vimtara Hall, Raipur
+        </p>
       </div>
     </section>
   );
@@ -1801,6 +1995,8 @@ function isSectionEmpty(
       return !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) && !hasAnyArr(d.items);
     case 'proof_impact':
       return !hasAnyStr(d.eyebrow, d.heading, d.highlight, d.description) && !hasAnyArr(d.images);
+    case 'what_you_learn':
+      return false;
     case 'workshop_tracks':
     case 'features':
       return (
@@ -1900,9 +2096,10 @@ export function SectionRenderer({
     case 'proof_impact':
       content = <ProofImpactBlock data={section.data} />;
       break;
+    case 'what_you_learn':
     case 'workshop_tracks':
     case 'features':
-      content = <WorkshopTracksBlock data={section.data} />;
+      content = <WhatYouLearnBlock data={section.data} />;
       break;
     case 'audience':
       content = <AudienceBlock data={section.data} />;

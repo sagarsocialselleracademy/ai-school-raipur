@@ -19,7 +19,7 @@ fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Remove in-page passes section and keep pass selection in popup modal only"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Update stats to 45+ workshops stacked, time 10:00 AM-3:00 PM, and add What Will You Learn graphics cards"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
@@ -30,7 +30,7 @@ execSync('git config user.email "socialselleracademy@gmail.com"', { cwd: distDir
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy: remove in-page passes section and keep pass selection in popup modal only"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy: stats stacked with 45+ workshops, time 10:00 AM-3:00 PM, and What Will You Learn graphics cards"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');

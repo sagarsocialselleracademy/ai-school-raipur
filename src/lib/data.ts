@@ -344,10 +344,11 @@ export const INITIAL_SETTINGS: SiteSettings = {
 
 export const INITIAL_NAVIGATION: NavItem[] = [
   { id: 'nav-1', label: 'Workshop', type: 'ANCHOR', url: '#workshop', enabled: true },
-  { id: 'nav-2', label: 'Tracks', type: 'ANCHOR', url: '#tracks', enabled: true },
-  { id: 'nav-3', label: 'Proof', type: 'ANCHOR', url: '#proof', enabled: true },
-  { id: 'nav-4', label: 'FAQ', type: 'ANCHOR', url: '#faq', enabled: true },
-  { id: 'nav-5', label: 'Register', type: 'ANCHOR', url: '#register', enabled: true },
+  { id: 'nav-2', label: 'What You Learn', type: 'ANCHOR', url: '#curriculum', enabled: true },
+  { id: 'nav-3', label: 'Instructor', type: 'ANCHOR', url: '#instructor', enabled: true },
+  { id: 'nav-4', label: 'Proof', type: 'ANCHOR', url: '#proof', enabled: true },
+  { id: 'nav-5', label: 'FAQ', type: 'ANCHOR', url: '#faq', enabled: true },
+  { id: 'nav-6', label: 'Register', type: 'ANCHOR', url: '#passes', enabled: true },
 ];
 
 export const INITIAL_FAQS: FaqItem[] = [
@@ -501,7 +502,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           alignment: 'center',
           pills: [
             { icon: 'calendar', label: '29th November' },
-            { icon: 'clock', label: '10:00AM TO 03:00 PM' },
+            { icon: 'clock', label: '10:00 AM - 3:00 PM' },
             { icon: 'pin', label: 'Vimtara Hall, Raipur' },
             { icon: 'users', label: 'Networking Lunch Included' },
           ],
@@ -526,7 +527,7 @@ export const INITIAL_PAGES: LandingPage[] = [
             { number: 1000000, suffix: '+', label: 'Followers' },
             { number: 25000, suffix: '+', label: 'Students' },
             { number: 10, suffix: '+ Years', label: 'Experience' },
-            { number: 5, suffix: '', label: 'Programmes' },
+            { number: 45, suffix: '+', label: 'Workshops Taken' },
           ],
         },
       },
@@ -550,6 +551,20 @@ export const INITIAL_PAGES: LandingPage[] = [
             { label: 'ITM', image: '/speakes-at/itm-university.png' },
             { label: 'Chamber of Commerce', image: '/speakes-at/ccci.png' },
           ],
+        },
+      },
+      {
+        id: 'cmtjtmwd-what-you-learn',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'what_you_learn',
+        enabled: true,
+        sortOrder: 3,
+        data: {
+          eyebrow: 'MASTERCLASS CURRICULUM',
+          heading: '🔥 WHAT WILL YOU',
+          highlight: 'LEARN?',
+          description:
+            'A 100% practical, implementation-first blueprint to build, deploy, and scale 9 Autonomous AI Agent systems for your business.',
         },
       },
       {

@@ -321,59 +321,66 @@
   }
 }
 
-/* Statistics Capsule Bar (Image 3 Reference) */
+/* Statistics Capsule Bar (Stacked: Number Above, Label Below) */
 .stat-capsule-container {
   display: flex;
   justify-content: center;
-  margin: 1.5rem auto 2.5rem;
+  margin: 1.75rem auto 2.5rem;
   padding: 0 1rem;
 }
 .stat-capsule {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 1.85rem;
   flex-wrap: nowrap;
   background: #0d0907;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
-  padding: 0.85rem 2.2rem;
-  box-shadow: 0 -4px 22px rgba(250, 116, 44, 0.22), 0 8px 30px rgba(0, 0, 0, 0.6);
+  padding: 1rem 2.6rem;
+  box-shadow: 0 -4px 24px rgba(250, 116, 44, 0.24), 0 8px 32px rgba(0, 0, 0, 0.65);
   max-width: 100%;
 }
 .stat-capsule__item {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+  min-width: 120px;
 }
 .stat-capsule__num {
   font-family: Sora, Inter, sans-serif;
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-size: clamp(1.4rem, 2.3vw, 1.95rem);
   font-weight: 800;
+  line-height: 1.1;
   background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 .stat-capsule__label {
-  font-size: clamp(0.85rem, 1.4vw, 0.98rem);
+  font-size: clamp(0.76rem, 1.1vw, 0.86rem);
   font-weight: 600;
   color: #ffffff;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.stat-capsule__dot {
-  color: #ea442c;
-  font-size: 1.1rem;
-  line-height: 1;
-  opacity: 0.9;
-  user-select: none;
+.stat-capsule__divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 860px) {
   .stat-capsule {
-    gap: 0.85rem;
-    padding: 0.75rem 1.4rem;
+    gap: 1.1rem;
+    padding: 0.85rem 1.6rem;
+  }
+  .stat-capsule__item {
+    min-width: 100px;
   }
 }
 @media (max-width: 680px) {
@@ -381,16 +388,236 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     border-radius: 20px;
-    padding: 1.1rem 1.25rem;
-    gap: 0.85rem 1.25rem;
+    padding: 1.25rem 1.25rem;
+    gap: 1.1rem 1rem;
     width: 100%;
     max-width: 440px;
   }
-  .stat-capsule__dot {
+  .stat-capsule__divider {
     display: none;
   }
   .stat-capsule__item {
-    justify-content: center;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================
+   What Will You Learn Section & Graphics Card
+   ========================================================== */
+.what-you-learn-section {
+  padding: 4.5rem 0 3.5rem;
+}
+.heading--curriculum {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+}
+.heading--curriculum em {
+  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: normal;
+}
+.lede--curriculum {
+  max-width: 680px;
+  margin: 1rem auto 2.5rem;
+  font-size: 1.05rem;
+  color: #c8beb6;
+}
+
+/* Master Graphics Card */
+.learn-graphics-card {
+  position: relative;
+  background: radial-gradient(100% 120% at 50% 0%, rgba(250, 116, 44, 0.12) 0%, rgba(20, 16, 13, 0.95) 100%);
+  border: 1px solid rgba(250, 116, 44, 0.35);
+  border-radius: 28px;
+  padding: 2.5rem 2.25rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(250, 116, 44, 0.12);
+  overflow: hidden;
+}
+.learn-graphics-card__header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+.learn-graphics-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(250, 116, 44, 0.15);
+  border: 1px solid rgba(250, 116, 44, 0.4);
+  color: #fa742c;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.learn-graphics-card__title {
+  font-family: Sora, Inter, sans-serif;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+}
+.learn-graphics-card__sub {
+  font-size: 0.95rem;
+  color: #b0a59c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.learn-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.learn-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(14, 10, 8, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  transition: all 0.2s ease;
+}
+.learn-check-item:hover {
+  border-color: rgba(250, 116, 44, 0.4);
+  transform: translateY(-2px);
+  background: rgba(250, 116, 44, 0.06);
+}
+.learn-check-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.learn-check-text {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+/* 9 Interactive Module Cards Grid */
+.learn-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+.learn-module-card {
+  position: relative;
+  background: #130f0d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.learn-module-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(250, 116, 44, 0.5);
+  box-shadow: 0 12px 35px rgba(250, 116, 44, 0.15), 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+.learn-module-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.1rem;
+}
+.learn-module-num {
+  font-family: Sora, Inter, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #fa742c;
+  background: rgba(250, 116, 44, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid rgba(250, 116, 44, 0.25);
+}
+.learn-module-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(250, 116, 44, 0.2), rgba(234, 68, 44, 0.08));
+  border: 1px solid rgba(250, 116, 44, 0.3);
+  display: grid;
+  place-items: center;
+  color: #fa742c;
+}
+.learn-module-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c8beb6;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.learn-module-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: Sora, Inter, sans-serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.65rem;
+  line-height: 1.3;
+}
+.learn-check-badge {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.learn-module-desc {
+  font-size: 0.88rem;
+  color: #a89d95;
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.learn-cta-wrap {
+  margin-top: 1.5rem;
+}
+.learn-cta-hint {
+  font-size: 0.86rem;
+  color: #fa742c;
+  font-weight: 600;
+  margin-top: 0.85rem;
+}
+
+@media (max-width: 990px) {
+  .learn-checklist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .learn-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .what-you-learn-section {
+    padding: 3rem 0 2rem;
+  }
+  .learn-graphics-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: 20px;
+  }
+  .learn-checklist-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+  .learn-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
