@@ -1787,7 +1787,7 @@ function isSectionEmpty(
       );
     case 'passes':
     case 'tickets':
-      return false;
+      return true;
     case 'cta':
       return (
         !hasAnyStr(d.heading, d.highlight, d.headingEnd, d.description, d.seatsText, d.note) &&
@@ -1884,24 +1884,18 @@ export function SectionRenderer({
       break;
     case 'passes':
     case 'tickets':
-      content = <PassesBlock data={section.data} seatsRemaining={seatsRemaining} />;
-      break;
+      return null;
     case 'cta':
-      if (
-        section.id === 'cmtjtmwfc000mb5xsgxdv7yto' ||
-        section.data?.showPasses ||
-        section.data?.showTickets
-      ) {
-        content = <PassesBlock data={section.data} seatsRemaining={seatsRemaining} />;
-      } else {
-        content = (
-          <CtaSectionBlock
-            data={section.data}
-            registerUrl={registerUrl}
-            registerLabel={registerLabel}
-          />
-        );
+      if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {
+        return null;
       }
+      content = (
+        <CtaSectionBlock
+          data={section.data}
+          registerUrl={registerUrl}
+          registerLabel={registerLabel}
+        />
+      );
       break;
     case 'proof_impact':
       content = <ProofImpactBlock data={section.data} />;

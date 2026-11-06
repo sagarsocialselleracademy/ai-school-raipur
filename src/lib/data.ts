@@ -806,22 +806,6 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
-        id: 'cmtjtmwfc000mb5xsgxdv7yto',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'passes',
-        enabled: true,
-        sortOrder: 10,
-        data: {
-          eyebrow: 'CHOOSE YOUR PASS',
-          heading: 'Select Your Workshop Pass for',
-          highlight: '29th November',
-          headingEnd: '',
-          description:
-            "Raipur's Most Advance Ai & Automation Masterclass · Vimtara Hall, Raipur (10:00AM TO 03:00 PM)",
-          seatsText: '60 seats remaining. Early discounted seats are filling fast!',
-        },
-      },
-      {
         id: 'cmtjtmwfo000ob5xsq24edtwm',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'media_coverage',
