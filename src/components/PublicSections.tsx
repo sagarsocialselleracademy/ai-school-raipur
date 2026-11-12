@@ -1573,130 +1573,79 @@ function WorkshopTracksBlock({ data }: { data: Record<string, any> }) {
 const LEARN_MODULES = [
   {
     num: '01',
-    title: 'WhatsApp AI Agents',
-    tag: 'Highest ROI',
-    desc: 'Deploy 24/7 intelligent chatbots that answer customer questions, send catalog details, qualify leads, and close sales automatically.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        <path d="M8 10h.01M12 10h.01M16 10h.01" />
-      </svg>
-    ),
+    title: 'Prompting',
+    tag: 'Prompt Engineering & Frameworks',
+    desc: 'Master advanced prompt architecture, system framing, and prompt chaining to get 10x better outputs from ChatGPT, Claude, and Gemini.',
   },
   {
     num: '02',
-    title: 'AI Lead Generation Agents',
-    tag: 'Automated Pipeline',
-    desc: 'Scrape, verify, and enrich high-intent customer leads across Google, LinkedIn, and local directories without manual prospecting.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-        <circle cx="12" cy="12" r="2" />
-      </svg>
-    ),
+    title: 'Content Creation',
+    tag: 'AI Copywriting & Viral Scripts',
+    desc: 'Generate high-converting sales letters, viral hooks, LinkedIn posts, blogs, and email newsletters in seconds.',
   },
   {
     num: '03',
-    title: 'AI Voice Calling Agents',
-    tag: 'Human-like Voice',
-    desc: 'Launch autonomous AI callers in Hindi & English that call inbound leads within 30 seconds, handle questions, and book calendar appointments.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-        <path d="M14.05 2a9 9 0 0 1 7.95 7.95M14.05 6A5 5 0 0 1 18 9.95" />
-      </svg>
-    ),
+    title: 'Designing',
+    tag: 'Creatives, Branding & Visual Assets',
+    desc: 'Create professional social media graphics, product creatives, logos, and high-CTR thumbnails using Midjourney, Ideogram, and Canva AI.',
   },
   {
     num: '04',
-    title: 'AI Sales & Follow-up Agents',
-    tag: 'Zero Missed Deals',
-    desc: 'Never lose a sale to poor follow-up. Set up multi-touch nurturing that overcomes objections, sends reminders, and shares payment links.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-        <polyline points="16 7 22 7 22 13" />
-      </svg>
-    ),
+    title: 'Video Editing',
+    tag: 'Fast Cuts, Captions & Auto B-Roll',
+    desc: 'Automate video cuts, auto-subtitles, sound effects, B-roll insertion, and multi-format resizing with cutting-edge AI video tools.',
   },
   {
     num: '05',
-    title: 'AI Business Management Agents',
-    tag: 'Operations Autopilot',
-    desc: 'Automate daily operational workflows, delegate team assignments, verify task completions, and enforce standard operating procedures (SOPs).',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-      </svg>
-    ),
+    title: 'Video Making',
+    tag: 'AI Avatars, Voice Cloning & Gen',
+    desc: 'Produce studio-quality faceless videos, hyper-realistic AI avatars, voice cloning, and multilingual video content on autopilot.',
   },
   {
     num: '06',
-    title: 'AI Business Analysis Agents',
-    tag: 'Smart Financials',
-    desc: 'Get live insights on customer acquisition cost, profit margins, sales bottlenecks, and inventory without maintaining complex spreadsheets.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="18" y1="20" x2="18" y2="10" />
-        <line x1="12" y1="20" x2="12" y2="4" />
-        <line x1="6" y1="20" x2="6" y2="14" />
-      </svg>
-    ),
+    title: 'WhatsApp Automation',
+    tag: '24/7 Chatbots & Auto Broadcasts',
+    desc: 'Deploy 24/7 WhatsApp AI chatbots, automated product catalogs, drip follow-ups, and interactive customer journeys.',
   },
   {
     num: '07',
-    title: 'AI Marketing Agents',
-    tag: 'Viral Reach',
-    desc: 'Generate viral video hooks, high-converting Meta and Google ad copy, email campaigns, and social media carousels in seconds.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
-      </svg>
-    ),
+    title: 'AI Calling',
+    tag: 'Human-like Hindi & English Callers',
+    desc: 'Launch human-like voice calling agents in Hindi & English to qualify leads, book appointments, and handle customer queries over the phone.',
   },
   {
     num: '08',
-    title: 'AI Website Agents',
-    tag: '2x Conversions',
-    desc: 'Integrate intelligent web agents that greet visitors in real-time, answer pricing queries, collect phone numbers, and guide them to buy.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
+    title: 'AI Agents',
+    tag: 'Autonomous Multi-Agent Systems',
+    desc: 'Build and run multi-agent workflows that browse the web, execute tasks, coordinate operations, and run business processes autonomously.',
   },
   {
     num: '09',
-    title: 'AI Agent Costing & Pricing',
-    tag: 'Monetization Blueprint',
-    desc: 'Understand API token costs, hosting economics, and how to price and package AI Agent services to clients for ₹50,000 to ₹2,00,000+ retainers.',
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
+    title: 'Instagram Automation',
+    tag: 'Auto DMs, Comment & Story Funnels',
+    desc: 'Set up ManyChat and Instagram AI triggers that convert story replies, comment keywords, and DMs into high-intent paying customers.',
+  },
+  {
+    num: '10',
+    title: 'Lead Generation',
+    tag: 'High-Converting Client Funnels',
+    desc: 'Extract, verify, and nurture targeted B2B and B2C customer leads across Google Maps, LinkedIn, and social platforms automatically.',
   },
 ];
 
 function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
-  const eyebrow = asStr(data?.eyebrow) || 'MASTERCLASS CURRICULUM';
-  const heading = asStr(data?.heading) || '🔥 WHAT WILL YOU';
-  const highlight = asStr(data?.highlight) || 'LEARN?';
+  const eyebrow = asStr(data?.eyebrow) || 'WORKSHOP ROADMAP';
+  const heading = asStr(data?.heading) || 'Topics to be';
+  const highlight = asStr(data?.highlight) || 'Covered';
   const description =
     asStr(data?.description) ||
-    'A 100% practical, implementation-first blueprint. Discover how to build, deploy, and scale these 9 autonomous AI agent systems for your business.';
+    '10 practical, hands-on modules with live prompt templates, no-code workflows and real-world implementation you can deploy the same day.';
 
   return (
     <section className="section container what-you-learn-section" id="curriculum">
       <div className="center">
         <div className="badge-pill">
-          <span>🔥</span>
+          <SectionIcon name="spark" size={14} />
           <span>{eyebrow}</span>
         </div>
         <h2 className="heading heading--curriculum">
@@ -1712,18 +1661,21 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
             <span>⚡ OFFICIAL WORKSHOP ROADMAP</span>
           </div>
           <h3 className="learn-graphics-card__title">
-            🔥 WHAT WILL YOU LEARN?
+            TOPICS TO BE <span>COVERED</span>
           </h3>
           <p className="learn-graphics-card__sub">
-            Practical demonstrations with live prompt templates, no-code workflows & real-world client case studies.
+            10 Practical AI & Automation Systems to Scale Your Business & Multi-fold Productivity
           </p>
         </div>
 
         <div className="learn-checklist-grid">
           {LEARN_MODULES.map((m) => (
             <div key={m.num} className="learn-check-item">
-              <span className="learn-check-icon" aria-hidden>✅</span>
-              <span className="learn-check-text">{m.title}</span>
+              <span className="learn-item-index" aria-hidden>{m.num}</span>
+              <div className="learn-item-info">
+                <span className="learn-check-text">{m.title}</span>
+                <span className="learn-item-tag">{m.tag}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -1756,17 +1708,17 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
               className="cta-btn cta-btn--card"
               onClick={() => openPassModal()}
             >
-              <span>Register Now to Master All 9 Agents</span>
+              <span>Register Now to Master All 10 Topics</span>
               <ArrowRightIcon />
             </button>
             <a
               href="/media/what-will-you-learn-card.png"
-              download="What-Will-You-Learn-AI-School-Raipur.png"
+              download="Topics-To-Be-Covered-AI-School-Raipur.png"
               className="ghost-btn ghost-btn--download"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Download Graphic Card (PNG)</span>
+              <span>Download Roadmap Card (PNG)</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
@@ -1775,38 +1727,6 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
             </a>
           </div>
         </div>
-      </div>
-
-      {/* 9 Interactive Module Cards */}
-      <div className="learn-cards-grid">
-        {LEARN_MODULES.map((m) => (
-          <article key={m.num} className="learn-module-card">
-            <div className="learn-module-card__top">
-              <span className="learn-module-num">{m.num}</span>
-              <div className="learn-module-icon">{m.icon}</div>
-              <span className="learn-module-tag">{m.tag}</span>
-            </div>
-            <h4 className="learn-module-title">
-              <span className="learn-check-badge" aria-hidden>✅</span>
-              <span>{m.title}</span>
-            </h4>
-            <p className="learn-module-desc">{m.desc}</p>
-          </article>
-        ))}
-      </div>
-
-      <div className="center learn-cta-wrap">
-        <button
-          type="button"
-          className="cta-btn"
-          onClick={() => openPassModal()}
-        >
-          <span>Claim Your Pass to Learn All 9 AI Agents</span>
-          <ArrowRightIcon />
-        </button>
-        <p className="learn-cta-hint">
-          ⚡ Only 60 Seats Available • 10:00 AM – 3:00 PM • Vimtara Hall, Raipur
-        </p>
       </div>
     </section>
   );
@@ -2069,10 +1989,11 @@ function isSectionEmpty(
     case 'tickets':
     case 'proof_impact':
     case 'contact_form':
-    case 'what_you_learn':
     case 'workshop_tracks':
     case 'features':
       return true;
+    case 'what_you_learn':
+      return false;
     case 'cta':
       return (
         !hasAnyStr(d.heading, d.highlight, d.headingEnd, d.description, d.seatsText, d.note) &&
@@ -2166,10 +2087,12 @@ export function SectionRenderer({
     case 'proof_impact':
     case 'contact':
     case 'contact_form':
-    case 'what_you_learn':
     case 'workshop_tracks':
     case 'features':
       return null;
+    case 'what_you_learn':
+      content = <WhatYouLearnBlock data={section.data} />;
+      break;
     case 'cta':
       if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {
         return null;

@@ -531,11 +531,25 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
+        id: 'sec-topics-covered-10',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'what_you_learn',
+        enabled: true,
+        sortOrder: 2,
+        data: {
+          eyebrow: 'WORKSHOP ROADMAP',
+          heading: 'Topics to be',
+          highlight: 'Covered',
+          description:
+            '10 hands-on AI & automation systems with live prompt templates, no-code workflows and real-world implementation you can deploy immediately.',
+        },
+      },
+      {
         id: 'cmtjtmwd00006b5xsj9e3eta8',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'instructor',
         enabled: true,
-        sortOrder: 2,
+        sortOrder: 3,
         data: {
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
