@@ -4,7 +4,7 @@ const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.
 const targetUrl = 'http://localhost:5174/';
 const outPath = 'C:\\Users\\My-hp\\.gemini\\antigravity\\brain\\1249e93c-4226-4508-834f-c2a87c30ed8d\\preview-mobile.png';
 
-const cmd = `"${edgePath}" --headless --disable-gpu --screenshot="${outPath}" --window-size=390,2600 "${targetUrl}"`;
+const cmd = `"${edgePath}" --headless --disable-gpu --disable-cache --disk-cache-size=1 --user-data-dir="C:\\Users\\My-hp\\AppData\\Local\\Temp\\edge-mobile-profile" --screenshot="${outPath}" --window-size=390,2600 "${targetUrl}"`;
 console.log('Running:', cmd);
 execSync(cmd, { stdio: 'inherit' });
 console.log('Mobile preview saved to:', outPath);

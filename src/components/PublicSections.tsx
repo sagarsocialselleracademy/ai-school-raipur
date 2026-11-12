@@ -1150,7 +1150,7 @@ export function PassesBlock({
   const headingEnd = asStr(d.headingEnd, '');
   const description =
     asStr(d.description) ||
-    "Raipur's Most Advance Ai & Automation Masterclass · Vimtara Hall, Raipur (10:00AM TO 03:00 PM)";
+    "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya · Vimtara Hall, Raipur (10:00 AM TO 03:00 PM)";
   const seatsText =
     asStr(d.seatsText) ||
     `${seatsRemaining} seats remaining. Early discounted seats are filling fast!`;
@@ -1353,6 +1353,9 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
           <h2 id="pass-modal-title" className="pass-modal-title">
             Choose Your Experience for <em>29th November</em>
           </h2>
+          <p className="pass-modal-workshop-name">
+            Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya
+          </p>
           <div className="pass-modal-meta">
             <span className="pass-modal-meta-item">
               <MapPinIcon size={14} />
@@ -2161,6 +2164,7 @@ export function SectionRenderer({
     case 'passes':
     case 'tickets':
     case 'proof_impact':
+    case 'contact':
     case 'contact_form':
     case 'what_you_learn':
     case 'workshop_tracks':

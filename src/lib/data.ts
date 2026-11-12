@@ -253,7 +253,7 @@ export const DEFAULTS = {
     'Aarambh - Raipur Startup Incubation & Innovation Centre, 3rd Floor, Multi Level Car Parking, Jaistambh Chowk, Moudhapara, Raipur, Chhattisgarh 492001',
   FOOTER_BY: 'By Lakshit Sethiya',
   FOOTER_DESCRIPTION:
-    "India's Most Advance AI & Automation Masterclass — helping professionals and entrepreneurs master AI tools and grow their business.",
+    "Raipur's most advanced AI and automation workshop by Lakshit Sethiya — helping professionals and entrepreneurs master AI agents and grow their business.",
   COPYRIGHT: '© 2026 Social Seller Academy. All rights reserved.',
   ATTRIBUTION_PREFIX: '',
   ATTRIBUTION_LINK_LABEL: '',
@@ -311,9 +311,9 @@ export const INITIAL_SETTINGS: SiteSettings = {
     secondary: '#0a0706',
     accent: '#ff3d1a',
   },
-  seoTitle: "Raipur's Most Advance Ai & Automation Masterclass",
+  seoTitle: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
   seoDescription:
-    'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
+    "Raipur's most advanced AI and automation workshop by Lakshit Sethiya. A full-day physical workshop where you'll discover how to scale your business using AI & automation.",
   ogImage: '/media/hero-poster.webp',
   homePageSlug: 'home-copy',
   seatsRemaining: 60,
@@ -323,7 +323,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   facebookPixelId: '762245465547904',
   footerJson: {
     description:
-      'AI & Automation Masterclass by Lakshit Sethiya. Practical tools, live demos, and templates you can deploy the same day.',
+      "Raipur's most advanced AI and automation workshop by Lakshit Sethiya. Practical tools, live demos, and templates you can deploy the same day.",
     copyright: '© 2026 Social Seller Academy. All rights reserved.',
     attribution: 'AI School Raipur · Powered by Social Seller',
     tagline: 'By Lakshit Sethiya',
@@ -438,17 +438,17 @@ export const INITIAL_COURSES: CourseItem[] = [
 export const INITIAL_PAGES: LandingPage[] = [
   {
     id: 'cmtjtmwbs0000b5xs4vvu1rtu',
-    name: "Raipur's Most Advance Ai & Automation Masterclass",
-    title: "Raipur's Most Advance Ai & Automation Masterclass",
+    name: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
+    title: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
     slug: 'home-copy',
-    description: 'Live workshop by Lakshit Sethiya in Raipur.',
+    description: "Raipur's most advanced AI and automation workshop by Lakshit Sethiya.",
     status: 'PUBLISHED',
-    seoTitle: "Raipur's Most Advance Ai & Automation Masterclass",
+    seoTitle: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
     seoDescription:
-      'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
+      "Raipur's most advanced AI and automation workshop by Lakshit Sethiya. A full-day physical workshop where you'll discover how to scale your business using AI & automation.",
     seoKeywords: 'AI workshop, automation, Raipur, Lakshit Sethiya',
-    ogTitle: "Raipur's Most Advance Ai & Automation Masterclass",
-    ogDescription: 'Master 30+ Ai Tools in a Full Day live Physical workshop.',
+    ogTitle: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
+    ogDescription: "Master AI Agents & Automation in Raipur's most advanced physical workshop by Lakshit Sethiya.",
     ogImage: '/media/hero-poster.webp',
     facebookPixelId: '762245465547904',
     theme: 'classic',
@@ -488,11 +488,11 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 0,
         data: {
           eyebrow: '2000+ people attended in Raipur',
-          heading: "Raipur's Most Advance ",
-          highlight: 'Ai & Automation',
-          headingEnd: 'Masterclass ',
+          heading: "Raipur's Most Advanced ",
+          highlight: 'AI & Automation Workshop',
+          headingEnd: 'by Lakshit Sethiya',
           description:
-            'A Full Day live Physical workshop by Lakshit Sethiya, where you’ll discover how to scale your business using ai & automation',
+            "A full-day live physical workshop by Lakshit Sethiya, where you'll discover how to scale your business using AI & automation",
           video: {
             source: 'file',
             url: '/media/hero-fast.mp4',
@@ -900,16 +900,16 @@ export const INITIAL_PAGES: LandingPage[] = [
   },
   {
     id: 'cmthabu2t000faif7nl0xs0z6',
-    name: 'AI Automation Masterclass (15 Business Ideas)',
-    title: "Raipur's Most Advance AI & Automation Masterclass",
+    name: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
+    title: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
     slug: 'home',
-    description: 'Live workshop by Lakshit Sethiya. Online via Zoom on 6th September.',
+    description: "Raipur's most advanced AI and automation workshop by Lakshit Sethiya.",
     status: 'PUBLISHED',
-    seoTitle: "Raipur's Most Advance AI & Automation Masterclass — Lakshit Sethiya | 6 September",
+    seoTitle: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
     seoDescription:
-      'A 3-hour Live Workshop by Lakshit Sethiya, Online via Zoom, that can change the way you do business.',
+      "Raipur's most advanced AI and automation workshop by Lakshit Sethiya. A full-day physical workshop where you'll discover how to scale your business using AI & automation.",
     seoKeywords: 'AI workshop, automation, Raipur, Lakshit Sethiya',
-    ogTitle: "India's Most Advance AI & Automation Masterclass",
+    ogTitle: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
     ogDescription: 'Master 30+ AI tools in a 3-hour live workshop.',
     ogImage: '/media/hero-poster.webp',
     facebookPixelId: '',

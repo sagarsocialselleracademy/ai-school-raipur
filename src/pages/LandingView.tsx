@@ -94,7 +94,7 @@ export function LandingView({ slug }: { slug?: string }) {
   useEffect(() => {
     PixelTracker.pageView();
     PixelTracker.viewContent({
-      name: page?.title || "Raipur's Most Advance Ai & Automation Masterclass",
+      name: page?.title || "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
       price: 1999,
     });
 

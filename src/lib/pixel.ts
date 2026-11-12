@@ -56,9 +56,9 @@ export const PixelTracker = {
 
   viewContent: (details?: { name?: string; price?: number }) => {
     trackPixel('ViewContent', {
-      content_name: details?.name || "Raipur's Most Advance Ai & Automation Masterclass",
+      content_name: details?.name || "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
       content_category: 'Physical Workshop',
-      content_ids: ['ai-masterclass-raipur-29-nov'],
+      content_ids: ['ai-workshop-raipur-29-nov'],
       content_type: 'product',
       value: details?.price || 1999,
       currency: 'INR',
@@ -72,13 +72,13 @@ export const PixelTracker = {
   ) => {
     trackPixel('InitiateCheckout', {
       content_name: ticketDetails?.name
-        ? `${ticketDetails.name} - Raipur's Most Advance Ai & Automation Masterclass`
-        : "Raipur's Most Advance Ai & Automation Masterclass",
+        ? `${ticketDetails.name} - Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya`
+        : "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
       content_category: 'Ticket Registration',
       content_ids: [
         ticketDetails?.name
           ? `ticket-${ticketDetails.name.toLowerCase().replace(/\s+/g, '-')}`
-          : 'ai-masterclass-raipur-29-nov',
+          : 'ai-workshop-raipur-29-nov',
       ],
       value: ticketDetails?.price || 1999,
       currency: 'INR',
@@ -99,8 +99,8 @@ export const PixelTracker = {
 
   purchase: (details?: { transactionId?: string; amount?: number }) => {
     trackPixel('Purchase', {
-      content_name: "Raipur's Most Advance Ai & Automation Masterclass",
-      content_ids: ['ai-masterclass-raipur-29-nov'],
+      content_name: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
+      content_ids: ['ai-workshop-raipur-29-nov'],
       content_type: 'product',
       value: details?.amount || 1999,
       currency: 'INR',
