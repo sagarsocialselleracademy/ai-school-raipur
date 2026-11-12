@@ -1043,7 +1043,23 @@
   }
 }
 
+/* Hero section top spacing: leaves breathing room between sticky notification bar and eyebrow capsule */
+.hero {
+  padding-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-bottom: 2rem;
+}
+.hero > .badge-pill {
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 640px) {
+  .hero {
+    padding-top: 2.5rem;
+    padding-bottom: 1.75rem;
+  }
+  .hero > .badge-pill {
+    margin-top: 0.5rem;
+  }
   .public-shell .heading--hero,
   .theme-classic .heading--hero,
   h1.heading.heading--hero {
