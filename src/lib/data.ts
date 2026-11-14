@@ -414,6 +414,28 @@ export const INITIAL_TESTIMONIALS: TestimonialItem[] = [
     status: 'PUBLISHED',
     sortOrder: 3,
   },
+  {
+    id: 'test-jbn-deepesh',
+    name: 'Deepesh Jain',
+    designation: 'Chocolate Story',
+    company: 'JBN Achievers',
+    profileImage: '',
+    quote: 'Compliments are flowing from all corners !!! All whom I sent specially called & Thanked me. Great Session Lakshit !!!',
+    rating: 5,
+    status: 'PUBLISHED',
+    sortOrder: 4,
+  },
+  {
+    id: 'test-jbn-neha',
+    name: 'Neha Di',
+    designation: 'Member',
+    company: 'JBN Achievers',
+    profileImage: '',
+    quote: 'Super workshop lakshit.... Knowledge was flowing from beginning to end.... Had a very good learning experience.... Keep motivating n updating us to do better!',
+    rating: 5,
+    status: 'PUBLISHED',
+    sortOrder: 5,
+  },
 ];
 
 export const INITIAL_COURSES: CourseItem[] = [
@@ -854,6 +876,12 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: 'feedback',
           description: 'Unfiltered messages from past attendees, days after the workshop.',
           messages: [
+            {
+              name: 'JBN Achievers (Deepesh Jain & Neha Di)',
+              time: '20:25',
+              text: 'Compliments are flowing from all corners !!! All whom I sent specially called & Thanked me. Great Session Lakshit !!! Super workshop lakshit... Had a very good learning experience.',
+              screenshot: '/whatsapp-feedback/jbn-achievers.jpg',
+            },
             {
               name: 'Naman Lodha',
               time: '10:42',
