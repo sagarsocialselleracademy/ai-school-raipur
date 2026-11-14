@@ -23,7 +23,6 @@ const REVEAL_SELECTORS = [
   '.clip-card',
   '.logo-badge',
   '.check-item',
-  '.instructor-card',
   '.audience-card',
   '.ticket-card',
   '.pass-card',

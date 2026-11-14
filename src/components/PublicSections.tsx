@@ -996,22 +996,174 @@ function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
   );
 }
 
-function InstructorBlock({ data }: { data: Record<string, any> }) {
+function ChevronLeftIcon({ size = 20 }: { size?: number }) {
   return (
-    <section className="section container instructor">
-      <div className="instructor-card">
-        <img
-          src={resolveAssetUrl(fallbackIfDead(asStr(data.photo), DEFAULTS.PORTRAIT))}
-          alt={asStr(data.name)}
-          loading="lazy"
-          decoding="async"
-        />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  );
+}
+
+function ChevronRightIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  );
+}
+
+const DEFAULT_HOST_SLIDES = [
+  {
+    url: '/media/host-slide-1.jpg',
+    alt: 'Lakshit Sethiya receiving award with Ritesh Agarwal (OYO)',
+    caption: 'With Ritesh Agarwal (OYO)',
+    position: 'center 20%',
+  },
+  {
+    url: '/media/host-slide-2.jpg',
+    alt: 'Lakshit Sethiya delivering keynote presentation on AI Systems',
+    caption: 'Keynote Speaker • AI Systems',
+    position: 'center 18%',
+  },
+  {
+    url: '/media/host-slide-3.jpg',
+    alt: 'Lakshit Sethiya hosting workshop keynote in Raipur',
+    caption: 'Live Workshop Keynote',
+    position: '65% 20%',
+  },
+  {
+    url: '/media/host-slide-4.jpg',
+    alt: 'Lakshit Sethiya with Ankur Warikoo at BBM 2025',
+    caption: 'With Ankur Warikoo (BBM 2025)',
+    position: 'center 15%',
+  },
+];
+
+function InstructorBlock({ data }: { data: Record<string, any> }) {
+  const rawPhotos = asArr(data.photos);
+  const slides = rawPhotos.length > 0 ? rawPhotos : DEFAULT_HOST_SLIDES;
+
+  const [current, setCurrent] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartXRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (slides.length <= 1 || isPaused) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 3600);
+    return () => clearInterval(timer);
+  }, [slides.length, isPaused]);
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current !== null) {
+      const diff = e.changedTouches[0].clientX - touchStartXRef.current;
+      if (diff > 45) {
+        prevSlide();
+      } else if (diff < -45) {
+        nextSlide();
+      }
+    }
+    touchStartXRef.current = null;
+    setIsPaused(false);
+  };
+
+  const activeSlide = slides[current] || slides[0];
+
+  return (
+    <section className="section container instructor" id="instructor">
+      <div
+        className="instructor-card"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div className="instructor-slides-wrap">
+          {slides.map((s, idx) => {
+            const isActive = idx === current;
+            const imgSrc = typeof s === 'string' ? s : s?.url || s;
+            const imgAlt = (typeof s === 'object' && s?.alt) || asStr(data.name) || 'Lakshit Sethiya';
+            const imgPos = (typeof s === 'object' && s?.position) || 'center 20%';
+            return (
+              <img
+                key={imgSrc + idx}
+                src={resolveAssetUrl(imgSrc)}
+                alt={imgAlt}
+                className={`instructor-slide-img ${isActive ? 'is-active' : ''}`}
+                style={{
+                  objectPosition: imgPos,
+                  opacity: isActive ? 1 : 0,
+                  transition: 'opacity 0.6s ease, transform 0.6s ease',
+                }}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            );
+          })}
+        </div>
+
+        {/* Carousel Arrow Controls */}
+        {slides.length > 1 && (
+          <>
+            <button
+              type="button"
+              className="instructor-nav-btn instructor-nav-btn--prev"
+              onClick={prevSlide}
+              aria-label="Previous host photo"
+            >
+              <ChevronLeftIcon size={18} />
+            </button>
+            <button
+              type="button"
+              className="instructor-nav-btn instructor-nav-btn--next"
+              onClick={nextSlide}
+              aria-label="Next host photo"
+            >
+              <ChevronRightIcon size={18} />
+            </button>
+
+            {/* Indicator Dots */}
+            <div className="instructor-dots" role="tablist" aria-label="Host photos">
+              {slides.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`instructor-dot ${idx === current ? 'is-active' : ''}`}
+                  onClick={() => setCurrent(idx)}
+                  aria-label={`Go to photo ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Overlay Details */}
         <div className="instructor-meta">
-          <p className="eyebrow">{asStr(data.eyebrow)}</p>
-          <h2>{asStr(data.name)}</h2>
-          <p className="muted">{asStr(data.title)}</p>
+          <div className="instructor-meta__top">
+            <p className="eyebrow">{asStr(data.eyebrow) || 'YOUR INSTRUCTOR'}</p>
+            {activeSlide?.caption && (
+              <span className="instructor-slide-tag">{activeSlide.caption}</span>
+            )}
+          </div>
+          <h2>{asStr(data.name) || 'Lakshit Sethiya'}</h2>
+          <p className="muted">{asStr(data.title) || 'AI & Automation Strategist'}</p>
         </div>
       </div>
+
       <p className="eyebrow speaker-label">{asStr(data.speakingLabel)}</p>
       <div className="logo-row">
         {asArr(data.logos).map((logo) => {

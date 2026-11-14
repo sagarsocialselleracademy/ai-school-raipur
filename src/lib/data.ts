@@ -574,7 +574,33 @@ export const INITIAL_PAGES: LandingPage[] = [
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
           title: 'AI & Automation Strategist',
-          photo: '/lakshit-portrait.jpg',
+          photo: '/media/host-slide-1.jpg',
+          photos: [
+            {
+              url: '/media/host-slide-1.jpg',
+              alt: 'Lakshit Sethiya receiving award with Ritesh Agarwal (OYO)',
+              caption: 'With Ritesh Agarwal (OYO)',
+              position: 'center 20%',
+            },
+            {
+              url: '/media/host-slide-2.jpg',
+              alt: 'Lakshit Sethiya delivering keynote presentation on AI Systems',
+              caption: 'Keynote Speaker • AI Systems',
+              position: 'center 18%',
+            },
+            {
+              url: '/media/host-slide-3.jpg',
+              alt: 'Lakshit Sethiya hosting workshop keynote in Raipur',
+              caption: 'Live Workshop Keynote',
+              position: '65% 20%',
+            },
+            {
+              url: '/media/host-slide-4.jpg',
+              alt: 'Lakshit Sethiya with Ankur Warikoo at BBM 2025',
+              caption: 'With Ankur Warikoo (BBM 2025)',
+              position: 'center 15%',
+            },
+          ],
           speakingLabel: 'Speaker at',
           logos: [
             { label: 'IIM Nagpur', image: '/speakes-at/iim-nagpur.png' },
