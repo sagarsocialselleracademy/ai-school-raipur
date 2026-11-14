@@ -9,8 +9,34 @@
       name="description"
       content="Raipur's most advanced AI and automation workshop by Lakshit Sethiya. A full-day physical workshop in Raipur on 29th November."
     />
-    <!-- Preload hero poster for instant visual render -->
-    <link rel="preload" as="image" href="/media/hero-poster.webp" type="image/webp" />
+    <!-- DNS Prefetch & Preconnect for Fast Asset Loading -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts Non-blocking -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&family=Sora:wght@600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&family=Sora:wght@600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&family=Sora:wght@600;700;800&display=swap"
+      />
+    </noscript>
+
+    <!-- Preload Critical Hero Assets for Instant First Paint -->
+    <link rel="preload" as="image" href="/media/hero-poster.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/media/host-slide-1.jpg" type="image/jpeg" />
 
     <!-- Microsoft Clarity Tracking Code -->
     <script type="text/javascript">
@@ -36,8 +62,10 @@
       fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <script type="module" crossorigin src="/assets/index-CqSJeVF2.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CV7gWoQj.css">
+    <script type="module" crossorigin src="/assets/index-pLh1JLD-.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-CAH2-Xdv.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-BCKCsCjn.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-e8oiBXpW.css">
   </head>
   <body>
     <!-- Meta Pixel (noscript) -->
