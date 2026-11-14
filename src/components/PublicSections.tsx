@@ -1201,12 +1201,6 @@ function VideoGalleryBlock({
   if (count === 0) return null;
 
   const paddedItems = Array.from({ length: count }, (_, idx) => rawItems[idx] || {}).slice(0, count);
-  const featuredObj = asObj(data.featured);
-  const featuredVideo = {
-    source: 'file',
-    url: resolveFeaturedVideo(asStr(featuredObj.url)),
-    poster: fallbackIfDead(asStr(featuredObj.poster), DEFAULTS.FEATURED_POSTER),
-  };
 
   const renderPersonCard = (item: any, index: number) => {
     const thumb = resolveAttendeeThumb(index, asStr(item.image));
@@ -1249,32 +1243,8 @@ function VideoGalleryBlock({
         </h2>
       ) : null}
       {asStr(data.description) ? <p className="lede">{asStr(data.description)}</p> : null}
-      <div className="people-row">{paddedItems.slice(0, 4).map((it, i) => renderPersonCard(it, i))}</div>
-      <div className="video-frame video-frame--wide" style={{ marginTop: '1.25rem' }}>
-        {activeClip === 'featured' ? (
-          <VideoPlayer
-            video={featuredVideo}
-            title="Featured testimonial"
-            autoPlay
-            muted={false}
-            controls
-          />
-        ) : (
-          <>
-            <img src={resolveAssetUrl(featuredVideo.poster)} alt="Featured testimonial" loading="lazy" decoding="async" />
-            <button
-              className="video-play-hit"
-              type="button"
-              onClick={() => setActiveClip('featured')}
-              aria-label="Play featured testimonial"
-            >
-              <span className="play-badge play-badge--lg">▶</span>
-            </button>
-          </>
-        )}
-      </div>
       <div className="people-row">
-        {paddedItems.slice(4, 8).map((it, i) => renderPersonCard(it, i + 4))}
+        {paddedItems.map((it, i) => renderPersonCard(it, i))}
       </div>
       {typeof seatsRemaining === 'number' ? (
         <p className="seats">{seatsRemaining} seats remaining. Register now!</p>

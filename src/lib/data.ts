@@ -612,11 +612,6 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: 'Real feedback.',
           description:
             'These are actual attendees who came to the workshop — hear it in their own words.',
-          featured: {
-            source: 'file',
-            url: '/media/hero-intro.mp4',
-            poster: '/media/cbdc6004a1938decb1073560ba53eca52b8d75db.bin',
-          },
           items: [
             {
               name: 'Attendee 1',
