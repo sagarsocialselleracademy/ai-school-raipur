@@ -721,6 +721,46 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: 'Lakshit',
           categories: [
             {
+              title: 'AWARDED BY CHIEF MINISTER OF CHHATTISGARH',
+              layout: 'featured',
+              images: [
+                {
+                  url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp',
+                  alt: 'Award ceremony',
+                },
+              ],
+            },
+            {
+              title: 'ACHIEVEMENTS & AWARDS',
+              layout: 'triple',
+              images: [
+                {
+                  url: '/moments-with-lakshit/achievements-and-awards/img1.webp',
+                  alt: 'Trophy ceremony',
+                },
+                {
+                  url: '/moments-with-lakshit/achievements-and-awards/img2.webp',
+                  alt: 'YouTube Creator Award',
+                },
+                {
+                  url: '/moments-with-lakshit/achievements-and-awards/img4.webp',
+                  alt: 'YA Startup Award 2023',
+                },
+                {
+                  url: '/moments-with-lakshit/achievements-and-awards/img3.webp',
+                  alt: 'Central India Connect Marketplace Award',
+                },
+                {
+                  url: '/moments-with-lakshit/sharing-stage/img1.webp',
+                  alt: 'Grand Felicitation on stage',
+                },
+                {
+                  url: '/moments-with-lakshit/sharing-stage/img4.webp',
+                  alt: 'Stage recognition with attendees',
+                },
+              ],
+            },
+            {
               title: 'WORKSHOP PLACE',
               layout: 'landscape',
               images: [
@@ -805,46 +845,6 @@ export const INITIAL_PAGES: LandingPage[] = [
                 {
                   url: '/moments-with-lakshit/offline-meetups-and-training/img4.webp',
                   alt: 'Classroom table',
-                },
-              ],
-            },
-            {
-              title: 'AWARDED BY CHIEF MINISTER OF CHHATTISGARH',
-              layout: 'featured',
-              images: [
-                {
-                  url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp',
-                  alt: 'Award ceremony',
-                },
-              ],
-            },
-            {
-              title: 'ACHIEVEMENTS & AWARDS',
-              layout: 'triple',
-              images: [
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img1.webp',
-                  alt: 'Trophy ceremony',
-                },
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img2.webp',
-                  alt: 'YouTube Creator Award',
-                },
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img4.webp',
-                  alt: 'YA Startup Award 2023',
-                },
-                {
-                  url: '/moments-with-lakshit/achievements-and-awards/img3.webp',
-                  alt: 'Central India Connect Marketplace Award',
-                },
-                {
-                  url: '/moments-with-lakshit/sharing-stage/img1.webp',
-                  alt: 'Grand Felicitation on stage',
-                },
-                {
-                  url: '/moments-with-lakshit/sharing-stage/img4.webp',
-                  alt: 'Stage recognition with attendees',
                 },
               ],
             },

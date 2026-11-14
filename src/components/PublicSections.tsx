@@ -1914,6 +1914,22 @@ function AudienceBlock({ data }: { data: Record<string, any> }) {
 }
 
 function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
+  const rawCategories = asArr(data.categories);
+  const categories = [...rawCategories].sort((a, b) => {
+    const tA = String(a?.title || '').toUpperCase();
+    const tB = String(b?.title || '').toUpperCase();
+    const getOrder = (t: string) => {
+      if (t.includes('CHIEF MINISTER')) return 0;
+      if (t.includes('ACHIEVEMENT') || t.includes('AWARD')) return 1;
+      if (t.includes('WORKSHOP PLACE')) return 2;
+      if (t.includes('SHARING STAGE')) return 3;
+      if (t.includes('OFFLINE WORKSHOPS')) return 4;
+      if (t.includes('OFFLINE MEETUPS')) return 5;
+      return 10;
+    };
+    return getOrder(tA) - getOrder(tB);
+  });
+
   return (
     <section className="section container">
       <div className="center">
@@ -1922,7 +1938,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
           {asStr(data.heading)} <em>{asStr(data.highlight)}</em>
         </h2>
       </div>
-      {asArr(data.categories).map((cat) => {
+      {categories.map((cat) => {
         const title = asStr(cat.title);
         const layout = title.toUpperCase().includes('ACHIEVEMENT')
           ? 'triple'
