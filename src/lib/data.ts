@@ -553,23 +553,11 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
-        id: 'sec-topics-covered-10',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'what_you_learn',
-        enabled: true,
-        sortOrder: 2,
-        data: {
-          eyebrow: 'WORKSHOP ROADMAP',
-          headingLine1: '10 AI skills.',
-          headingLine2: 'One power-packed day.',
-        },
-      },
-      {
         id: 'cmtjtmwd00006b5xsj9e3eta8',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'instructor',
         enabled: true,
-        sortOrder: 3,
+        sortOrder: 2,
         data: {
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
@@ -670,11 +658,23 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
+        id: 'sec-topics-covered-10',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'what_you_learn',
+        enabled: true,
+        sortOrder: 4,
+        data: {
+          eyebrow: 'WORKSHOP ROADMAP',
+          headingLine1: '10 AI skills.',
+          headingLine2: 'One power-packed day.',
+        },
+      },
+      {
         id: 'cmtjtmwds000ab5xs1kl3b89i',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'cta',
         enabled: true,
-        sortOrder: 4,
+        sortOrder: 5,
         data: {
           heading: 'See you',
           highlight: '',
