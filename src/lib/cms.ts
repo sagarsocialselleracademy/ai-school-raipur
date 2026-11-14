@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v28',
-  PAGES: 'aischool_pages_v28',
-  NAV: 'aischool_nav_v28',
-  COURSES: 'aischool_courses_v28',
-  TESTIMONIALS: 'aischool_testimonials_v28',
-  FAQS: 'aischool_faqs_v28',
-  LEADS: 'aischool_leads_v28',
-  MEDIA: 'aischool_media_v28',
+  SETTINGS: 'aischool_settings_v29',
+  PAGES: 'aischool_pages_v29',
+  NAV: 'aischool_nav_v29',
+  COURSES: 'aischool_courses_v29',
+  TESTIMONIALS: 'aischool_testimonials_v29',
+  FAQS: 'aischool_faqs_v29',
+  LEADS: 'aischool_leads_v29',
+  MEDIA: 'aischool_media_v29',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v28') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v29') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -100,7 +100,7 @@ const BUILTIN_MEDIA: MediaFile[] = [
   },
   {
     id: 'media-cm-award',
-    url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.png',
+    url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp',
     originalFilename: 'awarded-by-cm.jpg',
     mimeType: 'image/jpeg',
     size: 164000,
@@ -108,7 +108,7 @@ const BUILTIN_MEDIA: MediaFile[] = [
   },
   {
     id: 'media-team-1',
-    url: '/moments-with-lakshit/meet-our-team/img1.png',
+    url: '/moments-with-lakshit/meet-our-team/img1.webp',
     originalFilename: 'team-1.png',
     mimeType: 'image/png',
     size: 215000,
@@ -188,7 +188,7 @@ function getCategoryFolder(title: string): string | null {
 export function resolveTeamImage(index: number, url?: string): string {
   const trimmed = (url || '').trim();
   if (trimmed && !isInvalidOrDeadMedia(trimmed)) return trimmed;
-  return `/moments-with-lakshit/meet-our-team/img${(index % 2) + 1}.png`;
+  return `/moments-with-lakshit/meet-our-team/img${(index % 2) + 1}.webp`;
 }
 
 export function resolveGalleryImage(categoryTitle: string, index: number, url?: string): string {
@@ -196,10 +196,10 @@ export function resolveGalleryImage(categoryTitle: string, index: number, url?: 
   if (trimmed && !isInvalidOrDeadMedia(trimmed)) return trimmed;
   const folder = getCategoryFolder(categoryTitle);
   if (folder === 'awarded') {
-    return '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.png';
+    return '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp';
   }
   if (folder) {
-    return `/moments-with-lakshit/${folder}/img${index + 1}.png`;
+    return `/moments-with-lakshit/${folder}/img${index + 1}.webp`;
   }
   return trimmed;
 }

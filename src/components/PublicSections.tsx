@@ -872,7 +872,7 @@ function HeroSectionBlock({
               autoPlay
               muted={true}
               controls
-              preload="auto"
+              preload="metadata"
             />
           ) : null}
         </div>

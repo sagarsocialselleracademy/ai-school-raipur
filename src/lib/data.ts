@@ -725,19 +725,19 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'landscape',
               images: [
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img3.png',
+                  url: '/moments-with-lakshit/sharing-stage/img3.webp',
                   alt: 'Speaking on stage at AI workshop',
                 },
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img2.png',
+                  url: '/moments-with-lakshit/sharing-stage/img2.webp',
                   alt: 'Seated with workshop attendees',
                 },
                 {
-                  url: '/moments-with-lakshit/workshop-place/img3.png',
+                  url: '/moments-with-lakshit/workshop-place/img3.webp',
                   alt: 'Conference hall stage',
                 },
                 {
-                  url: '/moments-with-lakshit/workshop-place/img4.png',
+                  url: '/moments-with-lakshit/workshop-place/img4.webp',
                   alt: 'Live audience event',
                 },
               ],
@@ -747,19 +747,19 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'portrait',
               images: [
                 {
-                  url: '/moments-with-lakshit/workshop-place/img2.png',
+                  url: '/moments-with-lakshit/workshop-place/img2.webp',
                   alt: 'Speaking with microphone at podium',
                 },
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img5.png',
+                  url: '/moments-with-lakshit/sharing-stage/img5.webp',
                   alt: 'Live panel session on stage',
                 },
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img6.png',
+                  url: '/moments-with-lakshit/sharing-stage/img6.webp',
                   alt: 'BBM 2025 stage moment',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img5.png',
+                  url: '/moments-with-lakshit/achievements-and-awards/img5.webp',
                   alt: 'Creator Commune stage meetup',
                 },
               ],
@@ -769,19 +769,19 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'square',
               images: [
                 {
-                  url: '/moments-with-lakshit/offline-workshops-and-training/img1.png',
+                  url: '/moments-with-lakshit/offline-workshops-and-training/img1.webp',
                   alt: 'Classroom group',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-workshops-and-training/img2.png',
+                  url: '/moments-with-lakshit/offline-workshops-and-training/img2.webp',
                   alt: 'Training cohort',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-workshops-and-training/img3.png',
+                  url: '/moments-with-lakshit/offline-workshops-and-training/img3.webp',
                   alt: 'Auditorium group',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-workshops-and-training/img4.png',
+                  url: '/moments-with-lakshit/offline-workshops-and-training/img4.webp',
                   alt: 'Office workshop',
                 },
               ],
@@ -791,19 +791,19 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'landscape',
               images: [
                 {
-                  url: '/moments-with-lakshit/offline-meetups-and-training/img1.png',
+                  url: '/moments-with-lakshit/offline-meetups-and-training/img1.webp',
                   alt: 'Meetup applause',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-meetups-and-training/img2.png',
+                  url: '/moments-with-lakshit/offline-meetups-and-training/img2.webp',
                   alt: 'Seminar seating',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-meetups-and-training/img3.png',
+                  url: '/moments-with-lakshit/offline-meetups-and-training/img3.webp',
                   alt: 'Prompt workshop screen',
                 },
                 {
-                  url: '/moments-with-lakshit/offline-meetups-and-training/img4.png',
+                  url: '/moments-with-lakshit/offline-meetups-and-training/img4.webp',
                   alt: 'Classroom table',
                 },
               ],
@@ -813,7 +813,7 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'featured',
               images: [
                 {
-                  url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.png',
+                  url: '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp',
                   alt: 'Award ceremony',
                 },
               ],
@@ -823,27 +823,27 @@ export const INITIAL_PAGES: LandingPage[] = [
               layout: 'triple',
               images: [
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img1.png',
+                  url: '/moments-with-lakshit/achievements-and-awards/img1.webp',
                   alt: 'Trophy ceremony',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img2.png',
+                  url: '/moments-with-lakshit/achievements-and-awards/img2.webp',
                   alt: 'YouTube Creator Award',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img4.png',
+                  url: '/moments-with-lakshit/achievements-and-awards/img4.webp',
                   alt: 'YA Startup Award 2023',
                 },
                 {
-                  url: '/moments-with-lakshit/achievements-and-awards/img3.png',
+                  url: '/moments-with-lakshit/achievements-and-awards/img3.webp',
                   alt: 'Central India Connect Marketplace Award',
                 },
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img1.png',
+                  url: '/moments-with-lakshit/sharing-stage/img1.webp',
                   alt: 'Grand Felicitation on stage',
                 },
                 {
-                  url: '/moments-with-lakshit/sharing-stage/img4.png',
+                  url: '/moments-with-lakshit/sharing-stage/img4.webp',
                   alt: 'Stage recognition with attendees',
                 },
               ],
@@ -860,8 +860,8 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           heading: 'MEET OUR TEAM',
           images: [
-            { url: '/moments-with-lakshit/meet-our-team/img1.png', alt: 'Team in office' },
-            { url: '/moments-with-lakshit/meet-our-team/img2.png', alt: 'Classroom team' },
+            { url: '/moments-with-lakshit/meet-our-team/img1.webp', alt: 'Team in office' },
+            { url: '/moments-with-lakshit/meet-our-team/img2.webp', alt: 'Classroom team' },
           ],
         },
       },
