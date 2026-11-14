@@ -44,6 +44,15 @@ export function trackPixel(
       window._fbq.push(['track', eventName]);
     }
   }
+
+  // Also forward to Microsoft Clarity if initialized
+  if (typeof (window as any).clarity === 'function') {
+    try {
+      (window as any).clarity('event', eventName);
+    } catch {
+      // ignore
+    }
+  }
 }
 
 /**
