@@ -1106,3 +1106,58 @@
   }
 }
 
+/* Increased Button Length & Prominence */
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.hero-cta .cta-btn,
+.cta-card .cta-btn {
+  min-width: clamp(320px, 42vw, 520px);
+  max-width: 540px;
+  min-height: 60px;
+  padding: 1.1rem 3.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  border-radius: 16px;
+  gap: 0.75rem;
+  box-shadow: 0 12px 36px rgba(250, 116, 44, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.hero-cta .cta-btn svg,
+.cta-card .cta-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.hero-cta .cta-btn:hover,
+.cta-card .cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 44px rgba(250, 116, 44, 0.6);
+}
+
+.hero-cta .cta-btn:hover svg,
+.cta-card .cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .hero-cta .cta-btn,
+  .cta-card .cta-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 380px;
+    min-height: 54px;
+    padding: 0.95rem 1.75rem;
+    font-size: 1.05rem;
+  }
+}
+
+
