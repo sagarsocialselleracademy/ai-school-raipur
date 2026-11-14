@@ -1570,163 +1570,167 @@ function WorkshopTracksBlock({ data }: { data: Record<string, any> }) {
   );
 }
 
-const LEARN_MODULES = [
-  {
-    num: '01',
-    title: 'Prompting',
-    tag: 'Prompt Engineering & Frameworks',
-    desc: 'Master advanced prompt architecture, system framing, and prompt chaining to get 10x better outputs from ChatGPT, Claude, and Gemini.',
-  },
-  {
-    num: '02',
-    title: 'Content Creation',
-    tag: 'AI Copywriting & Viral Scripts',
-    desc: 'Generate high-converting sales letters, viral hooks, LinkedIn posts, blogs, and email newsletters in seconds.',
-  },
-  {
-    num: '03',
-    title: 'Designing',
-    tag: 'Creatives, Branding & Visual Assets',
-    desc: 'Create professional social media graphics, product creatives, logos, and high-CTR thumbnails using Midjourney, Ideogram, and Canva AI.',
-  },
-  {
-    num: '04',
-    title: 'Video Editing',
-    tag: 'Fast Cuts, Captions & Auto B-Roll',
-    desc: 'Automate video cuts, auto-subtitles, sound effects, B-roll insertion, and multi-format resizing with cutting-edge AI video tools.',
-  },
-  {
-    num: '05',
-    title: 'Video Making',
-    tag: 'AI Avatars, Voice Cloning & Gen',
-    desc: 'Produce studio-quality faceless videos, hyper-realistic AI avatars, voice cloning, and multilingual video content on autopilot.',
-  },
-  {
-    num: '06',
-    title: 'WhatsApp Automation',
-    tag: '24/7 Chatbots & Auto Broadcasts',
-    desc: 'Deploy 24/7 WhatsApp AI chatbots, automated product catalogs, drip follow-ups, and interactive customer journeys.',
-  },
-  {
-    num: '07',
-    title: 'AI Calling',
-    tag: 'Human-like Hindi & English Callers',
-    desc: 'Launch human-like voice calling agents in Hindi & English to qualify leads, book appointments, and handle customer queries over the phone.',
-  },
-  {
-    num: '08',
-    title: 'AI Agents',
-    tag: 'Autonomous Multi-Agent Systems',
-    desc: 'Build and run multi-agent workflows that browse the web, execute tasks, coordinate operations, and run business processes autonomously.',
-  },
-  {
-    num: '09',
-    title: 'Instagram Automation',
-    tag: 'Auto DMs, Comment & Story Funnels',
-    desc: 'Set up ManyChat and Instagram AI triggers that convert story replies, comment keywords, and DMs into high-intent paying customers.',
-  },
-  {
-    num: '10',
-    title: 'Lead Generation',
-    tag: 'High-Converting Client Funnels',
-    desc: 'Extract, verify, and nurture targeted B2B and B2C customer leads across Google Maps, LinkedIn, and social platforms automatically.',
-  },
+function TopicIcon({ name }: { name: string }) {
+  switch (name) {
+    case 'prompting':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+      );
+    case 'content_creation':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
+        </svg>
+      );
+    case 'designing':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 5 4 9 9 9 1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.4-.3-.4-.5-.9-.5-1.6 0-1.1.9-2 2-2h1.5c3.6 0 6.5-2.9 6.5-6.5C22 6 17.5 2 12 2z" />
+          <circle cx="7.5" cy="10.5" r="1.2" fill="currentColor" />
+          <circle cx="11" cy="7.5" r="1.2" fill="currentColor" />
+          <circle cx="15.5" cy="9.5" r="1.2" fill="currentColor" />
+        </svg>
+      );
+    case 'video_editing':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="6" cy="18" r="3" />
+          <line x1="20" y1="4" x2="8.12" y2="15.88" />
+          <line x1="14.47" y1="14.48" x2="20" y2="20" />
+          <line x1="8.12" y1="8.12" x2="12" y2="12" />
+        </svg>
+      );
+    case 'video_making':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M23 7l-7 5 7 5V7z" />
+          <rect x="1" y="5" width="15" height="14" rx="3" ry="3" />
+        </svg>
+      );
+    case 'whatsapp':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+      );
+    case 'calling':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      );
+    case 'agents':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <rect x="4" y="8" width="16" height="12" rx="3" />
+          <circle cx="9" cy="13" r="1.5" fill="currentColor" />
+          <circle cx="15" cy="13" r="1.5" fill="currentColor" />
+          <line x1="12" y1="2" x2="12" y2="5" />
+          <circle cx="12" cy="2" r="1" fill="currentColor" />
+          <line x1="2" y1="14" x2="4" y2="14" />
+          <line x1="20" y1="14" x2="22" y2="14" />
+        </svg>
+      );
+    case 'instagram':
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="3" />
+        </svg>
+      );
+    case 'lead_gen':
+    default:
+      return (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="6" />
+          <circle cx="12" cy="12" r="2" fill="currentColor" />
+        </svg>
+      );
+  }
+}
+
+const TOPIC_SHOWCASE_ITEMS = [
+  { num: '01', title: 'Prompting', icon: 'prompting' },
+  { num: '02', title: 'Content Creation', icon: 'content_creation' },
+  { num: '03', title: 'Designing', icon: 'designing' },
+  { num: '04', title: 'Video Editing', icon: 'video_editing' },
+  { num: '05', title: 'Video Making', icon: 'video_making' },
+  { num: '06', title: 'WhatsApp Automation', icon: 'whatsapp' },
+  { num: '07', title: 'AI Calling', icon: 'calling' },
+  { num: '08', title: 'AI Agents', icon: 'agents' },
+  { num: '09', title: 'Instagram Automation', icon: 'instagram' },
+  { num: '10', title: 'Lead Generation', icon: 'lead_gen' },
 ];
 
 function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
   const eyebrow = asStr(data?.eyebrow) || 'WORKSHOP ROADMAP';
-  const heading = asStr(data?.heading) || 'Topics to be';
-  const highlight = asStr(data?.highlight) || 'Covered';
-  const description =
-    asStr(data?.description) ||
-    '10 practical, hands-on modules with live prompt templates, no-code workflows and real-world implementation you can deploy the same day.';
+  const headingLine1 = asStr(data?.headingLine1) || '10 AI skills.';
+  const headingLine2 = asStr(data?.headingLine2) || 'One power-packed day.';
 
   return (
-    <section className="section container what-you-learn-section" id="curriculum">
+    <section className="section container topics-showcase-section" id="curriculum">
       <div className="center">
-        <div className="badge-pill">
-          <SectionIcon name="spark" size={14} />
+        <div className="topics-pill">
+          <span className="topics-pill__dot" aria-hidden />
           <span>{eyebrow}</span>
         </div>
-        <h2 className="heading heading--curriculum">
-          {heading} <em>{highlight}</em>
+        <h2 className="topics-heading">
+          <span className="topics-heading__line1">{headingLine1}</span>
+          <span className="topics-heading__line2">{headingLine2}</span>
         </h2>
-        <p className="lede lede--curriculum">{description}</p>
       </div>
 
-      {/* Featured Master Graphic Card */}
-      <div className="learn-graphics-card">
-        <div className="learn-graphics-card__header">
-          <div className="learn-graphics-card__tag">
-            <span>⚡ OFFICIAL WORKSHOP ROADMAP</span>
-          </div>
-          <h3 className="learn-graphics-card__title">
-            TOPICS TO BE <span>COVERED</span>
-          </h3>
-          <p className="learn-graphics-card__sub">
-            10 Practical AI & Automation Systems to Scale Your Business & Multi-fold Productivity
-          </p>
-        </div>
-
-        <div className="learn-checklist-grid">
-          {LEARN_MODULES.map((m) => (
-            <div key={m.num} className="learn-check-item">
-              <span className="learn-item-index" aria-hidden>{m.num}</span>
-              <div className="learn-item-info">
-                <span className="learn-check-text">{m.title}</span>
-                <span className="learn-item-tag">{m.tag}</span>
+      {/* 5-Column Grid */}
+      <div className="topics-grid-5col">
+        {TOPIC_SHOWCASE_ITEMS.map((item) => (
+          <div key={item.num} className="topic-card">
+            <div className="topic-card__top">
+              <div className="topic-card__icon-box" aria-hidden>
+                <TopicIcon name={item.icon} />
               </div>
+              <span className="topic-card__num">{item.num}</span>
             </div>
-          ))}
+            <h3 className="topic-card__title">{item.title}</h3>
+          </div>
+        ))}
+      </div>
+
+      {/* Footer Info & Action Bar */}
+      <div className="topics-footer-bar">
+        <div className="topics-footer-meta">
+          <div className="topics-meta-item">
+            <CalendarIcon size={16} />
+            <span>29 Nov</span>
+          </div>
+          <div className="topics-meta-item">
+            <ClockIcon size={16} />
+            <span>10 AM – 3 PM</span>
+          </div>
+          <div className="topics-meta-item">
+            <MapPinIcon size={16} />
+            <span>Vimtara Hall, Raipur</span>
+          </div>
+          <div className="topics-meta-item">
+            <UtensilsIcon size={16} />
+            <span>Lunch included</span>
+          </div>
         </div>
 
-        <div className="learn-graphics-card__footer">
-          <div className="learn-graphics-card__meta">
-            <span className="learn-meta-item">
-              <CalendarIcon size={14} />
-              <span>29th November 2026</span>
-            </span>
-            <span className="learn-meta-sep">•</span>
-            <span className="learn-meta-item">
-              <ClockIcon />
-              <span>10:00 AM – 3:00 PM</span>
-            </span>
-            <span className="learn-meta-sep">•</span>
-            <span className="learn-meta-item">
-              <MapPinIcon size={14} />
-              <span>Vimtara Hall, Raipur</span>
-            </span>
-            <span className="learn-meta-sep">•</span>
-            <span className="learn-meta-item">
-              <UtensilsIcon size={14} />
-              <span>Lunch Included</span>
-            </span>
-          </div>
-          <div className="learn-graphics-card__actions">
-            <button
-              type="button"
-              className="cta-btn cta-btn--card"
-              onClick={() => openPassModal()}
-            >
-              <span>Register Now to Master All 10 Topics</span>
-              <ArrowRightIcon />
-            </button>
-            <a
-              href="/media/what-will-you-learn-card.png"
-              download="Topics-To-Be-Covered-AI-School-Raipur.png"
-              className="ghost-btn ghost-btn--download"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Download Roadmap Card (PNG)</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg>
-            </a>
-          </div>
-        </div>
+        <button
+          type="button"
+          className="topics-reserve-btn"
+          onClick={() => openPassModal()}
+        >
+          <span>Reserve my seat</span>
+          <span className="topics-reserve-btn__arrow" aria-hidden>
+            <ArrowRightIcon size={14} />
+          </span>
+        </button>
       </div>
     </section>
   );

@@ -560,10 +560,8 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 2,
         data: {
           eyebrow: 'WORKSHOP ROADMAP',
-          heading: 'Topics to be',
-          highlight: 'Covered',
-          description:
-            '10 hands-on AI & automation systems with live prompt templates, no-code workflows and real-world implementation you can deploy immediately.',
+          headingLine1: '10 AI skills.',
+          headingLine2: 'One power-packed day.',
         },
       },
       {
