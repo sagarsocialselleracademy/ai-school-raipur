@@ -634,6 +634,47 @@ export function PublicShell({
   navigation?: NavItem[];
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    let scrollTimeout: any = null;
+    let settleTimeout: any = null;
+
+    const triggerVisibleButtonsShake = () => {
+      const buttons = document.querySelectorAll<HTMLElement>(
+        '.hero-cta .cta-btn, .cta-card .cta-btn, .timeline-footer-cta .cta-btn, .topics-reserve-btn, .modal-pass-btn, .pass-btn'
+      );
+      buttons.forEach((btn) => {
+        const rect = btn.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (isVisible) {
+          btn.classList.remove('cta-scroll-shake');
+          void btn.offsetWidth; // Force reflow
+          btn.classList.add('cta-scroll-shake');
+          setTimeout(() => btn.classList.remove('cta-scroll-shake'), 750);
+        }
+      });
+    };
+
+    const handleScroll = () => {
+      if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+          triggerVisibleButtonsShake();
+          scrollTimeout = null;
+        }, 120);
+      }
+      clearTimeout(settleTimeout);
+      settleTimeout = setTimeout(() => {
+        triggerVisibleButtonsShake();
+      }, 2200);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+      clearTimeout(settleTimeout);
+    };
+  }, []);
+
   return (
     <div className="public-shell">
       <Topbar settings={settings} />

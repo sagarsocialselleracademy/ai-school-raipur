@@ -1110,7 +1110,8 @@
 }
 
 .hero-cta .cta-btn,
-.cta-card .cta-btn {
+.cta-card .cta-btn,
+.timeline-footer-cta .cta-btn {
   min-width: clamp(320px, 42vw, 520px);
   max-width: 540px;
   min-height: 60px;
@@ -1122,29 +1123,36 @@
   gap: 0.75rem;
   box-shadow: 0 12px 36px rgba(250, 116, 44, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  animation: ctaAttentionShake 3.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  transform-origin: center center;
 }
 
 .hero-cta .cta-btn svg,
-.cta-card .cta-btn svg {
+.cta-card .cta-btn svg,
+.timeline-footer-cta .cta-btn svg {
   width: 20px;
   height: 20px;
   transition: transform 0.2s ease;
 }
 
 .hero-cta .cta-btn:hover,
-.cta-card .cta-btn:hover {
+.cta-card .cta-btn:hover,
+.timeline-footer-cta .cta-btn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 16px 44px rgba(250, 116, 44, 0.6);
+  animation-play-state: paused !important;
 }
 
 .hero-cta .cta-btn:hover svg,
-.cta-card .cta-btn:hover svg {
+.cta-card .cta-btn:hover svg,
+.timeline-footer-cta .cta-btn:hover svg {
   transform: translateX(4px);
 }
 
 @media (max-width: 640px) {
   .hero-cta .cta-btn,
-  .cta-card .cta-btn {
+  .cta-card .cta-btn,
+  .timeline-footer-cta .cta-btn {
     width: 100%;
     min-width: 0;
     max-width: 380px;
@@ -1152,6 +1160,104 @@
     padding: 0.95rem 1.75rem;
     font-size: 1.05rem;
   }
+}
+
+/* =========================================================================
+   ATTENTION-GRABBING CTA BUTTON ANIMATIONS (Periodic & On Scroll)
+   ========================================================================= */
+@keyframes ctaAttentionShake {
+  0%, 65%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    box-shadow: 0 12px 36px rgba(250, 116, 44, 0.45);
+  }
+  68% {
+    transform: translateY(-3px) scale(1.025) rotate(-2deg);
+    box-shadow: 0 14px 40px rgba(250, 116, 44, 0.65);
+  }
+  72% {
+    transform: translateY(-3px) scale(1.035) rotate(2deg);
+    box-shadow: 0 16px 44px rgba(250, 116, 44, 0.75);
+  }
+  76% {
+    transform: translateY(-3px) scale(1.035) rotate(-1.5deg);
+    box-shadow: 0 16px 44px rgba(250, 116, 44, 0.75);
+  }
+  80% {
+    transform: translateY(-3px) scale(1.025) rotate(1.5deg);
+    box-shadow: 0 14px 40px rgba(250, 116, 44, 0.65);
+  }
+  84% {
+    transform: translateY(-4px) scale(1.045) rotate(0deg);
+    box-shadow: 0 0 36px rgba(250, 116, 44, 0.95), 0 16px 48px rgba(234, 68, 44, 0.75);
+  }
+  90% {
+    transform: translateY(-1px) scale(1.01) rotate(0deg);
+    box-shadow: 0 12px 36px rgba(250, 116, 44, 0.5);
+  }
+}
+
+@keyframes topicsBtnAttentionShake {
+  0%, 65%, 100% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 4px 18px rgba(250, 116, 44, 0.35);
+  }
+  68% {
+    transform: scale(1.03) rotate(-2deg);
+    box-shadow: 0 6px 22px rgba(250, 116, 44, 0.55);
+  }
+  72% {
+    transform: scale(1.04) rotate(2deg);
+    box-shadow: 0 8px 26px rgba(250, 116, 44, 0.7);
+  }
+  76% {
+    transform: scale(1.04) rotate(-1.5deg);
+    box-shadow: 0 8px 26px rgba(250, 116, 44, 0.7);
+  }
+  80% {
+    transform: scale(1.03) rotate(1.5deg);
+    box-shadow: 0 6px 22px rgba(250, 116, 44, 0.55);
+  }
+  84% {
+    transform: scale(1.05) rotate(0deg);
+    box-shadow: 0 0 30px rgba(250, 116, 44, 0.9);
+  }
+  90% {
+    transform: scale(1.01) rotate(0deg);
+    box-shadow: 0 4px 18px rgba(250, 116, 44, 0.4);
+  }
+}
+
+/* Scroll-triggered quick attention shake */
+@keyframes ctaScrollShake {
+  0% { transform: translateY(0) scale(1) rotate(0deg); }
+  20% { transform: translateY(-3px) scale(1.03) rotate(-2.5deg); }
+  40% { transform: translateY(-3px) scale(1.035) rotate(2.5deg); }
+  60% { transform: translateY(-3px) scale(1.03) rotate(-1.5deg); }
+  80% { transform: translateY(-3px) scale(1.04) rotate(1deg); box-shadow: 0 0 32px rgba(250, 116, 44, 0.85); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+.topics-reserve-btn {
+  animation: topicsBtnAttentionShake 3.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  animation-delay: 1.2s;
+  transform-origin: center center;
+}
+
+.pass-card--popular .pass-btn,
+.modal-pass-card--popular .modal-pass-btn {
+  animation: topicsBtnAttentionShake 3.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  animation-delay: 0.6s;
+  transform-origin: center center;
+}
+
+.topics-reserve-btn:hover,
+.pass-btn:hover,
+.modal-pass-btn:hover {
+  animation-play-state: paused !important;
+}
+
+.cta-scroll-shake {
+  animation: ctaScrollShake 0.65s ease-in-out !important;
 }
 
 /* =========================================================================

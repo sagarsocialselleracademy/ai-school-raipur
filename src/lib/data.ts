@@ -511,8 +511,8 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           eyebrow: '2000+ people attended in Raipur',
           heading: "Raipur's Most Advanced ",
-          highlight: 'AI & Automation Workshop',
-          headingEnd: 'by Lakshit Sethiya',
+          highlight: 'AI & Automation',
+          headingEnd: 'Workshop',
           description:
             "A full-day live physical workshop by Lakshit Sethiya, where you'll discover how to scale your business using AI & automation",
           video: {
