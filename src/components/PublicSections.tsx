@@ -749,6 +749,9 @@ export function VideoPlayer({
               el.volume = 1.0;
               setIsMutedState(false);
               el.play().catch(() => {});
+              setTimeout(() => {
+                if (el && el.paused) el.play().catch(() => {});
+              }, 60);
             }
             interactionEvents.forEach((evt) =>
               window.removeEventListener(evt, handleFirstGesture, true)
@@ -773,6 +776,7 @@ export function VideoPlayer({
   };
 
   const handleUnmuteBadgeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     const el = videoRef.current;
     if (!el) return;
