@@ -1458,13 +1458,13 @@ export function PassesBlock({
                   }`}
                   onClick={() =>
                     PixelTracker.initiateCheckout(
-                      `Get ${pass.name}`,
+                      `Register Now - ${pass.name}`,
                       pass.url,
                       { name: pass.name, price: pass.price }
                     )
                   }
                 >
-                  Get {pass.name} →
+                  Register Now →
                 </a>
                 <span className="pass-secure-hint ticket-secure-hint">
                   Instant Confirmation via WhatsApp & Email
@@ -1711,7 +1711,7 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                   }`}
                   onClick={() => handlePassSelect(pass)}
                 >
-                  <span>{isVip ? 'Get VIP Pass →' : isGold ? 'Get Gold Pass →' : 'Get Silver Pass →'}</span>
+                  <span>Register Now →</span>
                 </button>
               </div>
             );
