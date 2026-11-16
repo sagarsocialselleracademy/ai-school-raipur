@@ -843,10 +843,18 @@ function HeroSectionBlock({
   return (
     <section className="hero container center" id="workshop">
       {asStr(data.eyebrow) ? (
-        <div className="badge-pill">
+        <a
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="badge-pill badge-pill--link"
+          onClick={() =>
+            PixelTracker.initiateCheckout('Eyebrow Badge - 2000+ People', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
+        >
           <SectionIcon name="spark" size={14} />
-          {asStr(data.eyebrow)}
-        </div>
+          <span>{asStr(data.eyebrow)}</span>
+        </a>
       ) : null}
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
         <h1 className="heading heading--hero">
@@ -880,13 +888,35 @@ function HeroSectionBlock({
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
       ) : null}
-      {asStr(data.seatsText) ? <p className="seats">{asStr(data.seatsText)}</p> : null}
+      {asStr(data.seatsText) ? (
+        <p className="seats">
+          <a
+            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="seats-link"
+            onClick={() =>
+              PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            }
+          >
+            {asStr(data.seatsText)}
+          </a>
+        </p>
+      ) : null}
       {(asStr(data.originalPrice) || asStr(data.price)) && (
-        <div className="price-pill">
+        <a
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="price-pill price-pill--link"
+          onClick={() =>
+            PixelTracker.initiateCheckout('Price Pill - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
+        >
           <SectionIcon name="tag" size={16} />
           <s>{asStr(data.originalPrice)}</s>
           <span>Price {asStr(data.price)}</span>
-        </div>
+        </a>
       )}
       {asStr(asObj(data.primaryButton).label) ? (
         <div className="hero-cta">
@@ -1284,14 +1314,32 @@ export function PassesBlock({
       <div className="center">
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="heading">
-          {heading} {highlight ? <em>{highlight}</em> : null} {headingEnd}
+          <a
+            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="heading-link-checkout"
+            onClick={() =>
+              PixelTracker.initiateCheckout('Select Your Workshop Pass Heading', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            }
+          >
+            {heading} {highlight ? <em>{highlight}</em> : null} {headingEnd}
+          </a>
         </h2>
         {description ? <p className="lede lede--tickets lede--passes">{description}</p> : null}
         {seatsText ? (
-          <div className="tickets-urgency-pill passes-urgency-pill">
+          <a
+            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tickets-urgency-pill passes-urgency-pill tickets-urgency-pill--link"
+            onClick={() =>
+              PixelTracker.initiateCheckout('Urgency Pill - Passes', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            }
+          >
             <span className="tickets-urgency-dot" />
             <span>{seatsText}</span>
-          </div>
+          </a>
         ) : null}
       </div>
 
@@ -1323,7 +1371,19 @@ export function PassesBlock({
               )}
 
               <div className="pass-header ticket-header">
-                <h3 className="pass-name ticket-name">{pass.name}</h3>
+                <h3 className="pass-name ticket-name">
+                  <a
+                    href={pass.id === 'gold' ? 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view' : pass.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pass-name-link"
+                    onClick={() =>
+                      PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price })
+                    }
+                  >
+                    {pass.name}
+                  </a>
+                </h3>
                 <div className="pass-pricing ticket-pricing">
                   <div className="pass-price-row ticket-price-row">
                     <span className="pass-currency ticket-currency">₹</span>
@@ -1334,7 +1394,19 @@ export function PassesBlock({
                       </s>
                     ) : null}
                   </div>
-                  <div className="pass-discount-tag ticket-discount-tag">{pass.discountText}</div>
+                  <div className="pass-discount-tag ticket-discount-tag">
+                    <a
+                      href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pass-discount-tag--link"
+                      onClick={() =>
+                        PixelTracker.initiateCheckout(pass.discountText, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+                      }
+                    >
+                      {pass.discountText}
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -1351,7 +1423,23 @@ export function PassesBlock({
                     <span className="pass-feature-icon ticket-feature-icon" aria-hidden>
                       ✓
                     </span>
-                    <span className="pass-feature-text ticket-feature-text">{feat.text}</span>
+                    <span className="pass-feature-text ticket-feature-text">
+                      {feat.text.includes('Early Discounted Seats') ? (
+                        <a
+                          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="feature-highlight-link"
+                          onClick={() =>
+                            PixelTracker.initiateCheckout(feat.text, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+                          }
+                        >
+                          {feat.text}
+                        </a>
+                      ) : (
+                        feat.text
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -1468,10 +1556,18 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
         </button>
 
         <div className="pass-modal-header">
-          <div className="badge-pill pass-modal-badge">
+          <a
+            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="badge-pill pass-modal-badge pass-modal-badge--link"
+            onClick={() =>
+              PixelTracker.initiateCheckout('Select Your Workshop Pass Modal Badge', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            }
+          >
             <SectionIcon name="spark" size={14} />
             <span>Select Your Workshop Pass</span>
-          </div>
+          </a>
           <h2 id="pass-modal-title" className="pass-modal-title">
             Choose Your Experience for <em>29th November</em>
           </h2>
@@ -1489,10 +1585,18 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
               <span>10:00 AM – 3:00 PM</span>
             </span>
             <span className="pass-modal-sep">•</span>
-            <span className="pass-modal-urgency">
+            <a
+              href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="pass-modal-urgency pass-modal-urgency--link"
+              onClick={() =>
+                PixelTracker.initiateCheckout('Seats Text - Modal', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+              }
+            >
               <ZapIcon size={14} />
-              <span>Only {settings.seatsRemaining || '60'} Seats Remaining</span>
-            </span>
+              <span>Only {settings.seatsRemaining || '60'} Seats Remaining. Register now!</span>
+            </a>
           </div>
         </div>
 
@@ -1520,7 +1624,20 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                 )}
 
                 <div className="modal-pass-head">
-                  <h3 className="modal-pass-name">{pass.name}</h3>
+                  <h3 className="modal-pass-name">
+                    <a
+                      href={pass.id === 'gold' ? 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view' : pass.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pass-name-link"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price });
+                      }}
+                    >
+                      {pass.name}
+                    </a>
+                  </h3>
                   <div className="modal-pass-pricing">
                     <div className="modal-pass-price-row">
                       <span className="modal-pass-currency">₹</span>
@@ -1531,7 +1648,20 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                         </s>
                       ) : null}
                     </div>
-                    <div className="modal-pass-discount-tag">{pass.discountText}</div>
+                    <div className="modal-pass-discount-tag">
+                      <a
+                        href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="pass-discount-tag--link"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          PixelTracker.initiateCheckout(pass.discountText, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+                        }}
+                      >
+                        {pass.discountText}
+                      </a>
+                    </div>
                   </div>
                 </div>
 
@@ -1548,7 +1678,24 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                       <span className="modal-pass-check" aria-hidden>
                         ✓
                       </span>
-                      <span>{feat.text}</span>
+                      <span>
+                        {feat.text.includes('Early Discounted Seats') ? (
+                          <a
+                            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="feature-highlight-link"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              PixelTracker.initiateCheckout(feat.text, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+                            }}
+                          >
+                            {feat.text}
+                          </a>
+                        ) : (
+                          feat.text
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -1615,7 +1762,21 @@ function CtaSectionBlock({
           </h2>
         ) : null}
         {asStr(data.description) ? <p className="lede">{asStr(data.description)}</p> : null}
-        {asStr(data.seatsText) ? <p className="seats">{asStr(data.seatsText)}</p> : null}
+        {asStr(data.seatsText) ? (
+          <p className="seats">
+            <a
+              href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="seats-link"
+              onClick={() =>
+                PixelTracker.initiateCheckout('Seats Text - CTA', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+              }
+            >
+              {asStr(data.seatsText)}
+            </a>
+          </p>
+        ) : null}
         {label ? <CtaButton href={resolveCtaHref(asStr(btn.url), registerUrl)} label={label} /> : null}
         {asStr(data.note) ? (
           <p className="muted" style={{ marginTop: '1rem' }}>
@@ -1853,6 +2014,87 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
             <ArrowRightIcon size={14} />
           </span>
         </button>
+      </div>
+    </section>
+  );
+}
+
+export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
+  const d = data || {};
+  const eyebrow = asStr(d.eyebrow, 'EVENT TIMELINE');
+  const heading = asStr(d.heading, 'Event');
+  const highlight = asStr(d.highlight, 'Timeline');
+  const description =
+    asStr(d.description) ||
+    'A carefully structured, power-packed day designed to take you from foundational AI prompting to automated enterprise workflows.';
+  const items = asArr(d.items);
+  const cta = asObj(d.cta);
+  const ctaLabel = asStr(cta.label, 'Reserve Your Seat Now →');
+  const ctaUrl = asStr(cta.url, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+
+  return (
+    <section className="section container timeline-section" id="timeline">
+      <div className="center">
+        <div className="badge-pill timeline-eyebrow-pill">
+          <SectionIcon name="clock" size={14} />
+          <span>{eyebrow}</span>
+        </div>
+        <h2 className="heading">
+          {heading} <em>{highlight}</em>
+        </h2>
+        {description ? <p className="lede timeline-lede">{description}</p> : null}
+      </div>
+
+      <div className="timeline-wrap">
+        <div className="timeline-track-line" aria-hidden />
+        <div className="timeline-list">
+          {items.map((item, idx) => {
+            const isHighlight = Boolean(item.highlight);
+            const badge = asStr(item.badge);
+            return (
+              <div
+                key={idx}
+                className={`timeline-item ${isHighlight ? 'timeline-item--highlight' : ''}`}
+              >
+                <div className="timeline-marker">
+                  <div className="timeline-marker-dot">
+                    <SectionIcon name={item.icon || 'clock'} size={14} />
+                  </div>
+                </div>
+
+                <div className="timeline-card">
+                  <div className="timeline-card-header">
+                    <div className="timeline-time-pill">
+                      <ClockIcon />
+                      <span>{item.time}</span>
+                    </div>
+                    {badge ? (
+                      <span className="timeline-badge">
+                        {item.icon === 'utensils' ? <UtensilsIcon size={12} /> : null}
+                        {badge}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <h3 className="timeline-title">{item.title}</h3>
+                  {item.description ? (
+                    <p className="timeline-desc">{item.description}</p>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="center timeline-footer-cta">
+        <CtaButton
+          href={ctaUrl}
+          label={ctaLabel}
+        />
+        <p className="timeline-footer-note">
+          ⚡ <strong>Raipur Live Workshop · Limited to 60 Seats</strong>
+        </p>
       </div>
     </section>
   );
@@ -2136,6 +2378,8 @@ function isSectionEmpty(
       return true;
     case 'what_you_learn':
       return false;
+    case 'event_timeline':
+      return !hasAnyStr(d.heading, d.highlight, d.eyebrow) && !hasAnyArr(d.items);
     case 'cta':
       return (
         !hasAnyStr(d.heading, d.highlight, d.headingEnd, d.description, d.seatsText, d.note) &&
@@ -2234,6 +2478,9 @@ export function SectionRenderer({
       return null;
     case 'what_you_learn':
       content = <WhatYouLearnBlock data={section.data} />;
+      break;
+    case 'event_timeline':
+      content = <EventTimelineBlock data={section.data} />;
       break;
     case 'cta':
       if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {

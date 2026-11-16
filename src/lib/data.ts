@@ -170,7 +170,7 @@ export const WORKSHOP_PASSES: WorkshopPass[] = [
     price: 1999,
     originalPrice: 2999,
     discountText: 'Early Discounted Seats - ₹1999',
-    url: 'https://rzp.io/rzp/3nLQzNx',
+    url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
     features: [
       { text: '4 Hour Session' },
       { text: 'Networking Lunch Included' },
@@ -186,7 +186,7 @@ export const WORKSHOP_PASSES: WorkshopPass[] = [
     price: 2999,
     originalPrice: 4499,
     discountText: 'Early Discounted Seats - ₹2999',
-    url: 'https://rzp.io/rzp/b4ddaY2g',
+    url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
     features: [
       { text: '4 Hour Session' },
       { text: 'Networking Lunch Included + Tea' },
@@ -662,6 +662,80 @@ export const INITIAL_PAGES: LandingPage[] = [
           eyebrow: 'WORKSHOP ROADMAP',
           headingLine1: '10 AI skills.',
           headingLine2: 'One power-packed day.',
+        },
+      },
+      {
+        id: 'sec-event-timeline-raipur',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'event_timeline',
+        enabled: true,
+        sortOrder: 4.5,
+        data: {
+          eyebrow: 'EVENT TIMELINE',
+          heading: 'Event',
+          highlight: 'Timeline',
+          description:
+            'A carefully structured, power-packed day designed to take you from foundational AI prompting to automated enterprise workflows.',
+          items: [
+            {
+              time: '9:00 AM',
+              title: 'Audience Arrival',
+              description: 'Doors open at Vimtara Hall. Welcome & seating arrangement.',
+              icon: 'clock',
+            },
+            {
+              time: '9:15 AM',
+              title: 'Registration Start',
+              description: 'Attendee check-in, pass verification, and welcome kit distribution.',
+              icon: 'pin',
+            },
+            {
+              time: '9:45 AM',
+              title: 'Event Inauguration',
+              description: 'Lamp lighting, introduction, and setting the stage for a transformative AI journey.',
+              icon: 'spark',
+            },
+            {
+              time: '10:00 AM',
+              title: 'Event Start',
+              description: 'Lakshit Sethiya takes the stage. Deep-dive into AI prompting, practical workflows, and real business use-cases.',
+              highlight: true,
+              badge: 'MAIN WORKSHOP',
+              icon: 'play',
+            },
+            {
+              time: '2:00 PM',
+              title: 'Learning session',
+              description: 'Advanced live demos: building custom AI agents, WhatsApp marketing engines, and voice-calling setups.',
+              icon: 'video',
+            },
+            {
+              time: '2:00 PM - 3:00 PM',
+              title: 'Networking Lunch',
+              description: 'Connect with fellow founders, leaders, and creators over a delicious hot buffet lunch included with your pass.',
+              badge: 'LUNCH INCLUDED',
+              highlight: true,
+              icon: 'utensils',
+            },
+            {
+              time: '3:00 PM',
+              title: 'Doubt Session Start',
+              description: 'Open floor for in-depth Q&A. Bring your exact business challenges and get live 1-on-1 solutions.',
+              badge: 'LIVE 1-ON-1 Q&A',
+              highlight: true,
+              icon: 'chat',
+            },
+            {
+              time: '5:00 PM',
+              title: 'End of the Event',
+              description: 'Wrap-up, photo sessions, certificate distribution & lifetime prompt book access.',
+              icon: 'spark',
+            },
+          ],
+          cta: {
+            label: 'Reserve Your Seat Now →',
+            url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
+          },
         },
       },
       {
