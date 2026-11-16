@@ -50,11 +50,20 @@ function useScrollReveal(pageId?: string, version?: number) {
           }
         });
       },
-      { threshold: 0.18, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.01, rootMargin: '300px 0px 300px 0px' }
     );
 
     elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+
+    // Fallback: ensure all elements are visible after a short delay
+    const timer = setTimeout(() => {
+      elements.forEach(markVisible);
+    }, 1000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
   }, [pageId, version]);
 }
 

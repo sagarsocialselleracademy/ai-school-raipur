@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v36',
-  PAGES: 'aischool_pages_v36',
-  NAV: 'aischool_nav_v36',
-  COURSES: 'aischool_courses_v36',
-  TESTIMONIALS: 'aischool_testimonials_v36',
-  FAQS: 'aischool_faqs_v36',
-  LEADS: 'aischool_leads_v36',
-  MEDIA: 'aischool_media_v36',
+  SETTINGS: 'aischool_settings_v37',
+  PAGES: 'aischool_pages_v37',
+  NAV: 'aischool_nav_v37',
+  COURSES: 'aischool_courses_v37',
+  TESTIMONIALS: 'aischool_testimonials_v37',
+  FAQS: 'aischool_faqs_v37',
+  LEADS: 'aischool_leads_v37',
+  MEDIA: 'aischool_media_v37',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v36') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v37') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -92,10 +92,10 @@ const BUILTIN_MEDIA: MediaFile[] = [
   },
   {
     id: 'media-hero-poster',
-    url: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.bin',
+    url: '/media/c22c230db068ce61514bd9e868c89fc408d8ae43.webp',
     originalFilename: 'hero-poster.jpg',
-    mimeType: 'image/jpeg',
-    size: 98200,
+    mimeType: 'image/webp',
+    size: 45218,
     title: 'Workshop Hero Poster',
   },
   {
@@ -124,21 +124,40 @@ export function isInvalidOrDeadMedia(url?: string | null): boolean {
   return PLACEHOLDER_REGEX.test(url);
 }
 
+export function normalizeMediaUrl(url?: string | null): string {
+  if (!url) return '';
+  const trimmed = url.trim();
+  if (trimmed.endsWith('.bin')) {
+    if (
+      trimmed.includes('77a609b4dbbfa6f8aa32a6df3c82a0c505d8aa1d') ||
+      trimmed.includes('2ff24f7ba276866641d0be29820afd010ef40f7f') ||
+      trimmed.includes('9841a049251b1c1b1c4499bf0a8a0ee3d8bde7cd') ||
+      trimmed.includes('5e871ca6dd38263d53552fb445218ce675810a0f') ||
+      trimmed.includes('8036923a12fdf959fea2c6bd37a710b3d69c679b')
+    ) {
+      return trimmed.replace(/\.bin$/, '.mp4');
+    }
+    return trimmed.replace(/\.bin$/, '.webp');
+  }
+  return trimmed;
+}
+
 export function resolveAssetUrl(url?: string | null): string {
   if (!url) return '';
+  const normalized = normalizeMediaUrl(url);
   if (
-    url.startsWith('http://') ||
-    url.startsWith('https://') ||
-    url.startsWith('data:') ||
-    url.startsWith('/')
+    normalized.startsWith('http://') ||
+    normalized.startsWith('https://') ||
+    normalized.startsWith('data:') ||
+    normalized.startsWith('/')
   ) {
-    return url;
+    return normalized;
   }
-  return `/${url}`;
+  return `/${normalized}`;
 }
 
 export function fallbackIfDead(url: string | undefined, fallback: string): string {
-  return url && !isInvalidOrDeadMedia(url) ? url : fallback;
+  return url && !isInvalidOrDeadMedia(url) ? normalizeMediaUrl(url) : fallback;
 }
 
 export function resolveLogoUrl(url?: string): string {
@@ -148,12 +167,12 @@ export function resolveLogoUrl(url?: string): string {
 }
 
 export function resolveSpeakerLogo(label: string, image?: string): string {
-  if (image && !isInvalidOrDeadMedia(image)) return image;
+  if (image && !isInvalidOrDeadMedia(image)) return normalizeMediaUrl(image);
   return DEFAULTS.SPEAKER_LOGOS[label] || '';
 }
 
 export function resolveTrackImage(title: string, image?: string): string {
-  if (image && !isInvalidOrDeadMedia(image)) return image;
+  if (image && !isInvalidOrDeadMedia(image)) return normalizeMediaUrl(image);
   return DEFAULTS.TRACKS[title] || '/topic-business.jpg';
 }
 
@@ -162,13 +181,14 @@ export function resolveTrackIcon(title: string, icon?: string): string {
 }
 
 export function resolveWhatsappScreenshot(index: number, url?: string): string {
-  if (url && !isInvalidOrDeadMedia(url)) return url;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   return `/whatsapp-feedback/img${(index % 6) + 1}.png`;
 }
 
 export function resolveMediaClipping(index: number, url?: string): string {
-  const trimmed = (url || '').trim();
-  if (trimmed && !isInvalidOrDeadMedia(trimmed)) return trimmed;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   return `/media-coverage/img${(index % 3) + 1}.png`;
 }
 
@@ -186,14 +206,14 @@ function getCategoryFolder(title: string): string | null {
 }
 
 export function resolveTeamImage(index: number, url?: string): string {
-  const trimmed = (url || '').trim();
-  if (trimmed && !isInvalidOrDeadMedia(trimmed)) return trimmed;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   return `/moments-with-lakshit/meet-our-team/img${(index % 2) + 1}.webp`;
 }
 
 export function resolveGalleryImage(categoryTitle: string, index: number, url?: string): string {
-  const trimmed = (url || '').trim();
-  if (trimmed && !isInvalidOrDeadMedia(trimmed)) return trimmed;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   const folder = getCategoryFolder(categoryTitle);
   if (folder === 'awarded') {
     return '/moments-with-lakshit/awarded-by-chiefminister-of-chhattisgarh.webp';
@@ -201,22 +221,25 @@ export function resolveGalleryImage(categoryTitle: string, index: number, url?: 
   if (folder) {
     return `/moments-with-lakshit/${folder}/img${index + 1}.webp`;
   }
-  return trimmed;
+  return norm;
 }
 
 export function resolveAttendeeThumb(index: number, url?: string): string {
-  if (url && !isInvalidOrDeadMedia(url)) return url;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   return DEFAULTS.ATTENDEE_THUMBS[index] || DEFAULTS.ATTENDEE_THUMBS[0];
 }
 
 export function resolveAttendeeVideo(index: number, url?: string): string {
-  if (url && !isInvalidOrDeadMedia(url)) return url;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm)) return norm;
   return DEFAULTS.ATTENDEE_VIDEOS[index] || DEFAULTS.ATTENDEE_VIDEOS[0];
 }
 
 export function resolveFeaturedVideo(url?: string): string {
-  if (url && !isInvalidOrDeadMedia(url) && !url.endsWith('cbdc6004a1938decb1073560ba53eca52b8d75db.bin')) {
-    return url;
+  const norm = normalizeMediaUrl(url);
+  if (norm && !isInvalidOrDeadMedia(norm) && !norm.includes('cbdc6004a1938decb1073560ba53eca52b8d75db')) {
+    return norm;
   }
   return DEFAULTS.FEATURED_VIDEO;
 }

@@ -787,11 +787,12 @@ export function VideoPlayer({
           controls={hasControls}
           preload={preloadMode}
           poster={poster}
-          src={resolveAssetUrl(url)}
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
-        />
+        >
+          <source src={resolveAssetUrl(url)} type="video/mp4" />
+        </video>
         {hasControls && !playing ? (
           <button
             className="video-play-hit"
@@ -1297,7 +1298,20 @@ function VideoGalleryBlock({
             onClick={() => setActiveClip(clipKey)}
             aria-label={`Play ${name}`}
           >
-            {thumb ? <img src={resolveAssetUrl(thumb)} alt={name} loading="lazy" decoding="async" /> : null}
+            {thumb ? (
+              <img
+                src={resolveAssetUrl(thumb)}
+                alt={name}
+                decoding="async"
+                onError={(e) => {
+                  const el = e.currentTarget;
+                  if (!el.dataset.triedFallback) {
+                    el.dataset.triedFallback = '1';
+                    el.src = resolveAssetUrl(DEFAULTS.ATTENDEE_THUMBS[index] || DEFAULTS.ATTENDEE_THUMBS[0]);
+                  }
+                }}
+              />
+            ) : null}
             <span className="play-badge">▶</span>
           </button>
         )}
@@ -2205,8 +2219,14 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                   src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                   alt={img.alt || title}
                   style={{ aspectRatio: ratio }}
-                  loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    const el = e.currentTarget;
+                    if (!el.dataset.triedFallback) {
+                      el.dataset.triedFallback = '1';
+                      el.src = resolveAssetUrl(resolveGalleryImage(title, idx, undefined));
+                    }
+                  }}
                 />
               ))}
             </div>
@@ -2227,7 +2247,6 @@ function TeamBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveTeamImage(idx, img.url))}
               alt={img.alt || 'Team'}
-              loading="lazy"
               decoding="async"
             />
           </div>
@@ -2255,8 +2274,14 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveMediaClipping(idx, clip.url))}
               alt={clip.alt || `Newspaper coverage ${idx + 1}`}
-              loading="lazy"
               decoding="async"
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (!el.dataset.triedFallback) {
+                  el.dataset.triedFallback = '1';
+                  el.src = `/media-coverage/img${(idx % 3) + 1}.png`;
+                }
+              }}
             />
           </div>
         ))}
@@ -2281,8 +2306,14 @@ function WhatsappFeedbackBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveWhatsappScreenshot(idx, msg.screenshot))}
               alt={msg.name || `WhatsApp feedback ${idx + 1}`}
-              loading="lazy"
               decoding="async"
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (!el.dataset.triedFallback) {
+                  el.dataset.triedFallback = '1';
+                  el.src = `/whatsapp-feedback/img${(idx % 6) + 1}.png`;
+                }
+              }}
             />
           </div>
         ))}
