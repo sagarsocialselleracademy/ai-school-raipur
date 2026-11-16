@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v38',
-  PAGES: 'aischool_pages_v38',
-  NAV: 'aischool_nav_v38',
-  COURSES: 'aischool_courses_v38',
-  TESTIMONIALS: 'aischool_testimonials_v38',
-  FAQS: 'aischool_faqs_v38',
-  LEADS: 'aischool_leads_v38',
-  MEDIA: 'aischool_media_v38',
+  SETTINGS: 'aischool_settings_v39',
+  PAGES: 'aischool_pages_v39',
+  NAV: 'aischool_nav_v39',
+  COURSES: 'aischool_courses_v39',
+  TESTIMONIALS: 'aischool_testimonials_v39',
+  FAQS: 'aischool_faqs_v39',
+  LEADS: 'aischool_leads_v39',
+  MEDIA: 'aischool_media_v39',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v38') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v39') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -375,7 +375,7 @@ export const cmsApi = {
             pills: [{ icon: 'calendar', label: 'Upcoming Sunday' }],
             originalPrice: '₹2499',
             price: '₹1999 only',
-            seatsText: '60 seats remaining!',
+            seatsText: '127 seats remaining!',
             primaryButton: { label: 'Register Now →', url: '#register' },
           }
         : type === 'cta'
@@ -384,7 +384,7 @@ export const cmsApi = {
               highlight: '',
               headingEnd: 'at the workshop',
               description: 'Reserve your seat today.',
-              seatsText: '60 seats remaining. Register now!',
+              seatsText: '127 seats remaining. Register now!',
               button: { label: 'Register Now →', url: '#register' },
             }
           : type === 'text'

@@ -316,7 +316,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     "Raipur's most advanced AI and automation workshop by Lakshit Sethiya. A full-day physical workshop where you'll discover how to scale your business using AI & automation.",
   ogImage: '/media/hero-poster.webp',
   homePageSlug: 'home-copy',
-  seatsRemaining: 60,
+  seatsRemaining: 127,
   eventStartsAt: '2026-11-29T10:00:00+05:30',
   registerUrl: '#passes',
   registerLabel: 'Register Now',
@@ -509,7 +509,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 0,
         data: {
-          eyebrow: '2000+ people attended in Raipur',
+          eyebrow: '1000+ people attended in Raipur',
           heading: "Raipur's Most Advanced ",
           highlight: 'AI & Automation',
           headingEnd: 'Workshop',
@@ -529,7 +529,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           ],
           originalPrice: '₹2999',
           price: '₹1999 only',
-          seatsText: '60 seats remaining. Register now!',
+          seatsText: '127 seats remaining. Register now!',
           primaryButton: {
             label: 'Register Now →',
             url: '#passes',
@@ -1004,7 +1004,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           highlight: 'Today',
           headingEnd: 'for 29th November',
           description: 'Limited seats available. Choose your pass tier and join us live in Raipur.',
-          seatsText: '60 seats remaining. Register now!',
+          seatsText: '127 seats remaining. Register now!',
           button: {
             label: 'Choose Your Pass →',
             url: '#passes',

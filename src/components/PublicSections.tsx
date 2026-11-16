@@ -113,6 +113,34 @@ export function useCountdown(targetIso?: string) {
   };
 }
 
+export function useEvergreenTimer(durationMinutes = 30) {
+  const durationSeconds = durationMinutes * 60;
+  // Always restarts fresh on every new visit or page reload
+  const [secondsLeft, setSecondsLeft] = useState(durationSeconds);
+
+  useEffect(() => {
+    const startMs = Date.now();
+    const id = window.setInterval(() => {
+      const elapsed = Math.floor((Date.now() - startMs) / 1000);
+      const remaining = durationSeconds - elapsed;
+      if (remaining <= 0) {
+        setSecondsLeft(durationSeconds - (elapsed % durationSeconds));
+      } else {
+        setSecondsLeft(remaining);
+      }
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, [durationSeconds]);
+
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = secondsLeft % 60;
+
+  return {
+    label: `Offer Expiring in ${pad2(minutes)}m : ${pad2(seconds)}s`,
+    compactLabel: `Offer Expiring in ${pad2(minutes)}m : ${pad2(seconds)}s`,
+  };
+}
+
 export function MailIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -451,7 +479,7 @@ export function closePassModal() {
 }
 
 export function Topbar({ settings }: { settings: SiteSettings }) {
-  const { label, compactLabel } = useCountdown(settings.eventStartsAt);
+  const { label, compactLabel } = useEvergreenTimer(30);
   const href = resolveButtonHref(settings.registerUrl, '#passes');
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -459,6 +487,11 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
     e.preventDefault();
     openPassModal();
   };
+
+  const seatsCount =
+    settings.seatsRemaining && settings.seatsRemaining !== 60
+      ? settings.seatsRemaining
+      : 127;
 
   return (
     <div className="topbar">
@@ -468,7 +501,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
         <span className="topbar__countdown topbar__countdown--compact">{compactLabel}</span>
       </div>
       <div className="topbar__meta">
-        <span className="topbar__seats">{settings.seatsRemaining} seats left</span>
+        <span className="topbar__seats">{seatsCount} seats left</span>
         <a
           className="topbar__cta"
           href="#passes"
@@ -948,11 +981,11 @@ function HeroSectionBlock({
           rel="noopener noreferrer"
           className="badge-pill badge-pill--link"
           onClick={() =>
-            PixelTracker.initiateCheckout('Eyebrow Badge - 2000+ People', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            PixelTracker.initiateCheckout('Eyebrow Badge - 1000+ People', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
           }
         >
           <SectionIcon name="spark" size={14} />
-          <span>{asStr(data.eyebrow)}</span>
+          <span>{asStr(data.eyebrow).replace(/2000\+/g, '1000+')}</span>
         </a>
       ) : null}
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
@@ -998,7 +1031,7 @@ function HeroSectionBlock({
               PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
             }
           >
-            {asStr(data.seatsText)}
+            {asStr(data.seatsText).replace(/60\s*seats/gi, '127 seats')}
           </a>
         </p>
       ) : null}
@@ -1389,7 +1422,7 @@ function VideoGalleryBlock({
         {paddedItems.map((it, i) => renderPersonCard(it, i))}
       </div>
       {typeof seatsRemaining === 'number' ? (
-        <p className="seats">{seatsRemaining} seats remaining. Register now!</p>
+        <p className="seats">{(seatsRemaining && seatsRemaining !== 60 ? seatsRemaining : 127)} seats remaining. Register now!</p>
       ) : null}
       {registerLabel ? (
         <div className="hero-cta">
@@ -1402,12 +1435,14 @@ function VideoGalleryBlock({
 
 export function PassesBlock({
   data,
-  seatsRemaining = 60,
+  seatsRemaining = 127,
 }: {
   data?: Record<string, any>;
   seatsRemaining?: number;
 }) {
   const d = data || {};
+  const safeSeats =
+    seatsRemaining && seatsRemaining !== 60 ? seatsRemaining : 127;
   const eyebrow = asStr(d.eyebrow, 'CHOOSE YOUR PASS');
   const heading = asStr(d.heading, 'Select Your Workshop Pass for');
   const highlight = asStr(d.highlight, '29th November');
@@ -1416,8 +1451,8 @@ export function PassesBlock({
     asStr(d.description) ||
     "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya · Vimtara Hall, Raipur (10:00 AM TO 03:00 PM)";
   const seatsText =
-    asStr(d.seatsText) ||
-    `${seatsRemaining} seats remaining. Early discounted seats are filling fast!`;
+    (asStr(d.seatsText) ? asStr(d.seatsText).replace(/60\s*seats/gi, '127 seats') : '') ||
+    `${safeSeats} seats remaining. Early discounted seats are filling fast!`;
 
   return (
     <section className="section container passes-section tickets-section" id="passes">
@@ -1707,7 +1742,7 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
               }
             >
               <ZapIcon size={14} />
-              <span>Only {settings.seatsRemaining || '60'} Seats Remaining. Register now!</span>
+              <span>Only {(settings.seatsRemaining && settings.seatsRemaining !== 60 ? settings.seatsRemaining : 127)} Seats Remaining. Register now!</span>
             </a>
           </div>
         </div>
@@ -1885,7 +1920,7 @@ function CtaSectionBlock({
                 PixelTracker.initiateCheckout('Seats Text - CTA', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
               }
             >
-              {asStr(data.seatsText)}
+              {asStr(data.seatsText).replace(/60\s*seats/gi, '127 seats')}
             </a>
           </p>
         ) : null}
