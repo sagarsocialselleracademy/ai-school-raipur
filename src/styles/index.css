@@ -1623,5 +1623,49 @@ a.pass-modal-urgency--link:hover,
   }
 }
 
+/* Floating Unmute Button for Autoplay Audio */
+.unmute-badge-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(15, 10, 8, 0.88);
+  color: #ffffff;
+  border: 1.5px solid var(--orange, #fa742c);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(250, 116, 44, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  animation: pulse-unmute-badge 2s infinite ease-in-out;
+  touch-action: manipulation;
+}
+
+.unmute-badge-btn:hover {
+  background: var(--orange-gradient, linear-gradient(135deg, #fa742c 0%, #ea442c 100%));
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(250, 116, 44, 0.7);
+}
+
+@keyframes pulse-unmute-badge {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 18px rgba(250, 116, 44, 0.5);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 4px 28px rgba(250, 116, 44, 0.85);
+  }
+}
+
+
 
 

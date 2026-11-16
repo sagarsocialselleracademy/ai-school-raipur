@@ -715,7 +715,8 @@ export function VideoPlayer({
   const [playing, setPlaying] = useState(false);
   const url = video?.url || '';
   const poster = video?.poster ? resolveAssetUrl(video.poster) : '';
-  const isMuted = muted ?? false;
+  const requestedMuted = muted ?? false;
+  const [isMutedState, setIsMutedState] = useState(requestedMuted);
   const hasControls = controls ?? true;
   const preloadMode = preload ?? (autoPlay ? 'auto' : 'metadata');
   const ytId = extractYoutubeId(url);
@@ -724,30 +725,68 @@ export function VideoPlayer({
   useEffect(() => {
     const el = videoRef.current;
     if (!el || !autoPlay) return;
-    el.muted = isMuted;
+
+    // Attempt unmuted playback when requestedMuted is false
+    el.muted = requestedMuted;
+    el.volume = 1.0;
+    setIsMutedState(requestedMuted);
+
     const p = el.play();
     if (p) {
       p.catch(() => {
-        // If autoplay with sound was blocked by browser policy, fallback to muted autoplay
+        // If autoplay with sound was blocked by browser policy:
+        // Start muted so the video doesn't freeze
         el.muted = true;
+        setIsMutedState(true);
         el.play().catch(() => {});
+
+        // Automatically unmute on the very first user interaction anywhere on the page
+        if (!requestedMuted) {
+          const interactionEvents = ['pointerdown', 'touchstart', 'mousedown', 'keydown', 'scroll'];
+          const handleFirstGesture = () => {
+            if (el) {
+              el.muted = false;
+              el.volume = 1.0;
+              setIsMutedState(false);
+              el.play().catch(() => {});
+            }
+            interactionEvents.forEach((evt) =>
+              window.removeEventListener(evt, handleFirstGesture, true)
+            );
+          };
+          interactionEvents.forEach((evt) =>
+            window.addEventListener(evt, handleFirstGesture, { capture: true, once: true })
+          );
+        }
       });
     }
-  }, [autoPlay, isMuted, url]);
+  }, [autoPlay, requestedMuted, url]);
 
   const handlePlayClick = () => {
     const el = videoRef.current;
     if (!el) return;
     el.muted = false;
+    el.volume = 1.0;
+    setIsMutedState(false);
     const p = el.play();
     if (p) p.catch(() => {});
+  };
+
+  const handleUnmuteBadgeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = false;
+    el.volume = 1.0;
+    setIsMutedState(false);
+    el.play().catch(() => {});
   };
 
   if (ytId) {
     const params = new URLSearchParams({ rel: '0', controls: '1' });
     if (autoPlay) {
       params.set('autoplay', '1');
-      if (isMuted) params.set('mute', '1');
+      if (requestedMuted) params.set('mute', '1');
     }
     return (
       <iframe
@@ -761,7 +800,7 @@ export function VideoPlayer({
 
   if (vimeoId) {
     const params = new URLSearchParams({ controls: '1' });
-    if (autoPlay && isMuted) {
+    if (autoPlay && requestedMuted) {
       params.set('autoplay', '1');
       params.set('muted', '1');
     }
@@ -781,8 +820,7 @@ export function VideoPlayer({
       <>
         <video
           ref={videoRef}
-          muted={isMuted}
-          loop={autoPlay && isMuted}
+          loop={autoPlay && isMutedState}
           playsInline
           controls={hasControls}
           preload={preloadMode}
@@ -790,9 +828,24 @@ export function VideoPlayer({
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}
+          onVolumeChange={() => {
+            if (videoRef.current) {
+              setIsMutedState(videoRef.current.muted);
+            }
+          }}
         >
           <source src={resolveAssetUrl(url)} type="video/mp4" />
         </video>
+        {isMutedState && !requestedMuted && playing ? (
+          <button
+            type="button"
+            className="unmute-badge-btn"
+            onClick={handleUnmuteBadgeClick}
+            aria-label="Unmute video"
+          >
+            <span>🔊 Tap for Sound</span>
+          </button>
+        ) : null}
         {hasControls && !playing ? (
           <button
             className="video-play-hit"
@@ -920,9 +973,9 @@ function HeroSectionBlock({
               video={videoObj}
               title="Workshop preview"
               autoPlay
-              muted={true}
+              muted={false}
               controls
-              preload="metadata"
+              preload="auto"
             />
           ) : null}
         </div>
