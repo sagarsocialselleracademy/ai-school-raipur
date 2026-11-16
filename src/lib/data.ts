@@ -653,6 +653,45 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
+        id: 'cmtjtmwfy000qb5xs014w4i6v',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'whatsapp_feedback',
+        enabled: true,
+        sortOrder: 3.5,
+        data: {
+          eyebrow: 'STRAIGHT FROM ATTENDEES',
+          heading: 'WhatsApp',
+          highlight: 'feedback',
+          description: 'Unfiltered messages from past attendees, days after the workshop.',
+          messages: [
+            {
+              name: 'JBN Achievers (Deepesh Jain & Neha Di)',
+              time: '20:25',
+              text: 'Compliments are flowing from all corners !!! All whom I sent specially called & Thanked me. Great Session Lakshit !!! Super workshop lakshit... Had a very good learning experience.',
+              screenshot: '/whatsapp-feedback/jbn-achievers.jpg',
+            },
+            {
+              name: 'Naman Lodha',
+              time: '10:42',
+              text: 'Wonderful session. Note: This is written by me personally and not any AI tool.',
+              screenshot: '/whatsapp-feedback/img1.png',
+            },
+            {
+              name: 'Anurag Jain',
+              time: '11:05',
+              text: 'Thank you Lakshit for guidance in our unguided AI learning journey. Practical approach throughout.',
+              screenshot: '/whatsapp-feedback/img2.png',
+            },
+            {
+              name: 'Ruchi Jain',
+              time: '18:21',
+              text: 'Dear Lakshit Sir, thank you for the clarity, patience, and effort you put into teaching.',
+              screenshot: '/whatsapp-feedback/img3.png',
+            },
+          ],
+        },
+      },
+      {
         id: 'sec-topics-covered-10',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'what_you_learn',
@@ -736,25 +775,6 @@ export const INITIAL_PAGES: LandingPage[] = [
             label: 'Reserve Your Seat Now →',
             url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
           },
-        },
-      },
-      {
-        id: 'cmtjtmwds000ab5xs1kl3b89i',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'cta',
-        enabled: true,
-        sortOrder: 5,
-        data: {
-          heading: 'See you',
-          highlight: '',
-          headingEnd: 'on 29th November',
-          description: 'Reserve your seat for the Live session. Limited seats — register today.',
-          seatsText: '60 seats remaining. Register now!',
-          button: {
-            label: 'Register Now →',
-            url: '#passes',
-          },
-          note: '',
         },
       },
       {
@@ -953,45 +973,6 @@ export const INITIAL_PAGES: LandingPage[] = [
             {
               url: '/media-coverage/img2.png',
               alt: 'Dainik Bhaskar newspaper coverage of Lakshit Sethiya AI workshop',
-            },
-          ],
-        },
-      },
-      {
-        id: 'cmtjtmwfy000qb5xs014w4i6v',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'whatsapp_feedback',
-        enabled: true,
-        sortOrder: 12,
-        data: {
-          eyebrow: 'STRAIGHT FROM ATTENDEES',
-          heading: 'WhatsApp',
-          highlight: 'feedback',
-          description: 'Unfiltered messages from past attendees, days after the workshop.',
-          messages: [
-            {
-              name: 'JBN Achievers (Deepesh Jain & Neha Di)',
-              time: '20:25',
-              text: 'Compliments are flowing from all corners !!! All whom I sent specially called & Thanked me. Great Session Lakshit !!! Super workshop lakshit... Had a very good learning experience.',
-              screenshot: '/whatsapp-feedback/jbn-achievers.jpg',
-            },
-            {
-              name: 'Naman Lodha',
-              time: '10:42',
-              text: 'Wonderful session. Note: This is written by me personally and not any AI tool.',
-              screenshot: '/whatsapp-feedback/img1.png',
-            },
-            {
-              name: 'Anurag Jain',
-              time: '11:05',
-              text: 'Thank you Lakshit for guidance in our unguided AI learning journey. Practical approach throughout.',
-              screenshot: '/whatsapp-feedback/img2.png',
-            },
-            {
-              name: 'Ruchi Jain',
-              time: '18:21',
-              text: 'Dear Lakshit Sir, thank you for the clarity, patience, and effort you put into teaching.',
-              screenshot: '/whatsapp-feedback/img3.png',
             },
           ],
         },

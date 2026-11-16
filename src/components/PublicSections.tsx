@@ -2133,9 +2133,6 @@ export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
           href={ctaUrl}
           label={ctaLabel}
         />
-        <p className="timeline-footer-note">
-          ⚡ <strong>Raipur Live Workshop · Limited to 60 Seats</strong>
-        </p>
       </div>
     </section>
   );
@@ -2524,7 +2521,7 @@ export function SectionRenderer({
       content = <EventTimelineBlock data={section.data} />;
       break;
     case 'cta':
-      if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto') {
+      if (section.id === 'cmtjtmwfc000mb5xsgxdv7yto' || section.id === 'cmtjtmwds000ab5xs1kl3b89i') {
         return null;
       }
       content = (
