@@ -1733,117 +1733,79 @@ a.pass-modal-urgency--link:hover,
    v41 Updates: Enhanced Urgent Topbar, Hero Brand Header, Uncropped Gallery
    ========================================================================== */
 
-/* Enhanced Urgent Announcement Bar */
+/* Single-Line Clean Announcement Bar */
 .topbar {
   position: sticky;
   top: 0;
   z-index: 999;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #fa742c 0%, #d83a1e 100%) !important;
-  box-shadow: 0 4px 20px rgba(216, 58, 30, 0.45);
+  padding: 0.55rem 0.85rem;
+  padding-top: max(0.55rem, env(safe-area-inset-top));
+  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 14px rgba(234, 68, 44, 0.35);
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
-.topbar__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
+.topbar__content {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.75rem !important;
+  font-size: clamp(0.76rem, 3.2vw, 0.88rem);
+  font-weight: 700;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  color: #ffffff !important;
+  line-height: 1.2;
 }
 
-.topbar__row--main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.65rem;
-  flex-wrap: wrap;
-}
-
-.topbar__urgency-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(18, 12, 10, 0.82);
-  border: 1.5px solid rgba(255, 235, 220, 0.4);
-  padding: 0.32rem 0.8rem;
-  border-radius: 999px;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(250, 116, 44, 0.2);
-}
-
-.topbar__flame {
-  font-size: 1.05rem;
-  line-height: 1;
-  display: inline-block;
-  animation: flame-bounce 1.5s infinite ease-in-out;
-}
-
-.topbar__urgency-text {
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #ffdec7;
-  text-transform: uppercase;
-}
-
-.topbar__timer-digits {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.95rem;
-  font-weight: 900;
-  color: #ffffff;
-  background: rgba(250, 116, 44, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.15rem 0.55rem;
-  border-radius: 6px;
-  letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 8px rgba(255, 200, 150, 0.6);
-}
-
-.topbar__cta-button {
+.topbar__timer {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background: #ffffff;
-  color: #d6371c !important;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.topbar__timer svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.topbar__cta {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
   font-weight: 800;
-  font-size: 0.82rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 999px;
-  text-decoration: none !important;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  white-space: nowrap;
-}
-
-.topbar__cta-button:hover {
-  background: #fff3e6;
-  transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-}
-
-.topbar__row--sub {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  touch-action: manipulation;
 }
 
-.topbar__seats {
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #fff2e5;
-  text-transform: uppercase;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+.topbar__cta svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
 
-@keyframes flame-bounce {
-  0%, 100% {
-    transform: scale(1) translateY(0);
+.topbar__cta:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 380px) {
+  .topbar {
+    padding-inline: 0.4rem;
   }
-  50% {
-    transform: scale(1.22) translateY(-1px);
+  .topbar__content {
+    gap: 0.45rem !important;
+    font-size: 0.74rem !important;
   }
 }
 
@@ -1967,20 +1929,6 @@ a.pass-modal-urgency--link:hover,
   object-fit: contain !important;
   background: #14100d !important;
   border-radius: 14px;
-}
-
-@media (max-width: 600px) {
-  .topbar__urgency-text {
-    font-size: 0.68rem;
-  }
-  .topbar__timer-digits {
-    font-size: 0.85rem;
-    padding: 0.1rem 0.4rem;
-  }
-  .topbar__cta-button {
-    font-size: 0.76rem;
-    padding: 0.3rem 0.7rem;
-  }
 }
 
 

@@ -492,32 +492,20 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
     openPassModal();
   };
 
-  const seatsCount =
-    settings.seatsRemaining && settings.seatsRemaining !== 60
-      ? settings.seatsRemaining
-      : 127;
-
   return (
     <div className="topbar">
-      <div className="topbar__inner">
-        <div className="topbar__row topbar__row--main">
-          <div className="topbar__urgency-badge" aria-live="polite">
-            <span className="topbar__flame" aria-hidden>🔥</span>
-            <span className="topbar__urgency-text">OFFER EXPIRES IN</span>
-            <span className="topbar__timer-digits">{timeString}</span>
-          </div>
-          <a
-            className="topbar__cta-button"
-            href="#passes"
-            onClick={handleCtaClick}
-          >
-            <span>{settings.registerLabel || 'Register Now'}</span>
-            <ArrowRightIcon />
-          </a>
-        </div>
-        <div className="topbar__row topbar__row--sub">
-          <span className="topbar__seats">⚡ Only {seatsCount} seats left</span>
-        </div>
+      <div className="topbar__content">
+        <span className="topbar__timer" aria-live="polite">
+          <ClockIcon />
+          <span>Offer Expiring in {timeString}</span>
+        </span>
+        <a
+          className="topbar__cta"
+          href="#passes"
+          onClick={handleCtaClick}
+        >
+          {settings.registerLabel || 'Register Now'} <ArrowRightIcon />
+        </a>
       </div>
     </div>
   );
