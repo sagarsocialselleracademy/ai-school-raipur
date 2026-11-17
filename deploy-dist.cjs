@@ -15,11 +15,12 @@ execSync('npm run build', { cwd: projectDir, env, stdio: 'inherit' });
 // Copy index.html to 404.html and add .nojekyll for GitHub Pages SPA routing
 fs.copyFileSync(path.join(distDir, 'index.html'), path.join(distDir, '404.html'));
 fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
+fs.writeFileSync(path.join(distDir, 'CNAME'), 'aischoolraipur.com');
 
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Deploy: Heading, pills layout, clean modal, 2h extra doubt session, consultant title (v40)"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Deploy: Logo, uncropped awards, urgent announcement bar, Sunday AI workshop heading, timeline updates (v41)"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
@@ -30,7 +31,7 @@ execSync('git config user.email "socialselleracademy@gmail.com"', { cwd: distDir
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy: Heading, pills layout, clean modal, 2h extra doubt session, consultant title (v40)"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy: Logo, uncropped awards, urgent announcement bar, Sunday AI workshop heading, timeline updates (v41)"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');

@@ -511,7 +511,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           eyebrow: '1000+ people attended in Raipur',
           heading: "Raipur's Biggest",
-          highlight: 'Full Day',
+          highlight: 'Sunday',
           headingEnd: 'AI Workshop',
           description:
             "A full-day live physical workshop by Lakshit Sethiya, where you'll discover how to scale your business using AI & automation",
@@ -562,14 +562,8 @@ export const INITIAL_PAGES: LandingPage[] = [
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
           title: 'AI & Automation Consultant',
-          photo: '/media/host-slide-1.jpg',
+          photo: '/media/host-slide-2.jpg',
           photos: [
-            {
-              url: '/media/host-slide-1.jpg',
-              alt: 'Lakshit Sethiya receiving award with Ritesh Agarwal (OYO)',
-              caption: 'With Ritesh Agarwal (OYO)',
-              position: 'center 20%',
-            },
             {
               url: '/media/host-slide-2.jpg',
               alt: 'Lakshit Sethiya delivering keynote presentation on AI Systems',
@@ -607,11 +601,10 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 3,
         data: {
-          eyebrow: 'Workshop attendees share their experience',
+          eyebrow: '',
           heading: 'Real people.',
           highlight: 'Real feedback.',
-          description:
-            'These are actual attendees who came to the workshop — hear it in their own words.',
+          description: '',
           items: [
             {
               name: 'Attendee 1',
@@ -659,10 +652,10 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 3.5,
         data: {
-          eyebrow: 'STRAIGHT FROM ATTENDEES',
+          eyebrow: '',
           heading: 'WhatsApp',
           highlight: 'feedback',
-          description: 'Unfiltered messages from past attendees, days after the workshop.',
+          description: '',
           messages: [
             {
               name: 'JBN Achievers (Deepesh Jain & Neha Di)',
@@ -710,7 +703,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 4.5,
         data: {
-          eyebrow: 'EVENT TIMELINE',
+          eyebrow: '',
           heading: 'Event',
           highlight: 'Timeline',
           description:
@@ -758,16 +751,17 @@ export const INITIAL_PAGES: LandingPage[] = [
             },
             {
               time: '3:00 PM',
-              title: 'Doubt Session Start',
-              description: 'Open floor for in-depth Q&A. Bring your exact business challenges and get live 1-on-1 solutions.',
-              badge: 'LIVE 1-ON-1 Q&A',
+              title: 'Doubt Session Start (Gold & VIP Passes Only)',
+              description: 'Open floor for in-depth Q&A. Bring your exact business challenges and get live 1-on-1 solutions. (Included in Gold & VIP Passes Only)',
+              badge: 'GOLD & VIP PASSES ONLY',
               highlight: true,
               icon: 'chat',
             },
             {
               time: '5:00 PM',
-              title: 'End of the Event',
-              description: 'Wrap-up, photo sessions, certificate distribution & lifetime prompt book access.',
+              title: 'End of the Event (Gold & VIP Passes)',
+              description: 'Wrap-up, photo sessions, certificate distribution & lifetime prompt book access for Gold & VIP pass holders.',
+              badge: 'GOLD & VIP PASSES',
               icon: 'spark',
             },
           ],

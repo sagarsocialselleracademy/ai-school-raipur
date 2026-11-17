@@ -134,10 +134,14 @@ export function useEvergreenTimer(durationMinutes = 30) {
 
   const minutes = Math.floor(secondsLeft / 60);
   const seconds = secondsLeft % 60;
+  const timeString = `${pad2(minutes)}m : ${pad2(seconds)}s`;
 
   return {
-    label: `Offer Expiring in ${pad2(minutes)}m : ${pad2(seconds)}s`,
-    compactLabel: `Offer Expiring in ${pad2(minutes)}m : ${pad2(seconds)}s`,
+    label: `Offer Expiring in ${timeString}`,
+    compactLabel: `Offer Expiring in ${timeString}`,
+    timeString,
+    minutes: pad2(minutes),
+    seconds: pad2(seconds),
   };
 }
 
@@ -479,7 +483,7 @@ export function closePassModal() {
 }
 
 export function Topbar({ settings }: { settings: SiteSettings }) {
-  const { label, compactLabel } = useEvergreenTimer(30);
+  const { timeString } = useEvergreenTimer(30);
   const href = resolveButtonHref(settings.registerUrl, '#passes');
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -495,20 +499,25 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
 
   return (
     <div className="topbar">
-      <div className="topbar__timer" aria-live="polite">
-        <ClockIcon />
-        <span className="topbar__countdown topbar__countdown--full">{label}</span>
-        <span className="topbar__countdown topbar__countdown--compact">{compactLabel}</span>
-      </div>
-      <div className="topbar__meta">
-        <span className="topbar__seats">{seatsCount} seats left</span>
-        <a
-          className="topbar__cta"
-          href="#passes"
-          onClick={handleCtaClick}
-        >
-          {settings.registerLabel} <ArrowRightIcon />
-        </a>
+      <div className="topbar__inner">
+        <div className="topbar__row topbar__row--main">
+          <div className="topbar__urgency-badge" aria-live="polite">
+            <span className="topbar__flame" aria-hidden>🔥</span>
+            <span className="topbar__urgency-text">OFFER EXPIRES IN</span>
+            <span className="topbar__timer-digits">{timeString}</span>
+          </div>
+          <a
+            className="topbar__cta-button"
+            href="#passes"
+            onClick={handleCtaClick}
+          >
+            <span>{settings.registerLabel || 'Register Now'}</span>
+            <ArrowRightIcon />
+          </a>
+        </div>
+        <div className="topbar__row topbar__row--sub">
+          <span className="topbar__seats">⚡ Only {seatsCount} seats left</span>
+        </div>
       </div>
     </div>
   );
@@ -974,6 +983,13 @@ function HeroSectionBlock({
 
   return (
     <section className="hero container center" id="workshop">
+      <div className="hero-brand-header">
+        <img
+          src="/ai-school-logo.png"
+          alt="AI School Raipur"
+          className="hero-logo-img"
+        />
+      </div>
       {asStr(data.eyebrow) ? (
         <a
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
@@ -991,7 +1007,7 @@ function HeroSectionBlock({
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
         <h1 className="heading heading--hero">
           <span className="heading-line">{asStr(data.heading, "Raipur's Biggest").replace("Raipur's Most Advanced", "Raipur's Biggest")}</span>
-          <em className="heading-line">{asStr(data.highlight, "Full Day").replace("AI & Automation", "Full Day")}</em>
+          <em className="heading-line">{asStr(data.highlight, "Sunday").replace("AI & Automation", "Sunday").replace("Full Day", "Sunday")}</em>
           <span className="heading-line">{asStr(data.headingEnd, "AI Workshop")}</span>
         </h1>
       ) : null}
@@ -1009,6 +1025,14 @@ function HeroSectionBlock({
           ) : null}
         </div>
       </div>
+      {asStr(asObj(data.primaryButton).label) ? (
+        <div className="hero-cta">
+          <CtaButton
+            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
+            label={asStr(asObj(data.primaryButton).label)}
+          />
+        </div>
+      ) : null}
       <div className="pill-row">
         {(() => {
           const arr = asArr(data.pills);
@@ -1063,14 +1087,6 @@ function HeroSectionBlock({
           <span>Price {asStr(data.price)}</span>
         </a>
       )}
-      {asStr(asObj(data.primaryButton).label) ? (
-        <div className="hero-cta">
-          <CtaButton
-            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
-            label={asStr(asObj(data.primaryButton).label)}
-          />
-        </div>
-      ) : null}
     </section>
   );
 }
@@ -1189,12 +1205,6 @@ function ChevronRightIcon({ size = 20 }: { size?: number }) {
 
 const DEFAULT_HOST_SLIDES = [
   {
-    url: '/media/host-slide-1.jpg',
-    alt: 'Lakshit Sethiya receiving award with Ritesh Agarwal (OYO)',
-    caption: 'With Ritesh Agarwal (OYO)',
-    position: 'center 20%',
-  },
-  {
     url: '/media/host-slide-2.jpg',
     alt: 'Lakshit Sethiya delivering keynote presentation on AI Systems',
     caption: 'Keynote Speaker • AI Systems',
@@ -1216,7 +1226,10 @@ const DEFAULT_HOST_SLIDES = [
 
 function InstructorBlock({ data }: { data: Record<string, any> }) {
   const rawPhotos = asArr(data.photos);
-  const slides = rawPhotos.length > 0 ? rawPhotos : DEFAULT_HOST_SLIDES;
+  const slides = (rawPhotos.length > 0 ? rawPhotos : DEFAULT_HOST_SLIDES).filter((s: any) => {
+    const u = typeof s === 'string' ? s : s?.url || '';
+    return !u.includes('host-slide-1');
+  });
 
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -1424,13 +1437,17 @@ function VideoGalleryBlock({
 
   return (
     <section className="section section--tight-end container center">
-      {asStr(data.eyebrow) ? <p className="eyebrow">{asStr(data.eyebrow)}</p> : null}
+      {asStr(data.eyebrow) && !asStr(data.eyebrow).toLowerCase().includes('attendees share') ? (
+        <p className="eyebrow">{asStr(data.eyebrow)}</p>
+      ) : null}
       {asStr(data.heading) || asStr(data.highlight) ? (
         <h2 className="heading">
           {asStr(data.heading)} <em>{asStr(data.highlight)}</em>
         </h2>
       ) : null}
-      {asStr(data.description) ? <p className="lede">{asStr(data.description)}</p> : null}
+      {asStr(data.description) && !asStr(data.description).toLowerCase().includes('actual attendees') ? (
+        <p className="lede">{asStr(data.description)}</p>
+      ) : null}
       <div className="people-row">
         {paddedItems.map((it, i) => renderPersonCard(it, i))}
       </div>
@@ -2142,13 +2159,25 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
 
 export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
   const d = data || {};
-  const eyebrow = asStr(d.eyebrow, 'EVENT TIMELINE');
   const heading = asStr(d.heading, 'Event');
   const highlight = asStr(d.highlight, 'Timeline');
   const description =
     asStr(d.description) ||
     'A carefully structured, power-packed day designed to take you from foundational AI prompting to automated enterprise workflows.';
-  const items = asArr(d.items);
+  const rawItems = asArr(d.items);
+  const items = rawItems.map((item) => {
+    const time = asStr(item.time);
+    const title = asStr(item.title);
+    const isGoldVip = time.includes('3:00 PM') || time.includes('5:00 PM') || title.toLowerCase().includes('doubt session') || title.toLowerCase().includes('end of the event');
+    if (isGoldVip) {
+      return {
+        ...item,
+        badge: item.badge || 'GOLD & VIP PASSES ONLY',
+        highlight: true,
+      };
+    }
+    return item;
+  });
   const cta = asObj(d.cta);
   const ctaLabel = asStr(cta.label, 'Reserve Your Seat Now →');
   const ctaUrl = asStr(cta.url, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
@@ -2156,10 +2185,6 @@ export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
   return (
     <section className="section container timeline-section" id="timeline">
       <div className="center">
-        <div className="badge-pill timeline-eyebrow-pill">
-          <SectionIcon name="clock" size={14} />
-          <span>{eyebrow}</span>
-        </div>
         <h2 className="heading">
           {heading} <em>{highlight}</em>
         </h2>
@@ -2270,30 +2295,34 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
       </div>
       {categories.map((cat) => {
         const title = asStr(cat.title);
-        const layout = title.toUpperCase().includes('ACHIEVEMENT')
+        const isAchievement = title.toUpperCase().includes('ACHIEVEMENT') || title.toUpperCase().includes('AWARD');
+        const layout = isAchievement
           ? 'triple'
           : asStr(cat.layout, 'landscape');
-        const ratio =
-          layout === 'portrait' ? '3 / 4' : layout === 'square' ? '4 / 3' : '16 / 10';
+        const ratio = isAchievement
+          ? '1 / 1'
+          : layout === 'portrait' ? '3 / 4' : layout === 'square' ? '4 / 3' : '16 / 10';
         return (
           <div key={title}>
             <div className="rule-title">{title}</div>
-            <div className={`gallery-grid ${layout}`}>
+            <div className={`gallery-grid ${layout} ${isAchievement ? 'gallery-grid--achievements' : ''}`}>
               {asArr(cat.images).map((img, idx) => (
-                <img
-                  key={`${title}-${idx}`}
-                  src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
-                  alt={img.alt || title}
-                  style={{ aspectRatio: ratio }}
-                  decoding="async"
-                  onError={(e) => {
-                    const el = e.currentTarget;
-                    if (!el.dataset.triedFallback) {
-                      el.dataset.triedFallback = '1';
-                      el.src = resolveAssetUrl(resolveGalleryImage(title, idx, undefined));
-                    }
-                  }}
-                />
+                <div key={`${title}-${idx}`} className="gallery-img-wrapper">
+                  <img
+                    src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
+                    alt={img.alt || title}
+                    style={{ aspectRatio: ratio }}
+                    className={isAchievement ? 'gallery-img--achievement' : ''}
+                    decoding="async"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      if (!el.dataset.triedFallback) {
+                        el.dataset.triedFallback = '1';
+                        el.src = resolveAssetUrl(resolveGalleryImage(title, idx, undefined));
+                      }
+                    }}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -2359,13 +2388,18 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
 function WhatsappFeedbackBlock({ data }: { data: Record<string, any> }) {
   const messages = asArr(data.messages);
   if (!messages.length) return null;
+  const eyebrow = asStr(data.eyebrow);
+  const showEyebrow = eyebrow && !eyebrow.toLowerCase().includes('straight from attendees');
+  const description = asStr(data.description);
+  const showDescription = description && !description.toLowerCase().includes('screenshots and messages') && !description.toLowerCase().includes('real feedback');
+
   return (
     <section className="section container center">
-      <p className="eyebrow">{asStr(data.eyebrow)}</p>
+      {showEyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2 className="heading">
         {asStr(data.heading)} <em>{asStr(data.highlight)}</em>
       </h2>
-      <p className="lede">{asStr(data.description)}</p>
+      {showDescription ? <p className="lede">{description}</p> : null}
       <div className="phones" style={{ marginTop: '1.5rem' }}>
         {messages.map((msg, idx) => (
           <div key={msg.name || String(idx)} className="phone">

@@ -1729,6 +1729,260 @@ a.pass-modal-urgency--link:hover,
   }
 }
 
+/* ==========================================================================
+   v41 Updates: Enhanced Urgent Topbar, Hero Brand Header, Uncropped Gallery
+   ========================================================================== */
+
+/* Enhanced Urgent Announcement Bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #fa742c 0%, #d83a1e 100%) !important;
+  box-shadow: 0 4px 20px rgba(216, 58, 30, 0.45);
+}
+
+.topbar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.topbar__row--main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.topbar__urgency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(18, 12, 10, 0.82);
+  border: 1.5px solid rgba(255, 235, 220, 0.4);
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35), inset 0 0 12px rgba(250, 116, 44, 0.2);
+}
+
+.topbar__flame {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-block;
+  animation: flame-bounce 1.5s infinite ease-in-out;
+}
+
+.topbar__urgency-text {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #ffdec7;
+  text-transform: uppercase;
+}
+
+.topbar__timer-digits {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #ffffff;
+  background: rgba(250, 116, 44, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 8px rgba(255, 200, 150, 0.6);
+}
+
+.topbar__cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #ffffff;
+  color: #d6371c !important;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.topbar__cta-button:hover {
+  background: #fff3e6;
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.topbar__row--sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar__seats {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff2e5;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes flame-bounce {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.22) translateY(-1px);
+  }
+}
+
+/* AI School Hero Logo */
+.hero-brand-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.hero-logo-img {
+  height: clamp(42px, 7vw, 60px);
+  width: auto;
+  max-width: 85vw;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+}
+
+/* Hero Section Enhancements */
+.heading--hero {
+  font-size: clamp(2.3rem, 5.5vw, 4.2rem) !important;
+  line-height: 1.08 !important;
+  margin-top: 1rem !important;
+}
+
+.hero-cta {
+  margin-top: 1.4rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* Attention-Grabbing Shake & Pulse for CTA Buttons */
+@keyframes cta-shake-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 24px rgba(250, 116, 44, 0.45);
+  }
+  82% {
+    transform: scale(1);
+  }
+  85% {
+    transform: scale(1.04) rotate(-1.5deg);
+    box-shadow: 0 0 32px rgba(250, 116, 44, 0.75);
+  }
+  88% {
+    transform: scale(1.04) rotate(1.5deg);
+    box-shadow: 0 0 32px rgba(250, 116, 44, 0.75);
+  }
+  91% {
+    transform: scale(1.03) rotate(-1deg);
+  }
+  94% {
+    transform: scale(1.03) rotate(1deg);
+  }
+  97% {
+    transform: scale(1);
+  }
+}
+
+.hero-cta .cta-btn,
+.timeline-footer-cta .cta-btn,
+.passes-card .cta-btn {
+  animation: cta-shake-pulse 4s infinite ease-in-out !important;
+}
+
+/* Responsive Capsules: 2 rows in mobile, 1 row on desktop/tablet */
+.pill-row {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 0.65rem !important;
+  flex-wrap: wrap !important;
+  margin: 1.2rem auto 0 !important;
+  max-width: 800px !important;
+}
+
+@media (max-width: 768px) {
+  .pill-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    max-width: 390px !important;
+  }
+  .pill-row .event-pill {
+    justify-content: center !important;
+    font-size: 0.82rem !important;
+    padding: 0.4rem 0.65rem !important;
+    text-align: center !important;
+  }
+}
+
+/* Achievements & Awards Uncropped Image Display */
+.gallery-grid--achievements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery-img-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #14100d;
+  border: 1px solid rgba(255, 90, 44, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-img-wrapper:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(250, 116, 44, 0.6);
+  box-shadow: 0 10px 30px rgba(234, 68, 44, 0.35);
+}
+
+.gallery-grid img,
+.gallery-img--achievement {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: #14100d !important;
+  border-radius: 14px;
+}
+
+@media (max-width: 600px) {
+  .topbar__urgency-text {
+    font-size: 0.68rem;
+  }
+  .topbar__timer-digits {
+    font-size: 0.85rem;
+    padding: 0.1rem 0.4rem;
+  }
+  .topbar__cta-button {
+    font-size: 0.76rem;
+    padding: 0.3rem 0.7rem;
+  }
+}
+
 
 
 
