@@ -810,17 +810,17 @@
 
 .pass-modal-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 .pass-modal-badge {
   margin-bottom: 0.75rem;
 }
 .pass-modal-title {
   font-family: Sora, Inter, sans-serif;
-  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin: 0 0 0.6rem;
+  margin: 0;
   color: #ffffff;
 }
 .pass-modal-title em {
@@ -1067,36 +1067,99 @@
   }
 }
 
-/* Hero section top spacing: leaves breathing room between sticky notification bar and eyebrow capsule */
+/* Hero section top spacing: reduced gap between sticky notification bar and 1000+ people card */
 .hero {
-  padding-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-top: 0.85rem !important;
   padding-bottom: 2rem;
 }
 .hero > .badge-pill {
-  margin-top: 0.5rem;
+  margin-top: 0 !important;
+}
+
+/* Hero Heading: increased text size on desktop and tablet */
+.public-shell .heading--hero,
+.theme-classic .heading--hero,
+h1.heading.heading--hero {
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+  margin-top: 0.85rem !important;
+}
+
+/* Capsules row: 1 row on desktop and tab */
+.pill-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  margin: 1.25rem auto 0;
+  width: 100%;
+  max-width: 860px;
+}
+.event-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(252, 122, 44, 0.45);
+  color: #f4c9a8;
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  background: #14100d99;
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+.hero-video {
+  width: min(768px, 100%);
+  margin: 1.5rem auto 0;
 }
 
 @media (max-width: 640px) {
   .hero {
-    padding-top: 2.5rem;
+    padding-top: 0.75rem !important;
     padding-bottom: 1.75rem;
   }
   .hero > .badge-pill {
-    margin-top: 0.5rem;
+    margin-top: 0 !important;
   }
   .public-shell .heading--hero,
   .theme-classic .heading--hero,
   h1.heading.heading--hero {
-    font-size: clamp(1.1rem, 4.75vw, 1.42rem) !important;
-    line-height: 1.25 !important;
-    padding: 0 0.5rem;
+    font-size: clamp(2.1rem, 8.5vw, 3rem) !important;
+    line-height: 1.1 !important;
+    padding: 0 0.25rem;
     letter-spacing: -0.03em;
     overflow-wrap: break-word;
     word-break: normal;
+    margin-top: 0.65rem !important;
   }
   .heading-line {
     display: block;
     white-space: normal;
+  }
+  /* Capsules on phone: exactly 2 rows of 2 capsules */
+  .pill-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    max-width: 380px !important;
+    margin: 1.1rem auto 0 !important;
+    padding: 0 0.25rem !important;
+  }
+  .event-pill {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0.45rem 0.4rem !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+  .event-pill svg {
+    width: 14px;
+    height: 14px;
   }
 }
 

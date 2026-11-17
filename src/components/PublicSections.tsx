@@ -990,19 +990,11 @@ function HeroSectionBlock({
       ) : null}
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
         <h1 className="heading heading--hero">
-          <span className="heading-line">{asStr(data.heading)}</span>
-          <em className="heading-line">{asStr(data.highlight)}</em>
-          <span className="heading-line">{asStr(data.headingEnd)}</span>
+          <span className="heading-line">{asStr(data.heading, "Raipur's Biggest").replace("Raipur's Most Advanced", "Raipur's Biggest")}</span>
+          <em className="heading-line">{asStr(data.highlight, "Full Day").replace("AI & Automation", "Full Day")}</em>
+          <span className="heading-line">{asStr(data.headingEnd, "AI Workshop")}</span>
         </h1>
       ) : null}
-      <div className="pill-row">
-        {asArr(data.pills).map((pill) => (
-          <span key={pill.label} className="event-pill">
-            <SectionIcon name={pill.icon} size={16} />
-            {pill.label}
-          </span>
-        ))}
-      </div>
       <div className="hero-video">
         <div className="video-frame">
           {videoObj ? (
@@ -1016,6 +1008,27 @@ function HeroSectionBlock({
             />
           ) : null}
         </div>
+      </div>
+      <div className="pill-row">
+        {(() => {
+          const arr = asArr(data.pills);
+          const datePill = arr.find((p) => asStr(p.label).includes('November') || (asStr(p.icon) === 'calendar' && !asStr(p.label).includes('Sunday'))) || { icon: 'calendar', label: '29th November' };
+          const dayPill = arr.find((p) => asStr(p.label).toLowerCase().includes('sunday')) || { icon: 'calendar', label: 'Sunday' };
+          const timePill = arr.find((p) => asStr(p.label).includes('AM') || asStr(p.icon) === 'clock') || { icon: 'clock', label: '10:00 AM - 3:00 PM' };
+          const locPill = arr.find((p) => asStr(p.label).includes('Vimtara') || asStr(p.icon) === 'pin') || { icon: 'pin', label: 'Vimtara Hall' };
+          const list = [
+            { icon: 'calendar', label: asStr(datePill.label, '29th November') },
+            { icon: 'calendar', label: asStr(dayPill.label, 'Sunday') },
+            { icon: 'clock', label: asStr(timePill.label, '10:00 AM - 3:00 PM') },
+            { icon: 'pin', label: asStr(locPill.label).replace(', Raipur', '').trim() || 'Vimtara Hall' },
+          ];
+          return list.map((pill) => (
+            <span key={pill.label} className="event-pill">
+              <SectionIcon name={pill.icon} size={16} />
+              {pill.label}
+            </span>
+          ));
+        })()}
       </div>
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
@@ -1322,7 +1335,7 @@ function InstructorBlock({ data }: { data: Record<string, any> }) {
             )}
           </div>
           <h2>{asStr(data.name) || 'Lakshit Sethiya'}</h2>
-          <p className="muted">{asStr(data.title) || 'AI & Automation Strategist'}</p>
+          <p className="muted">{asStr(data.title, 'AI & Automation Consultant').replace(/strategist/gi, 'Consultant')}</p>
         </div>
       </div>
 
@@ -1703,48 +1716,9 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
         </button>
 
         <div className="pass-modal-header">
-          <a
-            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="badge-pill pass-modal-badge pass-modal-badge--link"
-            onClick={() =>
-              PixelTracker.initiateCheckout('Select Your Workshop Pass Modal Badge', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
-            }
-          >
-            <SectionIcon name="spark" size={14} />
-            <span>Select Your Workshop Pass</span>
-          </a>
           <h2 id="pass-modal-title" className="pass-modal-title">
-            Choose Your Experience for <em>29th November</em>
+            Select Your Workshop Pass
           </h2>
-          <p className="pass-modal-workshop-name">
-            Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya
-          </p>
-          <div className="pass-modal-meta">
-            <span className="pass-modal-meta-item">
-              <MapPinIcon size={14} />
-              <span>Vimtara Hall, Raipur</span>
-            </span>
-            <span className="pass-modal-sep">•</span>
-            <span className="pass-modal-meta-item">
-              <ClockIcon />
-              <span>10:00 AM – 3:00 PM</span>
-            </span>
-            <span className="pass-modal-sep">•</span>
-            <a
-              href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pass-modal-urgency pass-modal-urgency--link"
-              onClick={() =>
-                PixelTracker.initiateCheckout('Seats Text - Modal', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
-              }
-            >
-              <ZapIcon size={14} />
-              <span>Only {(settings.seatsRemaining && settings.seatsRemaining !== 60 ? settings.seatsRemaining : 127)} Seats Remaining. Register now!</span>
-            </a>
-          </div>
         </div>
 
         <div className="pass-modal-grid">

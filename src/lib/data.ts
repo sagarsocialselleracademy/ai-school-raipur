@@ -191,7 +191,7 @@ export const WORKSHOP_PASSES: WorkshopPass[] = [
       { text: '4 Hour Session' },
       { text: 'Networking Lunch Included + Tea' },
       { text: 'Prompts & Recording' },
-      { text: '2 hour Doubt Session', highlight: true },
+      { text: '2 hour Extra Doubt Session', highlight: true },
       { text: 'Early Discounted Seats - ₹2999' },
     ],
   },
@@ -208,7 +208,7 @@ export const WORKSHOP_PASSES: WorkshopPass[] = [
       { text: '4 Hour Session' },
       { text: 'Lunch Included + Tea' },
       { text: 'Prompts & Recording' },
-      { text: '2 hour Doubt Session', highlight: true },
+      { text: '2 hour Extra Doubt Session', highlight: true },
       { text: 'Front Row Seats (only 20)', highlight: true },
       { text: 'Early Discounted Seats - ₹4999' },
     ],
@@ -510,9 +510,9 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 0,
         data: {
           eyebrow: '1000+ people attended in Raipur',
-          heading: "Raipur's Most Advanced ",
-          highlight: 'AI & Automation',
-          headingEnd: 'Workshop',
+          heading: "Raipur's Biggest",
+          highlight: 'Full Day',
+          headingEnd: 'AI Workshop',
           description:
             "A full-day live physical workshop by Lakshit Sethiya, where you'll discover how to scale your business using AI & automation",
           video: {
@@ -523,9 +523,9 @@ export const INITIAL_PAGES: LandingPage[] = [
           alignment: 'center',
           pills: [
             { icon: 'calendar', label: '29th November' },
+            { icon: 'calendar', label: 'Sunday' },
             { icon: 'clock', label: '10:00 AM - 3:00 PM' },
-            { icon: 'pin', label: 'Vimtara Hall, Raipur' },
-            { icon: 'users', label: 'Networking Lunch Included' },
+            { icon: 'pin', label: 'Vimtara Hall' },
           ],
           originalPrice: '₹2999',
           price: '₹1999 only',
@@ -561,7 +561,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         data: {
           eyebrow: 'Your Instructor',
           name: 'Lakshit Sethiya',
-          title: 'AI & Automation Strategist',
+          title: 'AI & Automation Consultant',
           photo: '/media/host-slide-1.jpg',
           photos: [
             {
