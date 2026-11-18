@@ -472,7 +472,7 @@ function ZapIcon({ size = 16 }: { size?: number }) {
 
 export function openPassModal() {
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('open-pass-modal'));
+    window.location.href = 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view';
   }
 }
 
@@ -484,12 +484,10 @@ export function closePassModal() {
 
 export function Topbar({ settings }: { settings: SiteSettings }) {
   const { timeString } = useEvergreenTimer(30);
-  const href = resolveButtonHref(settings.registerUrl, '#passes');
+  const checkoutUrl = 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view';
 
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    PixelTracker.initiateCheckout(settings.registerLabel, href);
-    e.preventDefault();
-    openPassModal();
+  const handleCtaClick = () => {
+    PixelTracker.initiateCheckout(settings.registerLabel || 'Register Now', checkoutUrl);
   };
 
   return (
@@ -501,7 +499,9 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
         </span>
         <a
           className="topbar__cta"
-          href="#passes"
+          href={checkoutUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={handleCtaClick}
         >
           {settings.registerLabel || 'Register Now'} <ArrowRightIcon />
@@ -920,22 +920,24 @@ function hasAnyArr(v: any): boolean {
   return asArr(v).length > 0;
 }
 
-export function CtaButton({ href, label }: { href: string; label: string }) {
-  const resolved = resolveButtonHref(href, '#passes');
+export function CtaButton({ href, label }: { href?: string; label: string }) {
+  const checkoutUrl = 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view';
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    PixelTracker.initiateCheckout(label, resolved);
-    e.preventDefault();
-    openPassModal();
+  const handleClick = () => {
+    PixelTracker.initiateCheckout(label, checkoutUrl);
   };
+
+  const cleanLabel = (label || 'Register Now (33% off)').replace(/\s*→\s*$/, '');
 
   return (
     <a
       className="cta-btn"
-      href="#passes"
+      href={checkoutUrl}
+      target="_blank"
+      rel="noopener noreferrer"
       onClick={handleClick}
     >
-      <span>{label.replace(/\s*→\s*$/, '')}</span>
+      <span>{cleanLabel}</span>
       <ArrowRightIcon />
     </a>
   );
@@ -1022,8 +1024,8 @@ function HeroSectionBlock({
       {asStr(asObj(data.primaryButton).label) ? (
         <div className="hero-cta">
           <CtaButton
-            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
-            label={asStr(asObj(data.primaryButton).label)}
+            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+            label="Register Now (33% off) →"
           />
         </div>
       ) : null}
@@ -1054,27 +1056,6 @@ function HeroSectionBlock({
           <span className="seats-highlight">⚡ 12 seats remaining, register now</span>
         </a>
       </p>
-      {asStr(asObj(data.primaryButton).label) ? (
-        <div className="hero-cta hero-cta--below-video">
-          <CtaButton
-            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
-            label={asStr(asObj(data.primaryButton).label)}
-          />
-        </div>
-      ) : null}
-      <p className="seats hero-seats">
-        <a
-          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="seats-link"
-          onClick={() =>
-            PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
-          }
-        >
-          <span className="seats-highlight">⚡ Only 12 seats remaining. Hurry up.</span>
-        </a>
-      </p>
       {(asStr(data.originalPrice) || asStr(data.price)) && (
         <a
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
@@ -1085,7 +1066,6 @@ function HeroSectionBlock({
             PixelTracker.initiateCheckout('Price Pill - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
           }
         >
-          <span className="price-discount-badge">33% off now, early</span>
           <SectionIcon name="tag" size={16} />
           <s>{asStr(data.originalPrice, '₹2999')}</s>
           <span>Price {asStr(data.price, '₹1999 only')}</span>
@@ -1093,40 +1073,49 @@ function HeroSectionBlock({
       )}
       <div className="hero-passes-row">
         <a
-          href="#passes"
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hero-pass-chip hero-pass-chip--silver"
-          onClick={(e) => {
-            e.preventDefault();
-            openPassModal();
-          }}
+          onClick={() =>
+            PixelTracker.initiateCheckout('Silver Pass Chip', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
         >
           <SectionIcon name="ticket" size={14} />
           <span>Silver Pass</span>
         </a>
         <a
-          href="#passes"
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hero-pass-chip hero-pass-chip--gold"
-          onClick={(e) => {
-            e.preventDefault();
-            openPassModal();
-          }}
+          onClick={() =>
+            PixelTracker.initiateCheckout('Gold Pass Chip', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
         >
           <SectionIcon name="spark" size={14} />
           <span>Gold Pass</span>
           <span className="hero-pass-chip__tag">Popular</span>
         </a>
         <a
-          href="#passes"
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hero-pass-chip hero-pass-chip--vip"
-          onClick={(e) => {
-            e.preventDefault();
-            openPassModal();
-          }}
+          onClick={() =>
+            PixelTracker.initiateCheckout('VIP Pass Chip', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
         >
           <SectionIcon name="star" size={14} />
           <span>VIP Pass</span>
           <span className="hero-pass-chip__tag">VIP</span>
         </a>
+      </div>
+      <div className="hero-cta hero-cta--below-video">
+        <CtaButton
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          label="Register Now (33% off) →"
+        />
       </div>
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
@@ -1617,12 +1606,12 @@ export function PassesBlock({
               <div className="pass-header ticket-header">
                 <h3 className="pass-name ticket-name">
                   <a
-                    href={pass.id === 'gold' ? 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view' : pass.url}
+                    href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="pass-name-link"
                     onClick={() =>
-                      PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price })
+                      PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view', { name: pass.name, price: pass.price })
                     }
                   >
                     {pass.name}
@@ -1774,8 +1763,8 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
   if (!isOpen) return null;
 
   const handlePassSelect = (pass: WorkshopPass) => {
-    PixelTracker.initiateCheckout(pass.name, pass.url);
-    window.open(pass.url, '_blank', 'noopener,noreferrer');
+    PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+    window.open('https://pages.razorpay.com/pl_TssC8YodCsa06i/view', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -1831,13 +1820,13 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                 <div className="modal-pass-head">
                   <h3 className="modal-pass-name">
                     <a
-                      href={pass.id === 'gold' ? 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view' : pass.url}
+                      href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pass-name-link"
                       onClick={(e) => {
                         e.stopPropagation();
-                        PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price });
+                        PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view', { name: pass.name, price: pass.price });
                       }}
                     >
                       {pass.name}
@@ -2209,16 +2198,20 @@ function WhatYouLearnBlock({ data }: { data?: Record<string, any> }) {
           </div>
         </div>
 
-        <button
-          type="button"
+        <a
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
           className="topics-reserve-btn"
-          onClick={() => openPassModal()}
+          onClick={() =>
+            PixelTracker.initiateCheckout('Reserve my seat - Curriculum', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
         >
           <span>Reserve my seat</span>
           <span className="topics-reserve-btn__arrow" aria-hidden>
             <ArrowRightIcon size={14} />
           </span>
-        </button>
+        </a>
       </div>
     </section>
   );

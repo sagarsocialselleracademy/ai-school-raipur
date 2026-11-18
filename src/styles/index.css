@@ -1887,8 +1887,8 @@ a.pass-modal-urgency--link:hover,
 }
 
 .hero-cta--below-video {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.65rem !important;
+  margin-top: 1.15rem !important;
+  margin-bottom: 1.25rem !important;
 }
 
 /* No animation on CTA buttons as requested */
