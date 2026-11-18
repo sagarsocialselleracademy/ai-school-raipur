@@ -1041,23 +1041,21 @@ function HeroSectionBlock({
           ) : null}
         </div>
       </div>
+      <p className="seats hero-seats">
+        <a
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="seats-link"
+          onClick={() =>
+            PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
+        >
+          <span className="seats-highlight">⚡ Only 12 seats remaining</span>
+        </a>
+      </p>
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
-      ) : null}
-      {asStr(data.seatsText) ? (
-        <p className="seats">
-          <a
-            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="seats-link"
-            onClick={() =>
-              PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
-            }
-          >
-            {asStr(data.seatsText).replace(/60\s*seats/gi, '127 seats')}
-          </a>
-        </p>
       ) : null}
       {(asStr(data.originalPrice) || asStr(data.price)) && (
         <a
@@ -1439,7 +1437,7 @@ function VideoGalleryBlock({
         {paddedItems.map((it, i) => renderPersonCard(it, i))}
       </div>
       {typeof seatsRemaining === 'number' ? (
-        <p className="seats">{(seatsRemaining && seatsRemaining !== 60 ? seatsRemaining : 127)} seats remaining. Register now!</p>
+        <p className="seats">Only {(seatsRemaining && seatsRemaining !== 60 && seatsRemaining !== 127 ? seatsRemaining : 12)} seats remaining. Register now!</p>
       ) : null}
       {registerLabel ? (
         <div className="hero-cta">
@@ -1452,14 +1450,14 @@ function VideoGalleryBlock({
 
 export function PassesBlock({
   data,
-  seatsRemaining = 127,
+  seatsRemaining = 12,
 }: {
   data?: Record<string, any>;
   seatsRemaining?: number;
 }) {
   const d = data || {};
   const safeSeats =
-    seatsRemaining && seatsRemaining !== 60 ? seatsRemaining : 127;
+    seatsRemaining && seatsRemaining !== 60 && seatsRemaining !== 127 ? seatsRemaining : 12;
   const eyebrow = asStr(d.eyebrow, 'CHOOSE YOUR PASS');
   const heading = asStr(d.heading, 'Select Your Workshop Pass for');
   const highlight = asStr(d.highlight, '29th November');
@@ -1468,8 +1466,8 @@ export function PassesBlock({
     asStr(d.description) ||
     "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya · Vimtara Hall, Raipur (10:00 AM TO 03:00 PM)";
   const seatsText =
-    (asStr(d.seatsText) ? asStr(d.seatsText).replace(/60\s*seats/gi, '127 seats') : '') ||
-    `${safeSeats} seats remaining. Early discounted seats are filling fast!`;
+    (asStr(d.seatsText) ? asStr(d.seatsText).replace(/(?:60|127)\s*seats/gi, '12 seats') : '') ||
+    `Only ${safeSeats} seats remaining. Early discounted seats are filling fast!`;
 
   return (
     <section className="section container passes-section tickets-section" id="passes">
@@ -1898,7 +1896,7 @@ function CtaSectionBlock({
                 PixelTracker.initiateCheckout('Seats Text - CTA', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
               }
             >
-              {asStr(data.seatsText).replace(/60\s*seats/gi, '127 seats')}
+              {asStr(data.seatsText).replace(/(?:60|127)\s*seats/gi, '12 seats')}
             </a>
           </p>
         ) : null}
