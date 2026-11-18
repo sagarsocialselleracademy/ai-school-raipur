@@ -985,11 +985,11 @@ function HeroSectionBlock({
           rel="noopener noreferrer"
           className="badge-pill badge-pill--link"
           onClick={() =>
-            PixelTracker.initiateCheckout('Eyebrow Badge - 1000+ People', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            PixelTracker.initiateCheckout('Eyebrow Badge - Full Day Live AI Workshop', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
           }
         >
           <SectionIcon name="spark" size={14} />
-          <span>{asStr(data.eyebrow).replace(/2000\+/g, '1000+')}</span>
+          <span>{asStr(data.eyebrow).replace(/1000\+\s*people\s*attended\s*in\s*raipur/gi, 'Full Day Live AI Workshop').replace(/2000\+/g, 'Full Day Live AI Workshop')}</span>
         </a>
       ) : null}
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
@@ -1019,6 +1019,14 @@ function HeroSectionBlock({
           ));
         })()}
       </div>
+      {asStr(asObj(data.primaryButton).label) ? (
+        <div className="hero-cta">
+          <CtaButton
+            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
+            label={asStr(asObj(data.primaryButton).label)}
+          />
+        </div>
+      ) : null}
       <div className="hero-video">
         <div className="video-frame">
           {videoObj ? (
@@ -1033,14 +1041,6 @@ function HeroSectionBlock({
           ) : null}
         </div>
       </div>
-      {asStr(asObj(data.primaryButton).label) ? (
-        <div className="hero-cta">
-          <CtaButton
-            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
-            label={asStr(asObj(data.primaryButton).label)}
-          />
-        </div>
-      ) : null}
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
       ) : null}

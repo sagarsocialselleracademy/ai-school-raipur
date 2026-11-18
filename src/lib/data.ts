@@ -509,7 +509,7 @@ export const INITIAL_PAGES: LandingPage[] = [
         enabled: true,
         sortOrder: 0,
         data: {
-          eyebrow: '1000+ people attended in Raipur',
+          eyebrow: 'Full Day Live AI Workshop',
           heading: "Raipur's Biggest",
           highlight: 'AI Workshop',
           headingEnd: '',
