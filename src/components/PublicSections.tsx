@@ -995,8 +995,7 @@ function HeroSectionBlock({
       {asStr(data.heading) || asStr(data.highlight) || asStr(data.headingEnd) ? (
         <h1 className="heading heading--hero">
           <span className="heading-line">{asStr(data.heading, "Raipur's Biggest").replace("Raipur's Most Advanced", "Raipur's Biggest")}</span>
-          <em className="heading-line">{asStr(data.highlight, "Sunday").replace("AI & Automation", "Sunday").replace("Full Day", "Sunday")}</em>
-          <span className="heading-line">{asStr(data.headingEnd, "AI Workshop")}</span>
+          <em className="heading-line">AI Workshop</em>
         </h1>
       ) : null}
       <div className="pill-row">
