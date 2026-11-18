@@ -973,7 +973,7 @@ function HeroSectionBlock({
     <section className="hero container center" id="workshop">
       <div className="hero-brand-header">
         <img
-          src="/ai-school-logo.png"
+          src="/ai-school-logo.png?v=2"
           alt="AI School Raipur"
           className="hero-logo-img"
         />

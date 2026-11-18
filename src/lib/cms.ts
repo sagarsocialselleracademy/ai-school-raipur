@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v44',
-  PAGES: 'aischool_pages_v44',
-  NAV: 'aischool_nav_v44',
-  COURSES: 'aischool_courses_v44',
-  TESTIMONIALS: 'aischool_testimonials_v44',
-  FAQS: 'aischool_faqs_v44',
-  LEADS: 'aischool_leads_v44',
-  MEDIA: 'aischool_media_v44',
+  SETTINGS: 'aischool_settings_v45',
+  PAGES: 'aischool_pages_v45',
+  NAV: 'aischool_nav_v45',
+  COURSES: 'aischool_courses_v45',
+  TESTIMONIALS: 'aischool_testimonials_v45',
+  FAQS: 'aischool_faqs_v45',
+  LEADS: 'aischool_leads_v45',
+  MEDIA: 'aischool_media_v45',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v44') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v45') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
