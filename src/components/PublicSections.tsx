@@ -1041,6 +1041,27 @@ function HeroSectionBlock({
           ) : null}
         </div>
       </div>
+      <p className="seats hero-seats-top">
+        <a
+          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="seats-link"
+          onClick={() =>
+            PixelTracker.initiateCheckout('Seats Urgency - Under Video', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+          }
+        >
+          <span className="seats-highlight">⚡ 12 seats remaining, register now</span>
+        </a>
+      </p>
+      {asStr(asObj(data.primaryButton).label) ? (
+        <div className="hero-cta hero-cta--below-video">
+          <CtaButton
+            href={resolveCtaHref(asStr(asObj(data.primaryButton).url), registerUrl)}
+            label={asStr(asObj(data.primaryButton).label)}
+          />
+        </div>
+      ) : null}
       <p className="seats hero-seats">
         <a
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
@@ -1051,12 +1072,9 @@ function HeroSectionBlock({
             PixelTracker.initiateCheckout('Seats Text - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
           }
         >
-          <span className="seats-highlight">⚡ Only 12 seats remaining</span>
+          <span className="seats-highlight">⚡ Only 12 seats remaining. Hurry up.</span>
         </a>
       </p>
-      {asStr(data.description) ? (
-        <p className="lede lede--hero">{asStr(data.description)}</p>
-      ) : null}
       {(asStr(data.originalPrice) || asStr(data.price)) && (
         <a
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
@@ -1067,11 +1085,52 @@ function HeroSectionBlock({
             PixelTracker.initiateCheckout('Price Pill - Hero', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
           }
         >
+          <span className="price-discount-badge">33% off now, early</span>
           <SectionIcon name="tag" size={16} />
-          <s>{asStr(data.originalPrice)}</s>
-          <span>Price {asStr(data.price)}</span>
+          <s>{asStr(data.originalPrice, '₹2999')}</s>
+          <span>Price {asStr(data.price, '₹1999 only')}</span>
         </a>
       )}
+      <div className="hero-passes-row">
+        <a
+          href="#passes"
+          className="hero-pass-chip hero-pass-chip--silver"
+          onClick={(e) => {
+            e.preventDefault();
+            openPassModal();
+          }}
+        >
+          <SectionIcon name="ticket" size={14} />
+          <span>Silver Pass</span>
+        </a>
+        <a
+          href="#passes"
+          className="hero-pass-chip hero-pass-chip--gold"
+          onClick={(e) => {
+            e.preventDefault();
+            openPassModal();
+          }}
+        >
+          <SectionIcon name="spark" size={14} />
+          <span>Gold Pass</span>
+          <span className="hero-pass-chip__tag">Popular</span>
+        </a>
+        <a
+          href="#passes"
+          className="hero-pass-chip hero-pass-chip--vip"
+          onClick={(e) => {
+            e.preventDefault();
+            openPassModal();
+          }}
+        >
+          <SectionIcon name="star" size={14} />
+          <span>VIP Pass</span>
+          <span className="hero-pass-chip__tag">VIP</span>
+        </a>
+      </div>
+      {asStr(data.description) ? (
+        <p className="lede lede--hero">{asStr(data.description)}</p>
+      ) : null}
     </section>
   );
 }
@@ -1119,10 +1178,10 @@ function StatCounter({
 }
 
 const CANONICAL_STATS = [
-  { target: 1000000, prefix: '', suffix: '+', label: 'Followers' },
-  { target: 25000, prefix: '', suffix: '+', label: 'Students' },
-  { target: 10, prefix: '', suffix: '+ Years', label: 'Experience' },
-  { target: 45, prefix: '', suffix: '+', label: 'Workshops Taken' },
+  { target: 1000000, prefix: '', suffix: '+', label: 'Followers', mobileNum: '10 Lakhs+' },
+  { target: 25000, prefix: '', suffix: '+', label: 'Students', mobileNum: '25,000+' },
+  { target: 10, prefix: '', suffix: '+ Years', label: 'Experience', mobileNum: '10+ Years' },
+  { target: 45, prefix: '', suffix: '+', label: 'Workshops Taken', mobileNum: '45+' },
 ];
 
 function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
@@ -1155,12 +1214,15 @@ function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
           <React.Fragment key={`${it.label}-${idx}`}>
             <div className="stat-capsule__item">
               <span className="stat-capsule__num">
-                <StatCounter
-                  target={it.target}
-                  prefix={it.prefix}
-                  suffix={it.suffix}
-                  inView={inView}
-                />
+                <span className="stat-num-desktop">
+                  <StatCounter
+                    target={it.target}
+                    prefix={it.prefix}
+                    suffix={it.suffix}
+                    inView={inView}
+                  />
+                </span>
+                <span className="stat-num-mobile">{it.mobileNum}</span>
               </span>
               <span className="stat-capsule__label">{it.label}</span>
             </div>
@@ -1430,6 +1492,26 @@ function VideoGalleryBlock({
           {asStr(data.heading)} <em>{asStr(data.highlight)}</em>
         </h2>
       ) : null}
+      <div className="wistia-featured-video-wrap">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `
+              <wistia-player
+                media-id="7lebzhc6xh"
+                aspect="1.7777777777777777"
+                big-play-button="true"
+                play-bar-control="false"
+                controls-visible-on-load="false"
+                play-pause-control="false"
+                volume-control="false"
+                fullscreen-control="false"
+                playback-rate-control="false"
+                settings-control="false"
+              ></wistia-player>
+            `,
+          }}
+        />
+      </div>
       {asStr(data.description) && !asStr(data.description).toLowerCase().includes('actual attendees') ? (
         <p className="lede">{asStr(data.description)}</p>
       ) : null}
@@ -2296,8 +2378,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                   <img
                     src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                     alt={img.alt || title}
-                    style={{ aspectRatio: ratio }}
-                    className={isAchievement ? 'gallery-img--achievement' : ''}
+                    className={`gallery-freeform-img ${isAchievement ? 'gallery-img--achievement' : ''}`}
                     decoding="async"
                     onError={(e) => {
                       const el = e.currentTarget;

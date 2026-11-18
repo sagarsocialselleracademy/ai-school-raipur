@@ -685,6 +685,29 @@ export const INITIAL_PAGES: LandingPage[] = [
         },
       },
       {
+        id: 'cmtjtmwfo000ob5xsq24edtwm',
+        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
+        type: 'media_coverage',
+        enabled: true,
+        sortOrder: 3.8,
+        data: {
+          eyebrow: 'AS FEATURED IN',
+          heading: 'Media',
+          highlight: 'Coverage',
+          description: 'Recognised across leading newspapers and magazines.',
+          clippings: [
+            {
+              url: '/media-coverage/img1.png',
+              alt: 'Hari Bhoomi newspaper coverage of Lakshit Sethiya AI workshop',
+            },
+            {
+              url: '/media-coverage/img2.png',
+              alt: 'Dainik Bhaskar newspaper coverage of Lakshit Sethiya AI workshop',
+            },
+          ],
+        },
+      },
+      {
         id: 'sec-topics-covered-10',
         pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
         type: 'what_you_learn',
@@ -945,29 +968,6 @@ export const INITIAL_PAGES: LandingPage[] = [
           images: [
             { url: '/moments-with-lakshit/meet-our-team/img1.webp', alt: 'Team in office' },
             { url: '/moments-with-lakshit/meet-our-team/img2.webp', alt: 'Classroom team' },
-          ],
-        },
-      },
-      {
-        id: 'cmtjtmwfo000ob5xsq24edtwm',
-        pageId: 'cmtjtmwbs0000b5xs4vvu1rtu',
-        type: 'media_coverage',
-        enabled: true,
-        sortOrder: 11,
-        data: {
-          eyebrow: 'AS FEATURED IN',
-          heading: 'Media',
-          highlight: 'Coverage',
-          description: 'Recognised across leading newspapers and magazines.',
-          clippings: [
-            {
-              url: '/media-coverage/img1.png',
-              alt: 'Hari Bhoomi newspaper coverage of Lakshit Sethiya AI workshop',
-            },
-            {
-              url: '/media-coverage/img2.png',
-              alt: 'Dainik Bhaskar newspaper coverage of Lakshit Sethiya AI workshop',
-            },
           ],
         },
       },

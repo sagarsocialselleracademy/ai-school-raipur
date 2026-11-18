@@ -1177,9 +1177,9 @@ h1.heading.heading--hero {
 
 .hero-cta .cta-btn {
   width: 100%;
-  max-width: 768px;
-  min-width: min(100%, 680px);
-  min-height: 64px;
+  max-width: 820px;
+  min-width: min(100%, 720px);
+  min-height: 66px;
   padding: 1.15rem 2.5rem;
   font-size: 1.25rem;
   font-weight: 800;
@@ -1188,16 +1188,16 @@ h1.heading.heading--hero {
   gap: 0.75rem;
   box-shadow: 0 14px 40px rgba(250, 116, 44, 0.48);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-  animation: ctaAttentionShake 3.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-  transform-origin: center center;
+  animation: none !important;
+  transform: none !important;
 }
 
 .cta-card .cta-btn,
 .timeline-footer-cta .cta-btn {
   width: 100%;
-  max-width: 720px;
-  min-width: min(100%, 560px);
-  min-height: 62px;
+  max-width: 760px;
+  min-width: min(100%, 600px);
+  min-height: 64px;
   padding: 1.1rem 2.5rem;
   font-size: 1.18rem;
   font-weight: 800;
@@ -1206,8 +1206,8 @@ h1.heading.heading--hero {
   gap: 0.75rem;
   box-shadow: 0 12px 36px rgba(250, 116, 44, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-  animation: ctaAttentionShake 3.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-  transform-origin: center center;
+  animation: none !important;
+  transform: none !important;
 }
 
 .hero-cta .cta-btn svg,
@@ -1221,9 +1221,8 @@ h1.heading.heading--hero {
 .hero-cta .cta-btn:hover,
 .cta-card .cta-btn:hover,
 .timeline-footer-cta .cta-btn:hover {
-  transform: translateY(-2px) scale(1.015);
+  transform: translateY(-2px);
   box-shadow: 0 16px 44px rgba(250, 116, 44, 0.6);
-  animation-play-state: paused !important;
 }
 
 .hero-cta .cta-btn:hover svg,
@@ -1834,20 +1833,36 @@ a.pass-modal-urgency--link:hover,
   }
 }
 
-/* AI School Hero Logo */
+/* AI School Hero Logo & Spacing */
+.hero {
+  padding-top: 1.6rem !important;
+  padding-bottom: 2rem;
+}
+
 .hero-brand-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.85rem;
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.35rem !important;
 }
 
 .hero-logo-img {
-  height: clamp(42px, 7vw, 60px);
+  height: clamp(44px, 7vw, 62px);
   width: auto;
   max-width: 85vw;
   object-fit: contain;
   filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 1.75rem !important;
+  }
+  .hero-brand-header {
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.45rem !important;
+  }
 }
 
 /* Hero Section Enhancements */
@@ -1859,8 +1874,8 @@ a.pass-modal-urgency--link:hover,
 
 .hero-cta {
   width: 100% !important;
-  max-width: 768px !important;
-  margin-top: 1.35rem !important;
+  max-width: 820px !important;
+  margin-top: 1.25rem !important;
   margin-bottom: 0.85rem !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -1868,41 +1883,30 @@ a.pass-modal-urgency--link:hover,
 
 .hero-cta .cta-btn {
   width: 100% !important;
-  max-width: 768px !important;
+  max-width: 820px !important;
 }
 
-/* Attention-Grabbing Shake & Pulse for CTA Buttons */
-@keyframes cta-shake-pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 24px rgba(250, 116, 44, 0.45);
-  }
-  82% {
-    transform: scale(1);
-  }
-  85% {
-    transform: scale(1.04) rotate(-1.5deg);
-    box-shadow: 0 0 32px rgba(250, 116, 44, 0.75);
-  }
-  88% {
-    transform: scale(1.04) rotate(1.5deg);
-    box-shadow: 0 0 32px rgba(250, 116, 44, 0.75);
-  }
-  91% {
-    transform: scale(1.03) rotate(-1deg);
-  }
-  94% {
-    transform: scale(1.03) rotate(1deg);
-  }
-  97% {
-    transform: scale(1);
-  }
+.hero-cta--below-video {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.65rem !important;
 }
 
+/* No animation on CTA buttons as requested */
+.cta-btn,
 .hero-cta .cta-btn,
 .timeline-footer-cta .cta-btn,
-.passes-card .cta-btn {
-  animation: cta-shake-pulse 4s infinite ease-in-out !important;
+.passes-card .cta-btn,
+.cta-card .cta-btn {
+  animation: none !important;
+  transform: none !important;
+}
+.cta-btn:hover,
+.hero-cta .cta-btn:hover,
+.timeline-footer-cta .cta-btn:hover,
+.passes-card .cta-btn:hover,
+.cta-card .cta-btn:hover {
+  animation: none !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Responsive Capsules: 2 rows in mobile, 1 row on desktop/tablet */
@@ -1930,39 +1934,245 @@ a.pass-modal-urgency--link:hover,
   }
 }
 
-/* Achievements & Awards Uncropped Image Display */
-.gallery-grid--achievements {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
+/* =========================================================================
+   HERO ELEMENTS UNDER VIDEO
+   ========================================================================= */
+.hero-seats-top {
+  margin-top: 1.15rem !important;
+  margin-bottom: 0.65rem !important;
+  text-align: center !important;
 }
 
-.gallery-img-wrapper {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #14100d;
-  border: 1px solid rgba(255, 90, 44, 0.25);
+.hero-seats-top .seats-highlight {
+  color: var(--orange, #fa742c) !important;
+  font-weight: 800 !important;
+  font-size: 1.12rem !important;
+  letter-spacing: 0.02em !important;
+}
+
+.hero-seats {
+  margin-top: 0.5rem !important;
+  margin-bottom: 1.1rem !important;
+  text-align: center !important;
+}
+
+.hero-seats .seats-link,
+.hero-seats-top .seats-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.4rem !important;
+  text-decoration: none !important;
+}
+
+.hero-seats .seats-highlight {
+  color: var(--orange, #fa742c) !important;
+  font-weight: 800 !important;
+  font-size: 1.12rem !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: 0 0 16px rgba(250, 116, 44, 0.4) !important;
+}
+
+.price-discount-badge {
+  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  margin-right: 0.45rem;
+  display: inline-block;
+}
+
+.hero-passes-row {
   display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin: 1.15rem auto 0;
+  max-width: 600px;
 }
 
-.gallery-img-wrapper:hover {
-  transform: translateY(-4px) scale(1.02);
-  border-color: rgba(250, 116, 44, 0.6);
-  box-shadow: 0 10px 30px rgba(234, 68, 44, 0.35);
+.hero-pass-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 8px;
+  background: #14100d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.hero-pass-chip:hover {
+  transform: translateY(-2px);
+  border-color: #fa742c;
+  box-shadow: 0 4px 16px rgba(250, 116, 44, 0.35);
+}
+.hero-pass-chip--gold {
+  border-color: rgba(250, 116, 44, 0.45);
+  background: rgba(250, 116, 44, 0.08);
+  color: #ffaa75;
+}
+.hero-pass-chip--vip {
+  border-color: rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.08);
+  color: #facc15;
+}
+.hero-pass-chip__tag {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: #fa742c;
+  color: #fff;
+  font-weight: 800;
+}
+.hero-pass-chip--vip .hero-pass-chip__tag {
+  background: #eab308;
+  color: #000;
 }
 
-.gallery-grid img,
+.lede--hero {
+  margin-top: 1rem !important;
+}
+
+/* =========================================================================
+   STATS NUMBERS CARD: SINGLE ROW ON MOBILE
+   ========================================================================= */
+.stat-num-desktop {
+  display: inline;
+}
+.stat-num-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .stat-num-desktop {
+    display: none !important;
+  }
+  .stat-num-mobile {
+    display: inline !important;
+    font-size: 0.95rem !important;
+    font-weight: 800 !important;
+    white-space: nowrap !important;
+  }
+  .stat-capsule-container {
+    padding: 0 0.5rem !important;
+    margin: 1.25rem auto 1.85rem !important;
+    width: 100% !important;
+  }
+  .stat-capsule {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.75rem 0.25rem !important;
+    gap: 0.2rem !important;
+    border-radius: 12px !important;
+  }
+  .stat-capsule__divider {
+    display: none !important;
+  }
+  .stat-capsule__item {
+    min-width: 0 !important;
+    padding: 0 2px !important;
+  }
+  .stat-capsule__num {
+    font-size: 0.95rem !important;
+    line-height: 1.15 !important;
+  }
+  .stat-capsule__label {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.01em !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+    margin-top: 2px !important;
+  }
+}
+
+/* =========================================================================
+   WISTIA HORIZONTAL FEATURED VIDEO (Under Real people, Real feedback)
+   ========================================================================= */
+.wistia-featured-video-wrap {
+  width: min(860px, 100%);
+  margin: 1.75rem auto 2.25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(250, 116, 44, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
+
+wistia-player[media-id='7lebzhc6xh'] {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+wistia-player[media-id='7lebzhc6xh']:not(:defined) {
+  background: center / contain no-repeat
+    url('https://fast.wistia.com/embed/medias/7lebzhc6xh/swatch');
+}
+
+/* =========================================================================
+   FREE-FORM IMAGES: NATURAL ACTUAL SIZE, NO CARDS, STACKED VERTICALLY IN MOBILE
+   ========================================================================= */
+.gallery-img-wrapper,
+.team-frame,
+.clip-card,
+.phone {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.gallery-img-wrapper img,
+.team-frame img,
+.clip-card img,
+.phone img,
+.gallery-freeform-img,
 .gallery-img--achievement {
   width: 100% !important;
-  height: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
   object-fit: contain !important;
-  background: #14100d !important;
-  border-radius: 8px;
+  border-radius: 8px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid,
+  .gallery-grid--achievements,
+  .gallery-grid.triple,
+  .gallery-grid.landscape,
+  .gallery-grid.square,
+  .gallery-grid.portrait,
+  .team-grid,
+  .grid-2.team-grid,
+  .clip-mosaic,
+  .phones {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
 }
 
 /* =========================================================================
@@ -1977,10 +2187,6 @@ a.pass-modal-urgency--link:hover,
 .topic-card,
 .track-card,
 .audience-card,
-.clip-card,
-.proof-frame,
-.team-frame,
-.person-card,
 .stat-capsule {
   border-radius: 12px !important;
 }
@@ -1990,7 +2196,6 @@ a.pass-modal-urgency--link:hover,
 .stat-card,
 .focus-panel,
 .table-card,
-.gallery-img-wrapper,
 .video-frame,
 .site-not-configured__card,
 .payment-modal {
@@ -1998,21 +2203,13 @@ a.pass-modal-urgency--link:hover,
 }
 
 .topic-card__icon-box,
-.proof-frame img,
-.gallery-grid img,
-.gallery-img--achievement {
-  border-radius: 8px !important;
-}
-
+.payment-qr-card,
 .faq-block,
-.icon-tile,
-.clip-card img,
-.payment-qr-card {
+.icon-tile {
   border-radius: 7px !important;
 }
 
-.instructor-card,
-.phone {
+.instructor-card {
   border-radius: 14px !important;
 }
 
@@ -2033,41 +2230,6 @@ a.pass-modal-urgency--link:hover,
   .stat-tile {
     border-radius: 8px !important;
   }
-}
-
-/* =========================================================================
-   HERO SEATS NOTICE DIRECTLY UNDER VIDEO
-   ========================================================================= */
-.hero-seats {
-  margin-top: 1.15rem !important;
-  margin-bottom: 0.5rem !important;
-  text-align: center !important;
-}
-
-.hero-seats .seats-link {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.4rem !important;
-  text-decoration: none !important;
-}
-
-.hero-seats .seats-highlight {
-  color: var(--orange, #fa742c) !important;
-  font-weight: 800 !important;
-  font-size: 1.12rem !important;
-  letter-spacing: 0.02em !important;
-  text-shadow: 0 0 16px rgba(250, 116, 44, 0.4) !important;
-  animation: pulse-glow 2.5s ease-in-out infinite !important;
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.92; transform: scale(1.02); }
-}
-
-.lede--hero {
-  margin-top: 0.85rem !important;
 }
 
 

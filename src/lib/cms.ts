@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v47',
-  PAGES: 'aischool_pages_v47',
-  NAV: 'aischool_nav_v47',
-  COURSES: 'aischool_courses_v47',
-  TESTIMONIALS: 'aischool_testimonials_v47',
-  FAQS: 'aischool_faqs_v47',
-  LEADS: 'aischool_leads_v47',
-  MEDIA: 'aischool_media_v47',
+  SETTINGS: 'aischool_settings_v48',
+  PAGES: 'aischool_pages_v48',
+  NAV: 'aischool_nav_v48',
+  COURSES: 'aischool_courses_v48',
+  TESTIMONIALS: 'aischool_testimonials_v48',
+  FAQS: 'aischool_faqs_v48',
+  LEADS: 'aischool_leads_v48',
+  MEDIA: 'aischool_media_v48',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v47') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v48') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -245,7 +245,17 @@ export function resolveFeaturedVideo(url?: string): string {
 }
 
 export function filterVisibleSections(sections: PageSection[]): PageSection[] {
-  const reversedIdx = [...sections]
+  // Ensure media_coverage is positioned directly after whatsapp_feedback as requested
+  const reordered = [...sections];
+  const waIdx = reordered.findIndex((s) => s.type === 'whatsapp_feedback');
+  const mediaIdx = reordered.findIndex((s) => s.type === 'media_coverage');
+  if (waIdx >= 0 && mediaIdx >= 0 && mediaIdx !== waIdx + 1) {
+    const [mediaSec] = reordered.splice(mediaIdx, 1);
+    const newWaIdx = reordered.findIndex((s) => s.type === 'whatsapp_feedback');
+    reordered.splice(newWaIdx + 1, 0, mediaSec);
+  }
+
+  const reversedIdx = [...reordered]
     .map((section, index) => ({ section, index }))
     .reverse()
     .find(({ section }) => {
@@ -255,7 +265,7 @@ export function filterVisibleSections(sections: PageSection[]): PageSection[] {
       return !!(h || hl);
     })?.index;
 
-  const filtered = sections.filter(
+  const filtered = reordered.filter(
     (sec, idx) =>
       !(
         sec.enabled === false ||
