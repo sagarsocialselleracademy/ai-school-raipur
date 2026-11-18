@@ -1085,12 +1085,12 @@ function HeroSectionBlock({
           <span>Silver Pass</span>
         </a>
         <a
-          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          href="https://rzp.io/rzp/b4ddaY2g"
           target="_blank"
           rel="noopener noreferrer"
           className="hero-pass-chip hero-pass-chip--gold"
           onClick={() =>
-            PixelTracker.initiateCheckout('Gold Pass Chip', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            PixelTracker.initiateCheckout('Gold Pass Chip', 'https://rzp.io/rzp/b4ddaY2g')
           }
         >
           <SectionIcon name="spark" size={14} />
@@ -1098,12 +1098,12 @@ function HeroSectionBlock({
           <span className="hero-pass-chip__tag">Popular</span>
         </a>
         <a
-          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+          href="https://rzp.io/rzp/zTWDhdP"
           target="_blank"
           rel="noopener noreferrer"
           className="hero-pass-chip hero-pass-chip--vip"
           onClick={() =>
-            PixelTracker.initiateCheckout('VIP Pass Chip', 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+            PixelTracker.initiateCheckout('VIP Pass Chip', 'https://rzp.io/rzp/zTWDhdP')
           }
         >
           <SectionIcon name="star" size={14} />
@@ -1606,12 +1606,12 @@ export function PassesBlock({
               <div className="pass-header ticket-header">
                 <h3 className="pass-name ticket-name">
                   <a
-                    href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                    href={pass.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="pass-name-link"
                     onClick={() =>
-                      PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view', { name: pass.name, price: pass.price })
+                      PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price })
                     }
                   >
                     {pass.name}
@@ -1629,12 +1629,12 @@ export function PassesBlock({
                   </div>
                   <div className="pass-discount-tag ticket-discount-tag">
                     <a
-                      href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                      href={pass.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pass-discount-tag--link"
                       onClick={() =>
-                        PixelTracker.initiateCheckout(pass.discountText, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+                        PixelTracker.initiateCheckout(pass.discountText, pass.url)
                       }
                     >
                       {pass.discountText}
@@ -1659,12 +1659,12 @@ export function PassesBlock({
                     <span className="pass-feature-text ticket-feature-text">
                       {feat.text.includes('Early Discounted Seats') ? (
                         <a
-                          href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                          href={pass.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="feature-highlight-link"
                           onClick={() =>
-                            PixelTracker.initiateCheckout(feat.text, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view')
+                            PixelTracker.initiateCheckout(feat.text, pass.url)
                           }
                         >
                           {feat.text}
@@ -1763,8 +1763,8 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
   if (!isOpen) return null;
 
   const handlePassSelect = (pass: WorkshopPass) => {
-    PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
-    window.open('https://pages.razorpay.com/pl_TssC8YodCsa06i/view', '_blank', 'noopener,noreferrer');
+    PixelTracker.initiateCheckout(pass.name, pass.url);
+    window.open(pass.url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -1820,13 +1820,13 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                 <div className="modal-pass-head">
                   <h3 className="modal-pass-name">
                     <a
-                      href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                      href={pass.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="pass-name-link"
                       onClick={(e) => {
                         e.stopPropagation();
-                        PixelTracker.initiateCheckout(pass.name, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view', { name: pass.name, price: pass.price });
+                        PixelTracker.initiateCheckout(pass.name, pass.url, { name: pass.name, price: pass.price });
                       }}
                     >
                       {pass.name}
@@ -1844,13 +1844,13 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                     </div>
                     <div className="modal-pass-discount-tag">
                       <a
-                        href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                        href={pass.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="pass-discount-tag--link"
                         onClick={(e) => {
                           e.stopPropagation();
-                          PixelTracker.initiateCheckout(pass.discountText, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+                          PixelTracker.initiateCheckout(pass.discountText, pass.url);
                         }}
                       >
                         {pass.discountText}
@@ -1875,13 +1875,13 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                       <span>
                         {feat.text.includes('Early Discounted Seats') ? (
                           <a
-                            href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
+                            href={pass.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="feature-highlight-link"
                             onClick={(e) => {
                               e.stopPropagation();
-                              PixelTracker.initiateCheckout(feat.text, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
+                              PixelTracker.initiateCheckout(feat.text, pass.url);
                             }}
                           >
                             {feat.text}

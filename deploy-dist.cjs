@@ -20,7 +20,7 @@ fs.writeFileSync(path.join(distDir, 'CNAME'), 'aischoolraipur.com');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Deploy: CTA below passes, 33% off in CTA button, direct Razorpay redirect, removed classroom table photo (v49)"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Deploy: individual pass links for Silver, Gold, VIP and VIP price Rs 3499 (v50)"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
@@ -31,7 +31,7 @@ execSync('git config user.email "socialselleracademy@gmail.com"', { cwd: distDir
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy: CTA below passes, 33% off in CTA button, direct Razorpay redirect, removed classroom table photo (v49)"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy: individual pass links for Silver, Gold, VIP and VIP price Rs 3499 (v50)"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');
