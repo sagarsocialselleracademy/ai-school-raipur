@@ -2228,6 +2228,11 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
   align-self: flex-start !important;
 }
 
+.phones {
+  align-items: start !important;
+  justify-items: center !important;
+}
+
 .team-grid {
   display: flex !important;
   justify-content: center !important;

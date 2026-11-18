@@ -2489,7 +2489,7 @@ function WhatsappFeedbackBlock({ data }: { data: Record<string, any> }) {
                 const el = e.currentTarget;
                 if (!el.dataset.triedFallback) {
                   el.dataset.triedFallback = '1';
-                  el.src = `/whatsapp-feedback/img${(idx % 6) + 1}.png`;
+                  el.src = `/whatsapp-feedback/img${(idx % 4) + 1}.webp`;
                 }
               }}
             />
