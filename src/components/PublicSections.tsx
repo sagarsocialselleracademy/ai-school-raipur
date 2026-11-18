@@ -999,6 +999,27 @@ function HeroSectionBlock({
           <span className="heading-line">{asStr(data.headingEnd, "AI Workshop")}</span>
         </h1>
       ) : null}
+      <div className="pill-row">
+        {(() => {
+          const arr = asArr(data.pills);
+          const datePill = arr.find((p) => asStr(p.label).includes('November') || (asStr(p.icon) === 'calendar' && !asStr(p.label).includes('Sunday'))) || { icon: 'calendar', label: '29th November' };
+          const dayPill = arr.find((p) => asStr(p.label).toLowerCase().includes('sunday')) || { icon: 'calendar', label: 'Sunday' };
+          const timePill = arr.find((p) => asStr(p.label).includes('AM') || asStr(p.icon) === 'clock') || { icon: 'clock', label: '10:00 AM - 3:00 PM' };
+          const locPill = arr.find((p) => asStr(p.label).includes('Vimtara') || asStr(p.icon) === 'pin') || { icon: 'pin', label: 'Vimtara Hall' };
+          const list = [
+            { icon: 'calendar', label: asStr(datePill.label, '29th November') },
+            { icon: 'calendar', label: asStr(dayPill.label, 'Sunday') },
+            { icon: 'clock', label: asStr(timePill.label, '10:00 AM - 3:00 PM') },
+            { icon: 'pin', label: asStr(locPill.label).replace(', Raipur', '').trim() || 'Vimtara Hall' },
+          ];
+          return list.map((pill) => (
+            <span key={pill.label} className="event-pill">
+              <SectionIcon name={pill.icon} size={16} />
+              {pill.label}
+            </span>
+          ));
+        })()}
+      </div>
       <div className="hero-video">
         <div className="video-frame">
           {videoObj ? (
@@ -1021,27 +1042,6 @@ function HeroSectionBlock({
           />
         </div>
       ) : null}
-      <div className="pill-row">
-        {(() => {
-          const arr = asArr(data.pills);
-          const datePill = arr.find((p) => asStr(p.label).includes('November') || (asStr(p.icon) === 'calendar' && !asStr(p.label).includes('Sunday'))) || { icon: 'calendar', label: '29th November' };
-          const dayPill = arr.find((p) => asStr(p.label).toLowerCase().includes('sunday')) || { icon: 'calendar', label: 'Sunday' };
-          const timePill = arr.find((p) => asStr(p.label).includes('AM') || asStr(p.icon) === 'clock') || { icon: 'clock', label: '10:00 AM - 3:00 PM' };
-          const locPill = arr.find((p) => asStr(p.label).includes('Vimtara') || asStr(p.icon) === 'pin') || { icon: 'pin', label: 'Vimtara Hall' };
-          const list = [
-            { icon: 'calendar', label: asStr(datePill.label, '29th November') },
-            { icon: 'calendar', label: asStr(dayPill.label, 'Sunday') },
-            { icon: 'clock', label: asStr(timePill.label, '10:00 AM - 3:00 PM') },
-            { icon: 'pin', label: asStr(locPill.label).replace(', Raipur', '').trim() || 'Vimtara Hall' },
-          ];
-          return list.map((pill) => (
-            <span key={pill.label} className="event-pill">
-              <SectionIcon name={pill.icon} size={16} />
-              {pill.label}
-            </span>
-          ));
-        })()}
-      </div>
       {asStr(data.description) ? (
         <p className="lede lede--hero">{asStr(data.description)}</p>
       ) : null}
