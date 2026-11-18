@@ -2355,23 +2355,42 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
       </div>
       {categories.map((cat) => {
         const title = asStr(cat.title);
-        const isAchievement = title.toUpperCase().includes('ACHIEVEMENT') || title.toUpperCase().includes('AWARD');
-        const layout = isAchievement
-          ? 'triple'
-          : asStr(cat.layout, 'landscape');
-        const ratio = isAchievement
-          ? '1 / 1'
-          : layout === 'portrait' ? '3 / 4' : layout === 'square' ? '4 / 3' : '16 / 10';
+        const images = asArr(cat.images);
+        const isSingle = images.length === 1;
+        const isAchievement =
+          (title.toUpperCase().includes('ACHIEVEMENT') || title.toUpperCase().includes('AWARD')) &&
+          !title.toUpperCase().includes('CHIEF MINISTER');
+
+        let layout = 'landscape';
+        if (isSingle) {
+          layout = 'single';
+        } else if (isAchievement || images.length === 3) {
+          layout = 'triple';
+        } else if (images.length === 2) {
+          layout = 'double';
+        } else {
+          layout = asStr(cat.layout, 'landscape');
+        }
+
         return (
-          <div key={title}>
+          <div key={title} className="gallery-category-wrap">
             <div className="rule-title">{title}</div>
-            <div className={`gallery-grid ${layout} ${isAchievement ? 'gallery-grid--achievements' : ''}`}>
-              {asArr(cat.images).map((img, idx) => (
-                <div key={`${title}-${idx}`} className="gallery-img-wrapper">
+            <div
+              className={`gallery-grid ${layout} ${isSingle ? 'gallery-grid--single' : ''} ${
+                isAchievement ? 'gallery-grid--achievements' : ''
+              }`}
+            >
+              {images.map((img, idx) => (
+                <div
+                  key={`${title}-${idx}`}
+                  className={`gallery-img-wrapper ${isSingle ? 'gallery-img-wrapper--single' : ''}`}
+                >
                   <img
                     src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                     alt={img.alt || title}
-                    className={`gallery-freeform-img ${isAchievement ? 'gallery-img--achievement' : ''}`}
+                    className={`gallery-freeform-img ${
+                      isSingle ? 'gallery-freeform-img--single' : ''
+                    } ${isAchievement ? 'gallery-img--achievement' : ''}`}
                     decoding="async"
                     onError={(e) => {
                       const el = e.currentTarget;

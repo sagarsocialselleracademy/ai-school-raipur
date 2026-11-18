@@ -2125,6 +2125,75 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
 /* =========================================================================
    FREE-FORM IMAGES: NATURAL ACTUAL SIZE, NO CARDS, STACKED VERTICALLY IN MOBILE
    ========================================================================= */
+/* Single image: in PC, image is BIG and center top aligned */
+.gallery-grid--single,
+.gallery-grid.single {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 960px !important;
+  margin: 0 auto !important;
+}
+
+.gallery-grid--single .gallery-img-wrapper,
+.gallery-img-wrapper--single {
+  width: 100% !important;
+  max-width: 960px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 0 auto !important;
+}
+
+.gallery-grid--single img,
+.gallery-freeform-img--single {
+  width: 100% !important;
+  max-width: 960px !important;
+  height: auto !important;
+  max-height: 640px !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45) !important;
+  align-self: flex-start !important;
+}
+
+/* Multi-image grids: center top align */
+.gallery-grid {
+  display: grid !important;
+  gap: 1.25rem !important;
+  justify-content: center !important;
+  justify-items: center !important;
+  align-items: start !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.gallery-grid.double {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  max-width: 880px !important;
+}
+
+.gallery-grid.triple,
+.gallery-grid--achievements {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  max-width: 1240px !important;
+}
+
+.gallery-grid.landscape,
+.gallery-grid.portrait {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  max-width: 1280px !important;
+}
+
+.gallery-grid.square {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  max-width: 920px !important;
+}
+
 .gallery-img-wrapper,
 .team-frame,
 .clip-card,
@@ -2135,10 +2204,11 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
   padding: 0 !important;
   border-radius: 0 !important;
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
 }
 
 .gallery-img-wrapper img,
@@ -2155,11 +2225,24 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
   border-radius: 8px !important;
   display: block !important;
   margin: 0 auto !important;
+  align-self: flex-start !important;
+}
+
+.team-grid {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  max-width: 880px !important;
+  margin: 0 auto !important;
 }
 
 @media (max-width: 768px) {
   .gallery-grid,
+  .gallery-grid--single,
   .gallery-grid--achievements,
+  .gallery-grid.single,
+  .gallery-grid.double,
   .gallery-grid.triple,
   .gallery-grid.landscape,
   .gallery-grid.square,
@@ -2172,6 +2255,8 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
     flex-direction: column !important;
     gap: 1.5rem !important;
     width: 100% !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
   }
 }
 
