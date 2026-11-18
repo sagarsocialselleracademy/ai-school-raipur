@@ -2346,7 +2346,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
   });
 
   return (
-    <section className="section container">
+    <section className="section container" id="gallery">
       <div className="center">
         <p className="eyebrow">{asStr(data.eyebrow)}</p>
         <h2 className="heading">
