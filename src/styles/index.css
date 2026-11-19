@@ -2032,13 +2032,13 @@ a.pass-modal-urgency--link:hover,
     white-space: nowrap !important;
   }
   .stat-capsule-container {
-    padding: 0 0.5rem !important;
+    padding: 0 0.25rem !important;
     margin: 1.5rem auto 2rem !important;
     width: 100% !important;
   }
   .stat-capsule {
     display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     width: 100% !important;
     max-width: 100% !important;
     background: transparent !important;
@@ -2046,33 +2046,40 @@ a.pass-modal-urgency--link:hover,
     box-shadow: none !important;
     border-radius: 0 !important;
     padding: 0.5rem 0 !important;
-    gap: 0.25rem !important;
+    gap: 0.15rem !important;
   }
   .stat-capsule__divider {
     display: none !important;
   }
   .stat-capsule__item {
     min-width: 0 !important;
-    padding: 0 2px !important;
+    padding: 0 1px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-align: center !important;
   }
   .stat-capsule__num {
-    font-size: clamp(1.05rem, 4.4vw, 1.45rem) !important;
+    font-size: clamp(0.88rem, 3.8vw, 1.15rem) !important;
     line-height: 1.15 !important;
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
     background: none !important;
     font-weight: 800 !important;
+    white-space: nowrap !important;
+    text-align: center !important;
   }
   .stat-capsule__label {
-    font-size: clamp(0.66rem, 2.5vw, 0.82rem) !important;
+    font-size: clamp(0.62rem, 2.3vw, 0.74rem) !important;
     letter-spacing: 0.01em !important;
     white-space: nowrap !important;
     line-height: 1.2 !important;
     color: #94a3b8 !important;
     text-transform: capitalize !important;
-    margin-top: 0.25rem !important;
+    margin-top: 0.2rem !important;
     font-weight: 500 !important;
+    text-align: center !important;
   }
 }
 
