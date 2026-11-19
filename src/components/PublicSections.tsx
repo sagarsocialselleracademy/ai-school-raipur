@@ -2361,36 +2361,97 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
           (title.toUpperCase().includes('ACHIEVEMENT') || title.toUpperCase().includes('AWARD')) &&
           !title.toUpperCase().includes('CHIEF MINISTER');
 
-        let layout = 'landscape';
         if (isSingle) {
-          layout = 'single';
-        } else if (isAchievement || images.length === 3) {
-          layout = 'triple';
-        } else if (images.length === 2) {
-          layout = 'double';
-        } else {
-          layout = asStr(cat.layout, 'landscape');
+          return (
+            <div key={title} className="gallery-category-wrap">
+              <div className="rule-title">{title}</div>
+              <div className="gallery-grid single gallery-grid--single">
+                <div className="gallery-img-wrapper gallery-img-wrapper--single">
+                  <img
+                    src={resolveAssetUrl(resolveGalleryImage(title, 0, images[0]?.url))}
+                    alt={images[0]?.alt || title}
+                    className="gallery-freeform-img gallery-freeform-img--single"
+                    decoding="async"
+                    onError={(e) => {
+                      const el = e.currentTarget;
+                      if (!el.dataset.triedFallback) {
+                        el.dataset.triedFallback = '1';
+                        el.src = resolveAssetUrl(resolveGalleryImage(title, 0, undefined));
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          );
         }
+
+        if (isAchievement) {
+          const trophies = images.slice(0, 3);
+          const stageAwards = images.slice(3);
+          return (
+            <div key={title} className="gallery-category-wrap">
+              <div className="rule-title">{title}</div>
+              {/* Row 1: 3 Trophies in a balanced row */}
+              <div className="gallery-grid gallery-grid--trophies">
+                {trophies.map((img, idx) => (
+                  <div key={`${title}-trophy-${idx}`} className="gallery-img-wrapper">
+                    <img
+                      src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
+                      alt={img.alt || title}
+                      className="gallery-freeform-img gallery-img--trophy"
+                      decoding="async"
+                      onError={(e) => {
+                        const el = e.currentTarget;
+                        if (!el.dataset.triedFallback) {
+                          el.dataset.triedFallback = '1';
+                          el.src = resolveAssetUrl(resolveGalleryImage(title, idx, undefined));
+                        }
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+              {/* Row 2: Horizontal awards (max 2 per row with matching width and height) */}
+              {stageAwards.length > 0 && (
+                <div className="gallery-grid gallery-grid--horizontal landscape" style={{ marginTop: '1.5rem' }}>
+                  {stageAwards.map((img, idx) => (
+                    <div key={`${title}-stage-${idx}`} className="gallery-img-wrapper">
+                      <img
+                        src={resolveAssetUrl(resolveGalleryImage(title, idx + 3, img.url))}
+                        alt={img.alt || title}
+                        className="gallery-freeform-img gallery-img--horizontal"
+                        decoding="async"
+                        onError={(e) => {
+                          const el = e.currentTarget;
+                          if (!el.dataset.triedFallback) {
+                            el.dataset.triedFallback = '1';
+                            el.src = resolveAssetUrl(resolveGalleryImage(title, idx + 3, undefined));
+                          }
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        }
+
+        const isPortrait = asStr(cat.layout) === 'portrait';
+        const layoutClass = isPortrait ? 'portrait' : 'landscape gallery-grid--horizontal';
+        const imgClass = isPortrait ? 'gallery-img--portrait' : 'gallery-img--horizontal';
 
         return (
           <div key={title} className="gallery-category-wrap">
             <div className="rule-title">{title}</div>
-            <div
-              className={`gallery-grid ${layout} ${isSingle ? 'gallery-grid--single' : ''} ${
-                isAchievement ? 'gallery-grid--achievements' : ''
-              }`}
-            >
+            <div className={`gallery-grid ${layoutClass}`}>
               {images.map((img, idx) => (
-                <div
-                  key={`${title}-${idx}`}
-                  className={`gallery-img-wrapper ${isSingle ? 'gallery-img-wrapper--single' : ''}`}
-                >
+                <div key={`${title}-${idx}`} className="gallery-img-wrapper">
                   <img
                     src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                     alt={img.alt || title}
-                    className={`gallery-freeform-img ${
-                      isSingle ? 'gallery-freeform-img--single' : ''
-                    } ${isAchievement ? 'gallery-img--achievement' : ''}`}
+                    className={`gallery-freeform-img ${imgClass}`}
                     decoding="async"
                     onError={(e) => {
                       const el = e.currentTarget;

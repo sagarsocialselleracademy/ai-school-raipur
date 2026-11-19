@@ -851,10 +851,6 @@ export const INITIAL_PAGES: LandingPage[] = [
                   url: '/moments-with-lakshit/sharing-stage/img1.webp',
                   alt: 'Grand Felicitation on stage',
                 },
-                {
-                  url: '/moments-with-lakshit/sharing-stage/img4.webp',
-                  alt: 'Stage recognition with attendees',
-                },
               ],
             },
             {
@@ -938,6 +934,10 @@ export const INITIAL_PAGES: LandingPage[] = [
                 {
                   url: '/moments-with-lakshit/offline-meetups-and-training/img3.webp',
                   alt: 'Prompt workshop screen',
+                },
+                {
+                  url: '/moments-with-lakshit/offline-meetups-and-training/img4.webp',
+                  alt: 'Community session',
                 },
               ],
             },
