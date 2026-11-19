@@ -2016,31 +2016,21 @@ a.pass-modal-urgency--link:hover,
 /* =========================================================================
    STATS NUMBERS CARD: SINGLE ROW ON MOBILE
    ========================================================================= */
-.stat-num-desktop {
-  display: inline;
-}
-.stat-num-mobile {
-  display: none;
-}
-
 @media (max-width: 768px) {
-  .stat-num-desktop {
-    display: none !important;
-  }
-  .stat-num-mobile {
-    display: inline !important;
-    white-space: nowrap !important;
-  }
   .container.stat-capsule-container,
   .stat-capsule-container {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 6px !important;
+    padding: 0 4px !important;
     margin: 1.5rem auto !important;
+    overflow-x: hidden !important;
   }
   .stat-capsule {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     width: 100% !important;
     max-width: 100% !important;
     background: transparent !important;
@@ -2054,8 +2044,11 @@ a.pass-modal-urgency--link:hover,
     display: none !important;
   }
   .stat-capsule__item {
+    flex: 1 1 25% !important;
+    width: 25% !important;
+    max-width: 25% !important;
     min-width: 0 !important;
-    padding: 0 2px !important;
+    padding: 0 1px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -2063,7 +2056,7 @@ a.pass-modal-urgency--link:hover,
     text-align: center !important;
   }
   .stat-capsule__num {
-    font-size: clamp(0.85rem, 3.6vw, 1.15rem) !important;
+    font-size: clamp(0.78rem, 3.4vw, 1.05rem) !important;
     line-height: 1.15 !important;
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
@@ -2073,7 +2066,7 @@ a.pass-modal-urgency--link:hover,
     text-align: center !important;
   }
   .stat-capsule__label {
-    font-size: clamp(0.6rem, 2.2vw, 0.72rem) !important;
+    font-size: clamp(0.55rem, 2.1vw, 0.68rem) !important;
     letter-spacing: 0.01em !important;
     white-space: nowrap !important;
     line-height: 1.2 !important;

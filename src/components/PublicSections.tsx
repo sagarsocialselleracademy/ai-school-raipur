@@ -1203,22 +1203,12 @@ function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
           <React.Fragment key={`${it.label}-${idx}`}>
             <div className="stat-capsule__item">
               <span className="stat-capsule__num">
-                <span className="stat-num-desktop">
-                  <StatCounter
-                    target={it.target}
-                    prefix={it.prefix}
-                    suffix={it.suffix}
-                    inView={inView}
-                  />
-                </span>
-                <span className="stat-num-mobile">
-                  <StatCounter
-                    target={it.target}
-                    prefix={it.prefix}
-                    suffix={it.suffix}
-                    inView={inView}
-                  />
-                </span>
+                <StatCounter
+                  target={it.target}
+                  prefix={it.prefix}
+                  suffix={it.suffix}
+                  inView={inView}
+                />
               </span>
               <span className="stat-capsule__label">{it.label}</span>
             </div>
