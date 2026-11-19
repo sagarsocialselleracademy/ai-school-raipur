@@ -2335,6 +2335,22 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
   box-shadow: none !important;
 }
 
+/* Remove excessive gap below OFFLINE MEETUPS before MEET OUR TEAM */
+#gallery,
+section#gallery {
+  padding-bottom: 0 !important;
+}
+
+.team-section,
+section.team-section {
+  padding-top: 0 !important;
+}
+
+.team-section .rule-title {
+  margin-top: 2.2rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
 @media (max-width: 768px) {
   .gallery-grid,
   .gallery-grid--single,

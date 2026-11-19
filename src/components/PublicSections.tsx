@@ -2346,7 +2346,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
   });
 
   return (
-    <section className="section container" id="gallery">
+    <section className="section container" id="gallery" style={{ paddingBottom: 0 }}>
       <div className="center">
         <p className="eyebrow">{asStr(data.eyebrow)}</p>
         <h2 className="heading">
@@ -2473,8 +2473,8 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
 
 function TeamBlock({ data }: { data: Record<string, any> }) {
   return (
-    <section className="section container">
-      <div className="rule-title">{asStr(data.heading)}</div>
+    <section className="section container team-section" style={{ paddingTop: 0 }}>
+      <div className="rule-title" style={{ marginTop: '2.2rem' }}>{asStr(data.heading)}</div>
       <div className="grid-2 team-grid">
         {asArr(data.images).map((img, idx) => (
           <div key={`${img.alt}-${idx}`} className="team-frame">

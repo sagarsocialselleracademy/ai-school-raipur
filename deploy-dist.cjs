@@ -20,7 +20,7 @@ fs.writeFileSync(path.join(distDir, 'CNAME'), 'aischoolraipur.com');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Deploy: max 2 images per row for horizontal gallery photos with matching width and height (v54)"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Deploy: reduce excessive gap below offline meetups before meet our team (v55)"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
