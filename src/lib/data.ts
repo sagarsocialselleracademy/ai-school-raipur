@@ -536,10 +536,10 @@ export const INITIAL_PAGES: LandingPage[] = [
         sortOrder: 1,
         data: {
           items: [
-            { number: 1000000, suffix: '+', label: 'Followers' },
+            { number: 10, suffix: ' Lakh+', label: 'Followers' },
             { number: 25000, suffix: '+', label: 'Students' },
-            { number: 10, suffix: '+ Years', label: 'Experience' },
-            { number: 45, suffix: '+', label: 'Workshops Taken' },
+            { number: 500, suffix: '+', label: 'Trainings' },
+            { number: 10, suffix: '+', label: 'Experience' },
           ],
         },
       },

@@ -321,92 +321,58 @@
   }
 }
 
-/* Statistics Capsule Bar (Stacked: Number Above, Label Below) */
+/* Statistics Numbers Section (White Numbers, Muted Gray Labels, Seamless Open Row) */
 .stat-capsule-container {
-  display: flex;
-  justify-content: center;
-  margin: 1.75rem auto 2.5rem;
-  padding: 0 1rem;
+  display: flex !important;
+  justify-content: center !important;
+  margin: 2.25rem auto 2.75rem !important;
+  padding: 0 1rem !important;
+  width: 100% !important;
 }
 .stat-capsule {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.85rem;
-  flex-wrap: nowrap;
-  background: #0d0907;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  padding: 1rem 2.6rem;
-  box-shadow: 0 -4px 24px rgba(250, 116, 44, 0.24), 0 8px 32px rgba(0, 0, 0, 0.65);
-  max-width: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  width: 100% !important;
+  max-width: 960px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0.5rem 0 !important;
+  gap: 1.5rem !important;
 }
 .stat-capsule__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  text-align: center;
-  min-width: 120px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+  text-align: center !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
 }
 .stat-capsule__num {
-  font-family: Sora, Inter, sans-serif;
-  font-size: clamp(1.4rem, 2.3vw, 1.95rem);
-  font-weight: 800;
-  line-height: 1.1;
-  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.02em;
+  font-family: Sora, Inter, sans-serif !important;
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  letter-spacing: -0.02em !important;
 }
 .stat-capsule__label {
-  font-size: clamp(0.76rem, 1.1vw, 0.86rem);
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  font-size: clamp(0.85rem, 1.25vw, 1.05rem) !important;
+  font-weight: 500 !important;
+  color: #94a3b8 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: capitalize !important;
+  white-space: nowrap !important;
+  margin-top: 0.35rem !important;
 }
 .stat-capsule__divider {
-  width: 1px;
-  height: 38px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-@media (max-width: 860px) {
-  .stat-capsule {
-    gap: 1.1rem;
-    padding: 0.85rem 1.6rem;
-  }
-  .stat-capsule__item {
-    min-width: 100px;
-  }
-}
-@media (max-width: 680px) {
-  .stat-capsule {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-radius: 20px;
-    padding: 1.15rem 0.75rem;
-    gap: 1.1rem 0.5rem;
-    width: 100%;
-    max-width: 380px;
-  }
-  .stat-capsule__divider {
-    display: none;
-  }
-  .stat-capsule__item {
-    min-width: 0;
-  }
-  .stat-capsule__num {
-    font-size: 1.55rem;
-  }
-  .stat-capsule__label {
-    font-size: 0.72rem;
-    white-space: normal;
-    line-height: 1.25;
-  }
+  display: none !important;
 }
 
 @media (max-width: 640px) {
@@ -2063,13 +2029,11 @@ a.pass-modal-urgency--link:hover,
   }
   .stat-num-mobile {
     display: inline !important;
-    font-size: 0.95rem !important;
-    font-weight: 800 !important;
     white-space: nowrap !important;
   }
   .stat-capsule-container {
     padding: 0 0.5rem !important;
-    margin: 1.25rem auto 1.85rem !important;
+    margin: 1.5rem auto 2rem !important;
     width: 100% !important;
   }
   .stat-capsule {
@@ -2077,9 +2041,12 @@ a.pass-modal-urgency--link:hover,
     grid-template-columns: repeat(4, 1fr) !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0.75rem 0.25rem !important;
-    gap: 0.2rem !important;
-    border-radius: 12px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0.5rem 0 !important;
+    gap: 0.25rem !important;
   }
   .stat-capsule__divider {
     display: none !important;
@@ -2087,17 +2054,25 @@ a.pass-modal-urgency--link:hover,
   .stat-capsule__item {
     min-width: 0 !important;
     padding: 0 2px !important;
+    text-align: center !important;
   }
   .stat-capsule__num {
-    font-size: 0.95rem !important;
+    font-size: clamp(1.05rem, 4.4vw, 1.45rem) !important;
     line-height: 1.15 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: none !important;
+    font-weight: 800 !important;
   }
   .stat-capsule__label {
-    font-size: 0.62rem !important;
+    font-size: clamp(0.66rem, 2.5vw, 0.82rem) !important;
     letter-spacing: 0.01em !important;
     white-space: nowrap !important;
     line-height: 1.2 !important;
-    margin-top: 2px !important;
+    color: #94a3b8 !important;
+    text-transform: capitalize !important;
+    margin-top: 0.25rem !important;
+    font-weight: 500 !important;
   }
 }
 
@@ -2390,8 +2365,7 @@ section.team-section {
 .modal-pass-card,
 .topic-card,
 .track-card,
-.audience-card,
-.stat-capsule {
+.audience-card {
   border-radius: 12px !important;
 }
 

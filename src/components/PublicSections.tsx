@@ -1167,10 +1167,10 @@ function StatCounter({
 }
 
 const CANONICAL_STATS = [
-  { target: 1000000, prefix: '', suffix: '+', label: 'Followers', mobileNum: '10 Lakhs+' },
-  { target: 25000, prefix: '', suffix: '+', label: 'Students', mobileNum: '25,000+' },
-  { target: 10, prefix: '', suffix: '+ Years', label: 'Experience', mobileNum: '10+ Years' },
-  { target: 45, prefix: '', suffix: '+', label: 'Workshops Taken', mobileNum: '45+' },
+  { target: 10, prefix: '', suffix: ' Lakh+', label: 'Followers', text: '10 Lakh+' },
+  { target: 25000, prefix: '', suffix: '+', label: 'Students', text: '25,000+' },
+  { target: 500, prefix: '', suffix: '+', label: 'Trainings', text: '500+' },
+  { target: 10, prefix: '', suffix: '+', label: 'Experience', text: '10+' },
 ];
 
 function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
@@ -1211,7 +1211,14 @@ function IconFeaturesBlock({ data }: { data?: Record<string, any> }) {
                     inView={inView}
                   />
                 </span>
-                <span className="stat-num-mobile">{it.mobileNum}</span>
+                <span className="stat-num-mobile">
+                  <StatCounter
+                    target={it.target}
+                    prefix={it.prefix}
+                    suffix={it.suffix}
+                    inView={inView}
+                  />
+                </span>
               </span>
               <span className="stat-capsule__label">{it.label}</span>
             </div>
