@@ -1255,6 +1255,12 @@ const DEFAULT_HOST_SLIDES = [
     caption: 'With Ankur Warikoo (BBM 2025)',
     position: 'center 15%',
   },
+  {
+    url: '/media/lakshit-with-vaibhav-sisinty.webp',
+    alt: 'Lakshit Sethiya with Vaibhav Sisinty (GrowthSchool)',
+    caption: 'With Vaibhav Sisinty (GrowthSchool)',
+    position: 'center 15%',
+  },
 ];
 
 function InstructorBlock({ data }: { data: Record<string, any> }) {

@@ -573,6 +573,12 @@ export const INITIAL_PAGES: LandingPage[] = [
               caption: 'With Ankur Warikoo (BBM 2025)',
               position: 'center 15%',
             },
+            {
+              url: '/media/lakshit-with-vaibhav-sisinty.webp',
+              alt: 'Lakshit Sethiya with Vaibhav Sisinty (GrowthSchool)',
+              caption: 'With Vaibhav Sisinty (GrowthSchool)',
+              position: 'center 15%',
+            },
           ],
           speakingLabel: 'Speaker at',
           logos: [
@@ -894,6 +900,10 @@ export const INITIAL_PAGES: LandingPage[] = [
                 {
                   url: '/moments-with-lakshit/achievements-and-awards/img5.webp',
                   alt: 'Creator Commune stage meetup',
+                },
+                {
+                  url: '/moments-with-lakshit/sharing-stage/img7.webp',
+                  alt: 'Lakshit Sethiya with Vaibhav Sisinty (GrowthSchool)',
                 },
               ],
             },

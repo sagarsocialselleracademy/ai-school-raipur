@@ -2184,11 +2184,18 @@ wistia-player[media-id='7lebzhc6xh']:not(:defined) {
 }
 
 .gallery-grid.portrait {
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  max-width: 1040px !important;
-  gap: 1.25rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
   justify-content: center !important;
+  max-width: 1140px !important;
+  gap: 1.25rem !important;
   margin: 0 auto !important;
+}
+
+.gallery-grid.portrait .gallery-img-wrapper {
+  flex: 0 1 calc(20% - 1rem) !important;
+  min-width: 180px !important;
+  max-width: 215px !important;
 }
 
 .gallery-img-wrapper,
@@ -2353,6 +2360,11 @@ section.team-section {
     width: 100% !important;
     align-items: center !important;
     justify-content: flex-start !important;
+  }
+  .gallery-grid.portrait .gallery-img-wrapper {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
