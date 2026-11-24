@@ -999,9 +999,13 @@ function HeroSectionBlock({
     <section className="hero container center" id="workshop">
       <div className="hero-brand-header">
         <img
-          src="/ai-school-logo.png?v=2"
+          src="/ai-school-logo.webp?v=3"
           alt="AI School Raipur"
           className="hero-logo-img"
+          width="320"
+          height="106"
+          fetchPriority="high"
+          decoding="async"
         />
       </div>
       {asStr(data.eyebrow) ? (
@@ -1062,7 +1066,7 @@ function HeroSectionBlock({
               autoPlay
               muted={false}
               controls
-              preload="auto"
+              preload="metadata"
             />
           ) : null}
         </div>
@@ -1447,6 +1451,25 @@ function VideoGalleryBlock({
   registerLabel?: string;
 }) {
   const [activeClip, setActiveClip] = useState<string | null>(null);
+
+  // Lazy-load Wistia scripts only when the video section is mounted
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!document.querySelector('script[src*="fast.wistia.com/player.js"]')) {
+      const s1 = document.createElement('script');
+      s1.src = 'https://fast.wistia.com/player.js';
+      s1.async = true;
+      document.head.appendChild(s1);
+    }
+    if (!document.querySelector('script[src*="fast.wistia.com/embed/7lebzhc6xh.js"]')) {
+      const s2 = document.createElement('script');
+      s2.src = 'https://fast.wistia.com/embed/7lebzhc6xh.js';
+      s2.async = true;
+      s2.type = 'module';
+      document.head.appendChild(s2);
+    }
+  }, []);
+
   const rawItems = asArr(data.items);
   const count = rawItems.length > 0 ? Math.max(rawItems.length, DEFAULTS.ATTENDEE_THUMBS.length) : 0;
   if (count === 0) return null;
@@ -1481,6 +1504,7 @@ function VideoGalleryBlock({
               <img
                 src={resolveAssetUrl(thumb)}
                 alt={name}
+                loading="lazy"
                 decoding="async"
                 onError={(e) => {
                   const el = e.currentTarget;
@@ -2020,7 +2044,7 @@ function ProofImpactBlock({ data }: { data: Record<string, any> }) {
       <div className="proof-grid">
         {asArr(data.images).map((img, i) => {
           const rawUrl = asStr(img.url);
-          const fallbackUrl = '/media/proof-youtube.png';
+          const fallbackUrl = '/media/proof-youtube.webp';
           const srcUrl = rawUrl ? resolveAssetUrl(rawUrl) : fallbackUrl;
           return (
             <div key={`${srcUrl}-${i}`} className="proof-frame">
@@ -2398,6 +2422,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                     src={resolveAssetUrl(resolveGalleryImage(title, 0, images[0]?.url))}
                     alt={images[0]?.alt || title}
                     className="gallery-freeform-img gallery-freeform-img--single"
+                    loading="lazy"
                     decoding="async"
                     onError={(e) => {
                       const el = e.currentTarget;
@@ -2427,6 +2452,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                       src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                       alt={img.alt || title}
                       className="gallery-freeform-img gallery-img--trophy"
+                      loading="lazy"
                       decoding="async"
                       onError={(e) => {
                         const el = e.currentTarget;
@@ -2448,6 +2474,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                         src={resolveAssetUrl(resolveGalleryImage(title, idx + 3, img.url))}
                         alt={img.alt || title}
                         className="gallery-freeform-img gallery-img--horizontal"
+                        loading="lazy"
                         decoding="async"
                         onError={(e) => {
                           const el = e.currentTarget;
@@ -2479,6 +2506,7 @@ function PhotoGalleryBlock({ data }: { data: Record<string, any> }) {
                     src={resolveAssetUrl(resolveGalleryImage(title, idx, img.url))}
                     alt={img.alt || title}
                     className={`gallery-freeform-img ${imgClass}`}
+                    loading="lazy"
                     decoding="async"
                     onError={(e) => {
                       const el = e.currentTarget;
@@ -2508,6 +2536,7 @@ function TeamBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveTeamImage(idx, img.url))}
               alt={img.alt || 'Team'}
+              loading="lazy"
               decoding="async"
             />
           </div>
@@ -2535,12 +2564,13 @@ function MediaCoverageBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveMediaClipping(idx, clip.url))}
               alt={clip.alt || `Newspaper coverage ${idx + 1}`}
+              loading="lazy"
               decoding="async"
               onError={(e) => {
                 const el = e.currentTarget;
                 if (!el.dataset.triedFallback) {
                   el.dataset.triedFallback = '1';
-                  el.src = `/media-coverage/img${(idx % 3) + 1}.png`;
+                  el.src = `/media-coverage/img${(idx % 3) + 1}.webp`;
                 }
               }}
             />
@@ -2572,6 +2602,7 @@ function WhatsappFeedbackBlock({ data }: { data: Record<string, any> }) {
             <img
               src={resolveAssetUrl(resolveWhatsappScreenshot(idx, msg.screenshot))}
               alt={msg.name || `WhatsApp feedback ${idx + 1}`}
+              loading="lazy"
               decoding="async"
               onError={(e) => {
                 const el = e.currentTarget;

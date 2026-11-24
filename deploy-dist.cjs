@@ -20,7 +20,7 @@ fs.writeFileSync(path.join(distDir, 'CNAME'), 'aischoolraipur.com');
 console.log('2. Pushing source code to main branch...');
 try {
   execSync('git add -A', { cwd: projectDir, env, stdio: 'inherit' });
-  execSync('git commit -m "Deploy: change topbar into countdown timer for 29th November event (v59)"', { cwd: projectDir, env, stdio: 'inherit' });
+  execSync('git commit -m "Deploy: major page speed optimizations, lazy loading, WebP images and code splitting (v60)"', { cwd: projectDir, env, stdio: 'inherit' });
 } catch {}
 execSync('git push origin main', { cwd: projectDir, env, stdio: 'inherit' });
 
@@ -31,7 +31,7 @@ execSync('git config user.email "socialselleracademy@gmail.com"', { cwd: distDir
 try { execSync('git remote remove origin', { cwd: distDir, env, stdio: 'ignore' }); } catch {}
 execSync('git remote add origin https://github.com/sagarsocialselleracademy/ai-school-raipur.git', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git add -A', { cwd: distDir, env, stdio: 'inherit' });
-execSync('git commit -m "Deploy: change topbar into countdown timer for 29th November event (v59)"', { cwd: distDir, env, stdio: 'inherit' });
+execSync('git commit -m "Deploy: major page speed optimizations, lazy loading, WebP images and code splitting (v60)"', { cwd: distDir, env, stdio: 'inherit' });
 execSync('git push -f origin hostinger-deploy', { cwd: distDir, env, stdio: 'inherit' });
 
 console.log('4. Configuring GitHub Pages on hostinger-deploy branch...');

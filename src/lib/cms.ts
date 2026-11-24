@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v59',
-  PAGES: 'aischool_pages_v59',
-  NAV: 'aischool_nav_v59',
-  COURSES: 'aischool_courses_v59',
-  TESTIMONIALS: 'aischool_testimonials_v59',
-  FAQS: 'aischool_faqs_v59',
-  LEADS: 'aischool_leads_v59',
-  MEDIA: 'aischool_media_v59',
+  SETTINGS: 'aischool_settings_v60',
+  PAGES: 'aischool_pages_v60',
+  NAV: 'aischool_nav_v60',
+  COURSES: 'aischool_courses_v60',
+  TESTIMONIALS: 'aischool_testimonials_v60',
+  FAQS: 'aischool_faqs_v60',
+  LEADS: 'aischool_leads_v60',
+  MEDIA: 'aischool_media_v60',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v59') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v60') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -173,7 +173,7 @@ export function resolveSpeakerLogo(label: string, image?: string): string {
 
 export function resolveTrackImage(title: string, image?: string): string {
   if (image && !isInvalidOrDeadMedia(image)) return normalizeMediaUrl(image);
-  return DEFAULTS.TRACKS[title] || '/topic-business.jpg';
+  return DEFAULTS.TRACKS[title] || '/topic-business.webp';
 }
 
 export function resolveTrackIcon(title: string, icon?: string): string {
@@ -189,7 +189,7 @@ export function resolveWhatsappScreenshot(index: number, url?: string): string {
 export function resolveMediaClipping(index: number, url?: string): string {
   const norm = normalizeMediaUrl(url);
   if (norm && !isInvalidOrDeadMedia(norm)) return norm;
-  return `/media-coverage/img${(index % 3) + 1}.png`;
+  return `/media-coverage/img${(index % 3) + 1}.webp`;
 }
 
 function getCategoryFolder(title: string): string | null {

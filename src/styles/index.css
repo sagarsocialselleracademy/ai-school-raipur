@@ -2456,6 +2456,12 @@ section.team-section {
   }
 }
 
+/* Page Speed Optimization: Skip layout calculation for offscreen sections until scrolled */
+.section:not(.hero) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
 
 
 
