@@ -741,7 +741,8 @@ export function PublicShell({
 }
 
 function extractYoutubeId(url: string): string | null {
-  const m = url.match(/(?:youtu\.be\/|v=|embed\/)([A-Za-z0-9_-]{6,})/);
+  if (!url || (!url.includes('youtu.be') && !url.includes('youtube.com'))) return null;
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([A-Za-z0-9_-]{11})/i);
   return m ? m[1] : null;
 }
 
@@ -868,6 +869,18 @@ export function VideoPlayer({
     el.play().catch(() => {});
   };
 
+  if (wistiaId) {
+    return (
+      <div
+        className="wistia-player-container"
+        dangerouslySetInnerHTML={{
+          __html: `<wistia-player media-id="${wistiaId}" aspect="1.7777777777777777"></wistia-player>`,
+        }}
+        style={{ width: '100%', height: '100%' }}
+      />
+    );
+  }
+
   if (ytId) {
     const params = new URLSearchParams({ rel: '0', controls: '1' });
     if (autoPlay) {
@@ -897,18 +910,6 @@ export function VideoPlayer({
         src={`https://player.vimeo.com/video/${vimeoId}${qs ? `?${qs}` : ''}`}
         allow="autoplay; fullscreen"
         allowFullScreen
-      />
-    );
-  }
-
-  if (wistiaId) {
-    return (
-      <div
-        className="wistia-player-container"
-        dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${wistiaId}" aspect="1.7777777777777777"></wistia-player>`,
-        }}
-        style={{ width: '100%', height: '100%' }}
       />
     );
   }
