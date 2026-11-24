@@ -2462,6 +2462,14 @@ section.team-section {
   contain-intrinsic-size: 1px 700px;
 }
 
+/* Wistia Video Embed in Video Frame */
+.video-frame wistia-player,
+.video-frame .wistia-player-container {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
 
 
 

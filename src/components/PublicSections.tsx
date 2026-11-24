@@ -750,6 +750,15 @@ function extractVimeoId(url: string): string | null {
   return m ? m[1] : null;
 }
 
+function extractWistiaId(url: string): string | null {
+  if (!url) return null;
+  const trimmed = url.trim();
+  const m = trimmed.match(/(?:wistia\.(?:com|net)\/(?:medias|embed\/iframe)\/|wistia:)([A-Za-z0-9_-]+)/i);
+  if (m) return m[1];
+  if (/^[a-z0-9]{10}$/i.test(trimmed)) return trimmed;
+  return null;
+}
+
 export function VideoPlayer({
   video,
   title,
@@ -775,6 +784,25 @@ export function VideoPlayer({
   const preloadMode = preload ?? (autoPlay ? 'auto' : 'metadata');
   const ytId = extractYoutubeId(url);
   const vimeoId = extractVimeoId(url);
+  const wistiaId = extractWistiaId(url) || (video?.source === 'wistia' ? extractWistiaId(url) || '2rlct1fyzb' : null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !wistiaId) return;
+    if (!document.querySelector('script[src*="fast.wistia.com/player.js"]')) {
+      const s1 = document.createElement('script');
+      s1.src = 'https://fast.wistia.com/player.js';
+      s1.async = true;
+      document.head.appendChild(s1);
+    }
+    const embedSrc = `https://fast.wistia.com/embed/${wistiaId}.js`;
+    if (!document.querySelector(`script[src*="${wistiaId}"]`)) {
+      const s2 = document.createElement('script');
+      s2.src = embedSrc;
+      s2.async = true;
+      s2.type = 'module';
+      document.head.appendChild(s2);
+    }
+  }, [wistiaId]);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -869,6 +897,18 @@ export function VideoPlayer({
         src={`https://player.vimeo.com/video/${vimeoId}${qs ? `?${qs}` : ''}`}
         allow="autoplay; fullscreen"
         allowFullScreen
+      />
+    );
+  }
+
+  if (wistiaId) {
+    return (
+      <div
+        className="wistia-player-container"
+        dangerouslySetInnerHTML={{
+          __html: `<wistia-player media-id="${wistiaId}" aspect="1.7777777777777777"></wistia-player>`,
+        }}
+        style={{ width: '100%', height: '100%' }}
       />
     );
   }
@@ -976,23 +1016,25 @@ function HeroSectionBlock({
 }) {
   const vid = asObj(data.video);
   const rawUrl = asStr(vid.url);
-  const videoObj = rawUrl
-    ? rawUrl.includes('dQw4w9WgXcQ') ||
-      rawUrl.includes('unsplash') ||
-      rawUrl.includes('res.cloudinary.com/dldynfkhm')
-      ? {
-          source: 'file',
-          url: DEFAULTS.HERO_VIDEO,
-          poster: DEFAULTS.HERO_POSTER,
-        }
-      : {
-          ...vid,
-          poster: fallbackIfDead(asStr(vid.poster), DEFAULTS.HERO_POSTER),
-        }
-    : {
-        source: 'file',
+  const isOldDefault =
+    !rawUrl ||
+    rawUrl.includes('hero-fast.mp4') ||
+    rawUrl.includes('hero-intro.mp4') ||
+    rawUrl.includes('hero-optimized.mp4') ||
+    rawUrl.includes('hero.mp4') ||
+    rawUrl.includes('dQw4w9WgXcQ') ||
+    rawUrl.includes('unsplash') ||
+    rawUrl.includes('res.cloudinary.com/dldynfkhm');
+
+  const videoObj = isOldDefault
+    ? {
+        source: 'wistia',
         url: DEFAULTS.HERO_VIDEO,
         poster: DEFAULTS.HERO_POSTER,
+      }
+    : {
+        ...vid,
+        poster: fallbackIfDead(asStr(vid.poster), DEFAULTS.HERO_POSTER),
       };
 
   return (

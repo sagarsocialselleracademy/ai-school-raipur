@@ -36,7 +36,19 @@
 
     <!-- Preload Critical Hero Assets for Instant First Paint -->
     <link rel="preload" as="image" href="/ai-school-logo.webp?v=3" type="image/webp" />
-    <link rel="preload" as="image" href="/media/hero-poster.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="https://fast.wistia.com/embed/medias/2rlct1fyzb/swatch" fetchpriority="high" />
+
+    <!-- Wistia Hero Video Embed Scripts & Placeholder Styles -->
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script src="https://fast.wistia.com/embed/2rlct1fyzb.js" async type="module"></script>
+    <style>
+      wistia-player[media-id='2rlct1fyzb']:not(:defined) {
+        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/2rlct1fyzb/swatch');
+        display: block;
+        filter: blur(5px);
+        padding-top: 56.25%;
+      }
+    </style>
 
     <!-- Microsoft Clarity Tracking Code -->
     <script type="text/javascript">

@@ -221,8 +221,8 @@ export const WORKSHOP_TICKETS = WORKSHOP_PASSES;
 export const DEFAULTS = {
   LOGO_URL: '/logo.png?v=2',
   PORTRAIT: '/lakshit-portrait.webp',
-  HERO_VIDEO: '/media/hero-fast.mp4',
-  HERO_POSTER: '/media/hero-poster.webp',
+  HERO_VIDEO: 'https://fast.wistia.net/embed/iframe/2rlct1fyzb',
+  HERO_POSTER: 'https://fast.wistia.com/embed/medias/2rlct1fyzb/swatch',
   FEATURED_POSTER: '/media/cbdc6004a1938decb1073560ba53eca52b8d75db.webp',
   FEATURED_VIDEO: '/media/hero-intro.mp4',
   ATTENDEE_THUMBS: [
@@ -507,9 +507,9 @@ export const INITIAL_PAGES: LandingPage[] = [
           description:
             "A full-day live physical workshop by Lakshit Sethiya, where you'll discover how to scale your business using AI & automation",
           video: {
-            source: 'file',
-            url: '/media/hero-fast.mp4',
-            poster: '/media/hero-poster.webp',
+            source: 'wistia',
+            url: 'https://fast.wistia.net/embed/iframe/2rlct1fyzb',
+            poster: 'https://fast.wistia.com/embed/medias/2rlct1fyzb/swatch',
           },
           alignment: 'center',
           pills: [
@@ -1041,9 +1041,9 @@ export const INITIAL_PAGES: LandingPage[] = [
           description:
             'A 3-hour Live Workshop by Lakshit Sethiya, Online via Zoom, that can change the way you do business.',
           video: {
-            source: 'file',
-            url: '/media/hero-fast.mp4',
-            poster: '/media/hero-poster.webp',
+            source: 'wistia',
+            url: 'https://fast.wistia.net/embed/iframe/2rlct1fyzb',
+            poster: 'https://fast.wistia.com/embed/medias/2rlct1fyzb/swatch',
           },
           alignment: 'center',
           pills: [
