@@ -1803,28 +1803,32 @@ a.pass-modal-urgency--link:hover,
   display: none;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
+  .topbar {
+    padding: 0.5rem 0.5rem !important;
+  }
+  .topbar__content {
+    gap: 0.45rem !important;
+    font-size: 0.78rem !important;
+  }
   .topbar-timer-text-desktop {
     display: none !important;
   }
   .topbar-timer-text-mobile {
     display: inline !important;
   }
-}
-
-@media (max-width: 380px) {
-  .topbar {
-    padding-inline: 0.4rem;
-  }
-  .topbar__content {
-    gap: 0.4rem !important;
-    font-size: 0.72rem !important;
-  }
   .topbar-cta-full {
     display: none !important;
   }
   .topbar-cta-short {
     display: inline !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .topbar__content {
+    gap: 0.35rem !important;
+    font-size: 0.72rem !important;
   }
 }
 
