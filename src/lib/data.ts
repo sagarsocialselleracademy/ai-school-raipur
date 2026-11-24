@@ -1023,7 +1023,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     theme: 'classic',
     registerUrl: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
     registerLabel: 'Register Now',
-    eventStartsAt: '2026-11-15T11:00:00+05:30',
+    eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-09-04T06:30:05.202Z',
     domains: [],
     sections: [

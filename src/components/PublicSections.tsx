@@ -91,6 +91,13 @@ export function useCountdown(targetIso?: string) {
   const targetMs = parseTimestamp(targetIso);
   if (targetMs == null) {
     return {
+      days: '00',
+      hours: '00',
+      minutes: '00',
+      seconds: '00',
+      timeString: '00d : 00h : 00m : 00s',
+      compactTimeString: '00d 00h 00m 00s',
+      expired: false,
       label: 'Starts soon',
       compactLabel: 'Starts soon',
     };
@@ -102,14 +109,23 @@ export function useCountdown(targetIso?: string) {
   const hours = Math.floor((diff % 86400000) / 3600000);
   const minutes = Math.floor((diff % 3600000) / 60000);
   const seconds = Math.floor((diff % 60000) / 1000);
+  const timeString = `${pad2(days)}d : ${pad2(hours)}h : ${pad2(minutes)}m : ${pad2(seconds)}s`;
+  const compactTimeString = `${pad2(days)}d ${pad2(hours)}h ${pad2(minutes)}m ${pad2(seconds)}s`;
 
   return {
+    days: pad2(days),
+    hours: pad2(hours),
+    minutes: pad2(minutes),
+    seconds: pad2(seconds),
+    timeString,
+    compactTimeString,
+    expired,
     label: expired
-      ? 'Live now'
-      : `Starts in ${pad2(days)}d : ${pad2(hours)}h : ${pad2(minutes)}m : ${pad2(seconds)}s`,
+      ? 'Event is Live Now'
+      : `Event Starts in ${timeString}`,
     compactLabel: expired
-      ? 'Live now'
-      : `${pad2(days)}d ${pad2(hours)}h ${pad2(minutes)}m ${pad2(seconds)}s`,
+      ? 'Live Now'
+      : `Starts in ${timeString}`,
   };
 }
 
@@ -483,7 +499,8 @@ export function closePassModal() {
 }
 
 export function Topbar({ settings }: { settings: SiteSettings }) {
-  const { timeString } = useEvergreenTimer(30);
+  const targetIso = settings.eventStartsAt || '2026-11-29T10:00:00+05:30';
+  const { timeString, expired } = useCountdown(targetIso);
   const checkoutUrl = 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view';
 
   const handleCtaClick = () => {
@@ -495,7 +512,12 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
       <div className="topbar__content">
         <span className="topbar__timer" aria-live="polite">
           <ClockIcon />
-          <span>Offer Expiring in {timeString}</span>
+          <span className="topbar-timer-text-desktop">
+            {expired ? 'Event is Live Now' : `Event Starts in ${timeString}`}
+          </span>
+          <span className="topbar-timer-text-mobile">
+            {expired ? 'Live Now' : `Starts in ${timeString}`}
+          </span>
         </span>
         <a
           className="topbar__cta"
@@ -504,7 +526,9 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
           rel="noopener noreferrer"
           onClick={handleCtaClick}
         >
-          {settings.registerLabel || 'Register Now'} <ArrowRightIcon />
+          <span className="topbar-cta-full">{settings.registerLabel || 'Register Now'}</span>
+          <span className="topbar-cta-short">Register</span>
+          <ArrowRightIcon />
         </a>
       </div>
     </div>

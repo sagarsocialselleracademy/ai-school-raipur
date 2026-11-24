@@ -1790,13 +1790,41 @@ a.pass-modal-urgency--link:hover,
   transform: translateX(3px);
 }
 
+.topbar-timer-text-desktop {
+  display: inline;
+}
+.topbar-timer-text-mobile {
+  display: none;
+}
+.topbar-cta-full {
+  display: inline;
+}
+.topbar-cta-short {
+  display: none;
+}
+
+@media (max-width: 540px) {
+  .topbar-timer-text-desktop {
+    display: none !important;
+  }
+  .topbar-timer-text-mobile {
+    display: inline !important;
+  }
+}
+
 @media (max-width: 380px) {
   .topbar {
     padding-inline: 0.4rem;
   }
   .topbar__content {
-    gap: 0.45rem !important;
-    font-size: 0.74rem !important;
+    gap: 0.4rem !important;
+    font-size: 0.72rem !important;
+  }
+  .topbar-cta-full {
+    display: none !important;
+  }
+  .topbar-cta-short {
+    display: inline !important;
   }
 }
 
