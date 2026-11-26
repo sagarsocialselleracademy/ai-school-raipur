@@ -526,7 +526,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
           rel="noopener noreferrer"
           onClick={handleCtaClick}
         >
-          <span className="topbar-cta-full">{settings.registerLabel ? settings.registerLabel.replace(/1999/g, '1799') : 'Register Now @ ₹1799'}</span>
+          <span className="topbar-cta-full">{settings.registerLabel ? settings.registerLabel.replace(/1999/g, '1799').replace(/@\s*₹?1799/gi, '44% Off') : 'Register Now 44% Off'}</span>
           <span className="topbar-cta-short">Register</span>
           <ArrowRightIcon />
         </a>
@@ -985,30 +985,49 @@ function hasAnyArr(v: any): boolean {
   return asArr(v).length > 0;
 }
 
-export function CtaButton({ href, label }: { href?: string; label: string }) {
+export function CtaButton({
+  href,
+  label,
+  subtext = 'Limited Time Discount',
+}: {
+  href?: string;
+  label: string;
+  subtext?: string | boolean;
+}) {
   const checkoutUrl = 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view';
 
   const handleClick = () => {
     PixelTracker.initiateCheckout(label, checkoutUrl);
   };
 
-  const rawLabel = label || 'Register Now @ ₹1799 (Limited Time Discount)';
+  const rawLabel = label || 'Register Now 44% Off';
   const cleanLabel = rawLabel
     .replace(/\s*→\s*$/, '')
-    .replace(/33%\s*off/gi, 'Limited Time Discount')
-    .replace(/1999/g, '1799');
+    .replace(/@\s*₹?1799\s*\(Limited Time Discount\)/gi, '44% Off')
+    .replace(/33%\s*off/gi, '44% Off')
+    .replace(/@\s*₹?1799/gi, '44% Off')
+    .replace(/\(Limited Time Discount\)/gi, '')
+    .trim();
+
+  const showSubtext = subtext !== false && subtext !== undefined && subtext !== '';
+  const subtextStr = typeof subtext === 'string' ? subtext : 'Limited Time Discount';
 
   return (
-    <a
-      className="cta-btn"
-      href={checkoutUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleClick}
-    >
-      <span>{cleanLabel}</span>
-      <ArrowRightIcon />
-    </a>
+    <div className="cta-btn-wrapper">
+      <a
+        className="cta-btn"
+        href={checkoutUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
+      >
+        <span>{cleanLabel}</span>
+        <ArrowRightIcon />
+      </a>
+      {showSubtext ? (
+        <p className="cta-subtext">{subtextStr}</p>
+      ) : null}
+    </div>
   );
 }
 
@@ -1100,7 +1119,7 @@ function HeroSectionBlock({
         <div className="hero-cta">
           <CtaButton
             href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-            label="Register Now @ ₹1799 (Limited Time Discount) →"
+            label="Register Now 44% Off →"
           />
         </div>
       ) : null}
@@ -1191,7 +1210,7 @@ function HeroSectionBlock({
       <div className="hero-cta hero-cta--below-video">
         <CtaButton
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-          label="Register Now @ ₹1799 (Limited Time Discount) →"
+          label="Register Now 44% Off →"
         />
       </div>
       {asStr(data.description) ? (
@@ -2032,8 +2051,11 @@ function CtaSectionBlock({
   registerLabel?: string;
 }) {
   const btn = asObj(data.button);
-  const rawLabel = asStr(btn.label) || asStr(registerLabel, 'Register Now @ ₹1799 (Limited Time Discount) →');
-  const label = rawLabel.replace(/1999/g, '1799').replace(/33%\s*off/gi, 'Limited Time Discount');
+  const rawLabel = asStr(btn.label) || asStr(registerLabel, 'Register Now 44% Off →');
+  const label = rawLabel
+    .replace(/1999/g, '1799')
+    .replace(/33%\s*off/gi, '44% Off')
+    .replace(/@\s*₹?1799\s*\(Limited Time Discount\)/gi, '44% Off');
   if (
     !hasAnyStr(
       data.heading,
@@ -2340,7 +2362,7 @@ export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
     return item;
   });
   const cta = asObj(d.cta);
-  const ctaLabel = asStr(cta.label, 'Register Now @ ₹1799 (Limited Time Discount) →');
+  const ctaLabel = asStr(cta.label, 'Register Now 44% Off →');
   const ctaUrl = asStr(cta.url, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
 
   return (

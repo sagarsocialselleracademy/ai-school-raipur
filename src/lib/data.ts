@@ -319,7 +319,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   seatsRemaining: 12,
   eventStartsAt: '2026-11-29T10:00:00+05:30',
   registerUrl: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
-  registerLabel: 'Register Now @ ₹1799',
+  registerLabel: 'Register Now 44% Off',
   facebookPixelId: '762245465547904',
   footerJson: {
     description:
@@ -327,7 +327,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     copyright: '© 2026 Social Seller Academy. All rights reserved.',
     attribution: 'AI School Raipur · Powered by Social Seller',
     tagline: 'By Lakshit Sethiya',
-    ctaLabel: 'Register Now @ ₹1799',
+    ctaLabel: 'Register Now 44% Off',
     ctaUrl: '#passes',
     linkGroups: [
       {
@@ -466,7 +466,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     facebookPixelId: '762245465547904',
     theme: 'classic',
     registerUrl: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
-    registerLabel: 'Register Now @ ₹1799 (Limited Time Discount)',
+    registerLabel: 'Register Now 44% Off',
     eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
     domains: [
@@ -522,7 +522,7 @@ export const INITIAL_PAGES: LandingPage[] = [
           price: '₹1799 only',
           seatsText: 'Only 12 seats remaining',
           primaryButton: {
-            label: 'Register Now @ ₹1799 (Limited Time Discount) →',
+            label: 'Register Now 44% Off →',
             url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
           },
           secondaryButton: { label: '', url: '' },

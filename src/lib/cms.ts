@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v62',
-  PAGES: 'aischool_pages_v62',
-  NAV: 'aischool_nav_v62',
-  COURSES: 'aischool_courses_v62',
-  TESTIMONIALS: 'aischool_testimonials_v62',
-  FAQS: 'aischool_faqs_v62',
-  LEADS: 'aischool_leads_v62',
-  MEDIA: 'aischool_media_v62',
+  SETTINGS: 'aischool_settings_v63',
+  PAGES: 'aischool_pages_v63',
+  NAV: 'aischool_nav_v63',
+  COURSES: 'aischool_courses_v63',
+  TESTIMONIALS: 'aischool_testimonials_v63',
+  FAQS: 'aischool_faqs_v63',
+  LEADS: 'aischool_leads_v63',
+  MEDIA: 'aischool_media_v63',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v62') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v63') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -386,7 +386,7 @@ export const cmsApi = {
             originalPrice: '₹2999',
             price: '₹1799 only',
             seatsText: 'Only 12 seats remaining',
-            primaryButton: { label: 'Register Now @ ₹1799 (Limited Time Discount) →', url: '#register' },
+            primaryButton: { label: 'Register Now 44% Off →', url: '#register' },
           }
         : type === 'cta'
           ? {
