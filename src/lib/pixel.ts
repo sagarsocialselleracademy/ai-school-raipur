@@ -69,7 +69,7 @@ export const PixelTracker = {
       content_category: 'Physical Workshop',
       content_ids: ['ai-workshop-raipur-29-nov'],
       content_type: 'product',
-      value: details?.price || 1999,
+      value: details?.price || 1799,
       currency: 'INR',
     });
   },
@@ -89,10 +89,10 @@ export const PixelTracker = {
           ? `ticket-${ticketDetails.name.toLowerCase().replace(/\s+/g, '-')}`
           : 'ai-workshop-raipur-29-nov',
       ],
-      value: ticketDetails?.price || 1999,
+      value: ticketDetails?.price || 1799,
       currency: 'INR',
       num_items: 1,
-      button_clicked: buttonLabel || 'Register Now',
+      button_clicked: buttonLabel || 'Register Now @ ₹1799',
       target_url: targetUrl || 'https://rzp.io/rzp/3nLQzNx',
     });
   },
@@ -102,7 +102,7 @@ export const PixelTracker = {
       content_name: 'Workshop Seat Reservation Lead',
       content_category: 'Lead Form',
       currency: 'INR',
-      value: 1999,
+      value: 1799,
     });
   },
 
@@ -111,7 +111,7 @@ export const PixelTracker = {
       content_name: "Raipur's Most Advanced AI & Automation Workshop by Lakshit Sethiya",
       content_ids: ['ai-workshop-raipur-29-nov'],
       content_type: 'product',
-      value: details?.amount || 1999,
+      value: details?.amount || 1799,
       currency: 'INR',
       num_items: 1,
       order_id: details?.transactionId || `order_${Date.now()}`,

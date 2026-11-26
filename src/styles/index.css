@@ -1339,6 +1339,11 @@ a.price-pill--link,
   cursor: pointer;
   transition: all 0.25s ease;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
 }
 a.price-pill--link:hover,
 .price-pill--link:hover {
@@ -1346,6 +1351,21 @@ a.price-pill--link:hover,
   border-color: rgba(250, 116, 44, 0.85);
   box-shadow: 0 4px 24px rgba(250, 116, 44, 0.45);
   transform: translateY(-2px) scale(1.02);
+}
+
+.price-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(250, 116, 44, 0.35);
+  line-height: 1.2;
 }
 
 .seats-link {
@@ -2035,6 +2055,10 @@ a.pass-modal-urgency--link:hover,
   background: #fa742c;
   color: #fff;
   font-weight: 800;
+}
+.hero-pass-chip__tag--silver {
+  background: linear-gradient(135deg, #fa742c 0%, #ea442c 100%);
+  color: #fff;
 }
 .hero-pass-chip--vip .hero-pass-chip__tag {
   background: #eab308;
