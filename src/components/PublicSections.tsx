@@ -527,7 +527,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
           onClick={handleCtaClick}
         >
           <span className="topbar-cta-full">{settings.registerLabel ? settings.registerLabel.replace(/1999/g, '1799') : 'Register Now @ ₹1799'}</span>
-          <span className="topbar-cta-short">Register @ ₹1799</span>
+          <span className="topbar-cta-short">Register</span>
           <ArrowRightIcon />
         </a>
       </div>
