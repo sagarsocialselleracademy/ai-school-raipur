@@ -1190,7 +1190,7 @@ function HeroSectionBlock({
           }
         >
           <SectionIcon name="spark" size={14} />
-          <span>Gold Pass · ₹2999</span>
+          <span>Gold Pass · ₹2699</span>
           <span className="hero-pass-chip__tag">Popular</span>
         </a>
         <a
@@ -1203,7 +1203,7 @@ function HeroSectionBlock({
           }
         >
           <SectionIcon name="star" size={14} />
-          <span>VIP Pass · ₹3499</span>
+          <span>VIP Pass · ₹3999</span>
           <span className="hero-pass-chip__tag">VIP</span>
         </a>
       </div>
