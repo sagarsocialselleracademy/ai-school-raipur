@@ -526,7 +526,7 @@ export function Topbar({ settings }: { settings: SiteSettings }) {
           rel="noopener noreferrer"
           onClick={handleCtaClick}
         >
-          <span className="topbar-cta-full">{settings.registerLabel ? settings.registerLabel.replace(/1999/g, '1799').replace(/@\s*₹?1799/gi, '44% Off') : 'Register Now 44% Off'}</span>
+          <span className="topbar-cta-full">{settings.registerLabel ? settings.registerLabel.replace(/44%\s*off/gi, '33% Off').replace(/1799/g, '1999') : 'Register Now 33% Off'}</span>
           <span className="topbar-cta-short">Register</span>
           <ArrowRightIcon />
         </a>
@@ -1000,12 +1000,12 @@ export function CtaButton({
     PixelTracker.initiateCheckout(label, checkoutUrl);
   };
 
-  const rawLabel = label || 'Register Now 44% Off';
+  const rawLabel = label || 'Register Now 33% Off';
   const cleanLabel = rawLabel
     .replace(/\s*→\s*$/, '')
-    .replace(/@\s*₹?1799\s*\(Limited Time Discount\)/gi, '44% Off')
-    .replace(/33%\s*off/gi, '44% Off')
-    .replace(/@\s*₹?1799/gi, '44% Off')
+    .replace(/44%\s*off/gi, '33% Off')
+    .replace(/@\s*₹?1[79]99\s*\(Limited Time Discount\)/gi, '33% Off')
+    .replace(/@\s*₹?1[79]99/gi, '33% Off')
     .replace(/\(Limited Time Discount\)/gi, '')
     .trim();
 
@@ -1119,7 +1119,7 @@ function HeroSectionBlock({
         <div className="hero-cta">
           <CtaButton
             href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-            label="Register Now 44% Off →"
+            label="Register Now 33% Off →"
           />
         </div>
       ) : null}
@@ -1162,7 +1162,7 @@ function HeroSectionBlock({
         >
           <SectionIcon name="tag" size={16} />
           <s>{asStr(data.originalPrice, '₹2999')}</s>
-          <span>Price {asStr(data.price, '₹1799 only').replace(/1999/g, '1799')}</span>
+          <span>Price {asStr(data.price, '₹1999 only')}</span>
           <span className="price-pill-tag">Limited Time Discount</span>
         </a>
       )}
@@ -1177,7 +1177,7 @@ function HeroSectionBlock({
           }
         >
           <SectionIcon name="ticket" size={14} />
-          <span>Silver Pass · ₹1799</span>
+          <span>Silver Pass · ₹1999</span>
           <span className="hero-pass-chip__tag hero-pass-chip__tag--silver">Limited Offer</span>
         </a>
         <a
@@ -1210,7 +1210,7 @@ function HeroSectionBlock({
       <div className="hero-cta hero-cta--below-video">
         <CtaButton
           href="https://pages.razorpay.com/pl_TssC8YodCsa06i/view"
-          label="Register Now 44% Off →"
+          label="Register Now 33% Off →"
         />
       </div>
       {asStr(data.description) ? (
@@ -1816,7 +1816,7 @@ export function PassesBlock({
                     )
                   }
                 >
-                  {pass.id === 'silver' ? 'Register Now @ ₹1799 →' : `Register Now @ ₹${pass.price} →`}
+                  {pass.id === 'silver' ? 'Register Now @ ₹1999 →' : `Register Now @ ₹${pass.price} →`}
                 </a>
                 <span className="pass-secure-hint ticket-secure-hint">
                   Instant Confirmation via WhatsApp & Email
@@ -2024,7 +2024,7 @@ export function PassModal({ settings }: { settings: SiteSettings }) {
                   }`}
                   onClick={() => handlePassSelect(pass)}
                 >
-                  <span>{pass.id === 'silver' ? 'Register Now @ ₹1799 →' : `Register Now @ ₹${pass.price} →`}</span>
+                  <span>{pass.id === 'silver' ? 'Register Now @ ₹1999 →' : `Register Now @ ₹${pass.price} →`}</span>
                 </button>
               </div>
             );
@@ -2051,11 +2051,10 @@ function CtaSectionBlock({
   registerLabel?: string;
 }) {
   const btn = asObj(data.button);
-  const rawLabel = asStr(btn.label) || asStr(registerLabel, 'Register Now 44% Off →');
+  const rawLabel = asStr(btn.label) || asStr(registerLabel, 'Register Now 33% Off →');
   const label = rawLabel
-    .replace(/1999/g, '1799')
-    .replace(/33%\s*off/gi, '44% Off')
-    .replace(/@\s*₹?1799\s*\(Limited Time Discount\)/gi, '44% Off');
+    .replace(/44%\s*off/gi, '33% Off')
+    .replace(/@\s*₹?1[79]99\s*\(Limited Time Discount\)/gi, '33% Off');
   if (
     !hasAnyStr(
       data.heading,
@@ -2362,7 +2361,7 @@ export function EventTimelineBlock({ data }: { data?: Record<string, any> }) {
     return item;
   });
   const cta = asObj(d.cta);
-  const ctaLabel = asStr(cta.label, 'Register Now 44% Off →');
+  const ctaLabel = asStr(cta.label, 'Register Now 33% Off →');
   const ctaUrl = asStr(cta.url, 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view');
 
   return (

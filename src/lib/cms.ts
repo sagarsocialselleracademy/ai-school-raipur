@@ -21,14 +21,14 @@ import {
 
 const STORAGE_KEYS = {
   AUTH: 'aischool_auth_token',
-  SETTINGS: 'aischool_settings_v64',
-  PAGES: 'aischool_pages_v64',
-  NAV: 'aischool_nav_v64',
-  COURSES: 'aischool_courses_v64',
-  TESTIMONIALS: 'aischool_testimonials_v64',
-  FAQS: 'aischool_faqs_v64',
-  LEADS: 'aischool_leads_v64',
-  MEDIA: 'aischool_media_v64',
+  SETTINGS: 'aischool_settings_v65',
+  PAGES: 'aischool_pages_v65',
+  NAV: 'aischool_nav_v65',
+  COURSES: 'aischool_courses_v65',
+  TESTIMONIALS: 'aischool_testimonials_v65',
+  FAQS: 'aischool_faqs_v65',
+  LEADS: 'aischool_leads_v65',
+  MEDIA: 'aischool_media_v65',
 };
 
 // Automatic Cache Purge: Clean up any stale localStorage from older deployments so all visitors get fresh sections
@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
     const keysToRemove: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('aischool_') && !k.endsWith('_v64') && k !== STORAGE_KEYS.AUTH) {
+      if (k && k.startsWith('aischool_') && !k.endsWith('_v65') && k !== STORAGE_KEYS.AUTH) {
         keysToRemove.push(k);
       }
     }
@@ -384,9 +384,9 @@ export const cmsApi = {
             description: 'Learn practical AI workflows in 3 hours.',
             pills: [{ icon: 'calendar', label: 'Upcoming Sunday' }],
             originalPrice: '₹2999',
-            price: '₹1799 only',
+            price: '₹1999 only',
             seatsText: 'Only 12 seats remaining',
-            primaryButton: { label: 'Register Now 44% Off →', url: '#register' },
+            primaryButton: { label: 'Register Now 33% Off →', url: '#register' },
           }
         : type === 'cta'
           ? {

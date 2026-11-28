@@ -167,15 +167,15 @@ export const WORKSHOP_PASSES: WorkshopPass[] = [
   {
     id: 'silver',
     name: 'Silver Pass',
-    price: 1799,
+    price: 1999,
     originalPrice: 2999,
-    discountText: 'Limited Time Discount - ₹1799',
+    discountText: 'Limited Time Discount - ₹1999',
     url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
     features: [
       { text: '4 Hour Session' },
       { text: 'Networking Lunch Included' },
       { text: 'Prompts & Recording' },
-      { text: 'Limited Time Discount - ₹1799' },
+      { text: 'Limited Time Discount - ₹1999' },
     ],
   },
   {
@@ -319,7 +319,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
   seatsRemaining: 12,
   eventStartsAt: '2026-11-29T10:00:00+05:30',
   registerUrl: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
-  registerLabel: 'Register Now 44% Off',
+  registerLabel: 'Register Now 33% Off',
   facebookPixelId: '762245465547904',
   footerJson: {
     description:
@@ -327,7 +327,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     copyright: '© 2026 Social Seller Academy. All rights reserved.',
     attribution: 'AI School Raipur · Powered by Social Seller',
     tagline: 'By Lakshit Sethiya',
-    ctaLabel: 'Register Now 44% Off',
+    ctaLabel: 'Register Now 33% Off',
     ctaUrl: '#passes',
     linkGroups: [
       {
@@ -441,7 +441,7 @@ export const INITIAL_COURSES: CourseItem[] = [
     level: 'All levels',
     mode: 'Offline - Raipur',
     price: 2499,
-    discountPrice: 1799,
+    discountPrice: 1999,
     ctaLabel: 'Register Now',
     ctaUrl: 'https://rzp.io/rzp/3nLQzNx',
     status: 'PUBLISHED',
@@ -466,7 +466,7 @@ export const INITIAL_PAGES: LandingPage[] = [
     facebookPixelId: '762245465547904',
     theme: 'classic',
     registerUrl: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
-    registerLabel: 'Register Now 44% Off',
+    registerLabel: 'Register Now 33% Off',
     eventStartsAt: '2026-11-29T10:00:00+05:30',
     updatedAt: '2026-10-26T08:30:00.000Z',
     domains: [
@@ -519,10 +519,10 @@ export const INITIAL_PAGES: LandingPage[] = [
             { icon: 'pin', label: 'Vimtara Hall' },
           ],
           originalPrice: '₹2999',
-          price: '₹1799 only',
+          price: '₹1999 only',
           seatsText: 'Only 12 seats remaining',
           primaryButton: {
-            label: 'Register Now 44% Off →',
+            label: 'Register Now 33% Off →',
             url: 'https://pages.razorpay.com/pl_TssC8YodCsa06i/view',
           },
           secondaryButton: { label: '', url: '' },
